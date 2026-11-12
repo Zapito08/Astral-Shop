@@ -6,15 +6,15 @@
 <meta name="theme-color" content="#040208">
 
 <!-- METADATOS & SEO -->
-<title>Astral Shop | Santuario & Catálogo</title>
+<title>Astral Shop</title>
 <meta name="description" content="Catálogo exclusivo de Astral Shop. Vaporizadores, destilados, gomitas cannábicas, jeringas y extractos cósmicos. Domicilios y pedidos directos por WhatsApp.">
 <meta property="og:title" content="Astral Shop">
 <meta property="og:image" content="assets/logo-astral.png">
 
 <!-- FAVICON -->
-<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png?v=8">
-<link rel="icon" type="image/png" sizes="192x192" href="assets/favicon-192.png?v=8">
-<link rel="apple-touch-icon" href="assets/favicon-192.png?v=8">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png?v=14">
+<link rel="icon" type="image/png" sizes="192x192" href="assets/favicon-192.png?v=14">
+<link rel="apple-touch-icon" href="assets/favicon-192.png?v=14">
 
 <!-- GOOGLE FONTS -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -49,6 +49,9 @@ button,input{font:inherit;color:inherit}
 button{cursor:pointer}
 :focus-visible{outline:2px solid var(--pink);outline-offset:2px}
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+
+/* OCULTAR INSIGNIA FLOTANTE DE NETLIFY PARA QUE NO ESTORBE EN MÓVILES */
+iframe#netlify-badge, a[href*="netlify.com/experimental"] { display: none !important; visibility: hidden !important; opacity: 0 !important; pointer-events: none !important; }
 
 /* ==========================================================
    2. FONDO CÓSMICO CON DESTELLOS ROSADOS Y VIOLETAS
@@ -103,7 +106,18 @@ background-image:
 @keyframes rot{from{transform:translate(-50%,-50%) rotate(0)}to{transform:translate(-50%,-50%) rotate(360deg)}}
 .smoke{position:absolute;bottom:-30px;left:50%;width:85%;height:140px;transform:translateX(-50%);background:radial-gradient(ellipse,rgba(244,114,182,.28),rgba(168,85,247,.25) 45%,transparent 70%);filter:blur(28px);pointer-events:none;animation:puff 6s ease-in-out infinite alternate}
 @keyframes puff{from{opacity:.5;transform:translateX(-50%) scale(.95)}to{opacity:.95;transform:translateX(-50%) scale(1.08)}}
-.hero-logo{position:relative;z-index:2;width:clamp(190px,min(76vw,60vh),420px);height:auto;aspect-ratio:1;object-fit:contain;margin:-6px 0 4px;filter:drop-shadow(0 0 28px rgba(244,114,182,.45))}
+
+.hero-logo{
+  position:relative;
+  z-index:2;
+  width: min(100%, 280px);
+  height: auto;
+  aspect-ratio: 1/1;
+  object-fit: contain;
+  margin: 10px auto;
+  filter: drop-shadow(0 0 28px rgba(244,114,182,.45));
+}
+
 .mantra{position:relative;z-index:2;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(17px,2.4vw,21px);color:var(--gold-b);max-width:540px;line-height:1.4}
 .trust{position:relative;z-index:2;display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin-top:18px}
 .trust span{font-size:12px;font-weight:700;padding:6px 14px;border-radius:99px;border:1px solid var(--b-pink);background:rgba(4,2,8,.6);color:#FBCFE8}
@@ -181,7 +195,7 @@ background-image:
 .m-top h3{font-family:'Cinzel Decorative',serif;font-size:17px;font-weight:900}
 .m-close{border:0;background:none;font-size:28px;color:var(--muted);width:44px;height:44px;margin:-8px -10px -8px 0}
 .m-scroll{padding:16px 22px;overflow-y:auto;flex:1;display:flex;flex-direction:column;gap:10px;min-height:90px;overscroll-behavior:contain}
-.m-bot{padding:16px 22px calc(16px + var(--safe-b));background:rgba(14,7,28,.98);border-top:1px solid var(--b-pink);display:flex;flex-direction:column;gap:12px;overflow-y:auto}
+.m-bot{padding:16px 22px calc(24px + var(--safe-b));background:rgba(14,7,28,.98);border-top:1px solid var(--b-pink);display:flex;flex-direction:column;gap:12px;overflow-y:auto}
 .row{background:rgba(255,255,255,.03);border:1px solid var(--b-vio);padding:10px 12px;border-radius:var(--r-m);display:flex;align-items:center;gap:12px}
 .thumb{width:48px;height:48px;border-radius:var(--r-s);object-fit:cover;border:1px solid var(--pink);flex:none;background:#1a0b33}
 .row-i{flex:1;min-width:0;font-size:13px;font-weight:800;overflow-wrap:anywhere}
@@ -193,11 +207,19 @@ background-image:
 .deliv{background:rgba(255,255,255,.03);border:1px solid var(--b-pink);padding:14px;border-radius:var(--r-m);display:flex;flex-direction:column;gap:10px}
 .deliv-h{font-size:11px;font-weight:800;color:var(--gold-b);display:flex;justify-content:space-between;gap:8px}
 .deliv-h span+span{color:var(--pink)}
-.dir-row{display:flex;gap:8px}
+.dir-wrapper{position:relative;display:flex;gap:8px}
 .dir{flex:1;min-width:0;padding:11px 14px;border-radius:var(--r-s);border:1px solid var(--b-vio);background:rgba(4,2,8,.85);font-size:16px;outline:none}
 .dir:focus{border-color:var(--pink)}
+
+/* Sugestiones de direcciones */
+.suggestions{position:absolute;top:calc(100% + 4px);left:0;right:0;background:#15092B;border:1px solid var(--pink);border-radius:var(--r-s);z-index:20;max-height:180px;overflow-y:auto;box-shadow:0 10px 25px rgba(0,0,0,.8)}
+.suggestion-item{padding:10px 14px;font-size:13px;color:var(--text);border-bottom:1px solid rgba(255,255,255,.06);cursor:pointer;transition:var(--ease)}
+.suggestion-item:hover{background:rgba(244,114,182,.15);color:#FBCFE8}
+
 .calc{background:linear-gradient(135deg,var(--gold-b),var(--gold));color:#160C02;border:0;padding:0 16px;border-radius:var(--r-s);font-size:13px;font-weight:800}
-.gps{background:rgba(244,114,182,.18);border:1px solid var(--b-pink);color:#FBCFE8;padding:11px;border-radius:var(--r-s);font-size:13px;font-weight:700;display:flex;align-items:center;justify-content:center;gap:6px;width:100%}
+.gps-group{display:flex;gap:8px}
+.gps{flex:1;background:rgba(244,114,182,.18);border:1px solid var(--b-pink);color:#FBCFE8;padding:11px;border-radius:var(--r-s);font-size:13px;font-weight:700;display:flex;align-items:center;justify-content:center;gap:6px}
+
 .note{font-size:12px;color:var(--pink);font-weight:700;text-align:center}
 .km{font-size:12px;font-weight:700;padding:9px 12px;border-radius:var(--r-s);display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap}
 .km-ok{background:rgba(34,197,94,.15);color:#4ADE80;border:1px solid rgba(34,197,94,.35)}
@@ -206,20 +228,14 @@ background-image:
 .total{display:flex;justify-content:space-between;align-items:baseline;gap:10px}
 .total span:first-child{font-size:12px;color:var(--muted);font-weight:700}
 .total span:last-child{font-size:clamp(20px,5vw,24px);font-weight:900;text-align:right}
-.wa{background:linear-gradient(135deg,var(--em),var(--em-d));color:#021208;border:0;padding:15px;border-radius:var(--r-m);font-weight:900;font-size:15px;width:100%;box-shadow:0 6px 24px rgba(34,197,94,.38)}
+.wa{background:linear-gradient(135deg,var(--em),var(--em-d));color:#021208;border:0;padding:15px;border-radius:var(--r-m);font-weight:900;font-size:15px;width:100%;box-shadow:0 6px 24px rgba(34,197,94,.38);margin-bottom:6px;}
 .wa:disabled{opacity:.45;box-shadow:none}
 .clear{background:none;border:0;color:#F87171;font-size:12px;font-weight:700;align-self:flex-start;padding:4px 0}
 
 /* ==========================================================
    8. LIENZO DE ESTRELLA FUGAZ REALISTA (CANVAS)
 ========================================================== */
-#comet-canvas{
-  position:fixed;
-  inset:0;
-  z-index:9999;
-  pointer-events:none;
-  display:none;
-}
+#comet-canvas{position:fixed;inset:0;z-index:9999;pointer-events:none;display:none}
 #comet-canvas.active{display:block}
 
 /* ==========================================================
@@ -258,7 +274,7 @@ background-image:
 <header class="header">
  <div class="header-in">
   <a href="#" class="brand" aria-label="Astral Shop, inicio">
-   <span class="logo"><img src="assets/logo-astral.png" alt="" width="46" height="46" onerror="this.remove()"></span>
+   <span class="logo"><img src="assets/logo-astral.png" alt="" width="46" height="46" loading="eager" onerror="this.remove()"></span>
    <span><span class="brand-name gold">Astral Shop</span><span class="brand-tag">✦ Santuario & Catálogo</span></span>
   </a>
   <div class="actions">
@@ -296,7 +312,7 @@ background-image:
    <circle cx="200" cy="70" r="35" stroke-width=".5"/><circle cx="200" cy="330" r="35" stroke-width=".5"/><circle cx="70" cy="200" r="35" stroke-width=".5"/><circle cx="330" cy="200" r="35" stroke-width=".5"/>
   </svg>
   <div class="smoke"></div>
-  <img class="hero-logo" src="assets/logo-astral.png" alt="Astral Shop" width="420" height="420" onerror="this.remove()">
+  <img class="hero-logo" src="assets/logo-astral.png" alt="Astral Shop" width="280" height="280" loading="eager" onerror="this.remove()">
   <h1 class="sr">Astral Shop</h1>
   <p class="mantra">“Eleva tu frecuencia, conecta con el cosmos. Vaporizadores, destilados y elixires seleccionados para tu viaje.”</p>
   <div class="trust"><span>🛵 Domicilios en el Valle de Aburrá</span><span>💬 Pedido directo por WhatsApp</span></div>
@@ -349,13 +365,18 @@ background-image:
   <div class="m-bot">
    <button class="clear" id="btn-clear">🗑️ Vaciar pedido</button>
    <div class="deliv">
-    <div class="deliv-h"><span>📍 Punto de entrega</span><span>Tarifa por km</span></div>
-    <div class="dir-row">
-     <input class="dir" id="dir" type="text" autocomplete="street-address" aria-label="Dirección de entrega" placeholder="Barrio, dirección o referencia">
+    <div class="deliv-h"><span>📍 Dirección de Entrega</span><span>Tarifa por zona</span></div>
+    <div class="dir-wrapper">
+     <input class="dir" id="dir" type="text" autocomplete="street-address" aria-label="Dirección de entrega" placeholder="Ej. Barrio, Conjunto, Referencia...">
      <button class="calc" id="btn-calc">Calcular</button>
+     <div id="suggestions" class="suggestions" hidden></div>
     </div>
-    <button class="gps" id="btn-gps">📡 Usar mi ubicación GPS</button>
-    <div class="note" id="searching" hidden>Calculando distancia...</div>
+    
+    <div class="gps-group">
+     <button class="gps" id="btn-gps" style="width:100%">📡 Usar mi ubicación GPS</button>
+    </div>
+
+    <div class="note" id="searching" hidden>Buscando ubicación...</div>
     <div id="ship-info" hidden></div>
    </div>
    <div class="sum"><span>Subtotal</span><span id="sum-sub">$0</span></div>
@@ -385,10 +406,10 @@ background-image:
 <footer class="foot"><p>✦ <strong class="gold">ASTRAL SHOP</strong> ✦ Catálogo Cósmico &copy; 2026</p><p>Venta exclusiva a mayores de 18 años. Consume con responsabilidad.</p></footer>
 
 <script>
-/* ===== CONFIGURACIÓN Y PUNTO DE PARTIDA (Calle 30 #50-63, Itagüí) ===== */
+/* ===== CONFIGURACIÓN Y PUNTO DE REFERENCIA INTERNO ===== */
 const WHATSAPP_NUM = "573002872963";
 const CIUDAD_BASE = "Itagüí, Antioquia, Colombia";
-const LAT_ORIGEN = 6.1738, LON_ORIGEN = -75.6074; // Coordenadas calibradas Calle 30 #50-63 Itagüí
+const LAT_ORIGEN = 6.1738, LON_ORIGEN = -75.6074;
 const KM_BASE = 3, TARIFA_BASE = 5000, VALOR_KM_EXTRA = 1500, KM_MAX_AUTO = 25;
 
 const CATEGORIAS = [["Todas","🪷 Todo el universo"],["Vaporizadores","💨 Vaporizadores"],["Destilados","💧 Destilados"],["Gomitas","🍬 Gomitas"],["Jeringas","💉 Jeringas"],["Accesorios","🔮 Accesorios"]];
@@ -413,16 +434,16 @@ const store = {
  set(k,v){try{localStorage.setItem(k,v)}catch(e){}}
 };
 let carrito = [], categoria = 'Todas', envio = null;
-try { carrito = JSON.parse(store.get('astral_cart_v8') || '[]').filter(i => productos.some(p => p.id === i.id)); } catch(e) { carrito = []; }
+try { carrito = JSON.parse(store.get('astral_cart_v14') || '[]').filter(i => productos.some(p => p.id === i.id)); } catch(e) { carrito = []; }
 const subtotal = () => carrito.reduce((s,i) => s + i.p * i.cantidad, 0);
 const prod = id => productos.find(p => p.id === id);
-const save = () => store.set('astral_cart_v8', JSON.stringify(carrito));
+const save = () => store.set('astral_cart_v14', JSON.stringify(carrito));
 
 /* ===== RENDER ===== */
 const FALLA = "this.remove()";
 function tarjeta(p){
  return `<article class="card" data-id="${p.id}">
-  <div class="media"><img class="photo" src="${esc(p.img)}" alt="${esc(p.n)}" loading="lazy" onerror="${FALLA}">
+  <div class="media"><img class="photo" src="${esc(p.img)}" alt="${esc(p.n)}" loading="lazy" width="300" height="225" onerror="${FALLA}">
    <div class="badges">${p.popular ? '<span class="star-tag">✦ Top Astral</span>' : ''}<span class="spec">${esc(p.c)}</span></div></div>
   <div class="info"><div><span class="cat-l">${esc(p.cat)}</span><h3 class="title">${esc(p.n)}</h3><p class="desc">${esc(p.d)}</p></div>
    ${p.opc ? `<div class="v-label">Elige tu opción:</div><div class="chips" role="group" aria-label="Opciones de ${esc(p.n)}">${p.opc.map(o => `<button class="chip" data-opt="${esc(o)}">${esc(o)}</button>`).join('')}</div>` : ''}
@@ -452,7 +473,7 @@ function renderCarrito(){
  $('btn-wa').disabled = n === 0;
  $('btn-clear').hidden = n === 0;
  $('cart-items').innerHTML = n === 0 ? '<p style="text-align:center;color:var(--muted);padding:26px 0;font-size:13px">Tu santuario está vacío. Agrega productos del catálogo ✦</p>' :
-  carrito.map(i => `<div class="row"><img class="thumb" src="${esc(i.img)}" alt="" onerror="${FALLA}">
+  carrito.map(i => `<div class="row"><img class="thumb" src="${esc(i.img)}" alt="" width="48" height="48" loading="lazy" onerror="${FALLA}">
    <div class="row-i">${esc(i.n)}${i.opcion ? `<small>• ${esc(i.opcion)}</small>` : ''}<b>${money(i.p*i.cantidad)}</b></div>
    <div class="qty"><button data-q="-1" data-k="${esc(i.cartId)}" aria-label="Quitar uno">−</button><span>${i.cantidad}</span><button data-q="1" data-k="${esc(i.cartId)}" aria-label="Agregar uno">+</button></div></div>`).join('');
 }
@@ -478,45 +499,74 @@ function abrir(id){ lastFocus = document.activeElement; $(id).classList.add('on'
 function cerrar(id){ $(id).classList.remove('on'); $(id).setAttribute('aria-hidden','true'); if (!document.querySelector('.modal.on,.alert.on')) document.body.classList.remove('lock'); if (lastFocus) lastFocus.focus?.(); }
 function alerta(t, m, ic='🪷'){ $('al-t').textContent = t; $('al-m').textContent = m; $('al-ic').textContent = ic; $('alert').classList.add('on'); $('al-ok').focus(); }
 
-/* ===== CÁLCULO DE DOMICILIO (PUNTO A: CALLE 30 #50-63) ===== */
+/* ===== CÁLCULO DE DOMICILIO FLEXIBLE ===== */
 function haversine(a,b,c,d){
  const r = x => x*Math.PI/180, dLat = r(c-a), dLon = r(d-b);
  const h = Math.sin(dLat/2)**2 + Math.cos(r(a))*Math.cos(r(c))*Math.sin(dLon/2)**2;
  return 6371 * 2 * Math.atan2(Math.sqrt(h), Math.sqrt(1-h));
 }
 function mostrarEnvio(html, cls){ const el = $('ship-info'); el.hidden = false; el.className = 'km ' + cls; el.innerHTML = html; }
-function procesarEnvio(lat, lon){
- const km = haversine(LAT_ORIGEN, LON_ORIGEN, lat, lon) * 1.25; // Factor vial aprox
+
+function procesarCoordenadas(lat, lon, displayName){
+ const km = haversine(LAT_ORIGEN, LON_ORIGEN, lat, lon) * 1.25;
  if (km <= KM_MAX_AUTO) {
   const costo = km <= KM_BASE ? TARIFA_BASE : TARIFA_BASE + Math.ceil(km - KM_BASE) * VALOR_KM_EXTRA;
   envio = {km, costo, coordinar:false};
-  mostrarEnvio(`<span>Distancia aprox: <b>${km.toFixed(1)} km</b> (Calle 30)</span><span>Domicilio: <b>${money(costo)}</b></span>`, 'km-ok');
+  mostrarEnvio(`<span>Distancia aprox: <b>${km.toFixed(1)} km</b></span><span>Domicilio: <b>${money(costo)}</b></span>`, 'km-ok');
  } else {
   envio = {km, costo:0, coordinar:true};
-  mostrarEnvio(`<span>🛵 ${km.toFixed(1)} km: el domicilio se cotiza por WhatsApp.</span>`, 'km-c');
+  mostrarEnvio(`<span>🛵 ${km.toFixed(1)} km: el domicilio se coordina por WhatsApp.</span>`, 'km-c');
  }
+ if (displayName) $('dir').value = displayName;
  renderCarrito();
 }
-function envioCoordinar(msg){ envio = {km:0, costo:0, coordinar:true}; mostrarEnvio(`<span>🛵 ${esc(msg)}</span>`, 'km-c'); renderCarrito(); }
+
+async function buscarDireccion(query){
+ if (!query || query.length < 3) { $('suggestions').hidden = true; return; }
+ try {
+  const r = await fetch(`https://nominatim.openstreetmap.org/search?format=json&limit=5&q=${encodeURIComponent(query + ', ' + CIUDAD_BASE)}`);
+  const data = await r.json();
+  const box = $('suggestions');
+  if (data.length) {
+   box.innerHTML = data.map(item => `<div class="suggestion-item" data-lat="${item.lat}" data-lon="${item.lon}" data-name="${esc(item.display_name)}">${esc(item.display_name)}</div>`).join('');
+   box.hidden = false;
+  } else {
+   box.hidden = true;
+  }
+ } catch(e) { $('suggestions').hidden = true; }
+}
+
 async function calcularManual(){
  const dir = $('dir').value.trim();
- if (dir.length < 3) return alerta('Dirección incompleta', 'Escribe un barrio o dirección para calcular el domicilio.', '📍');
+ if (dir.length < 3) return alerta('Dirección incompleta', 'Escribe tu dirección o barrio para calcular el domicilio.', '📍');
  $('searching').hidden = false;
+ $('suggestions').hidden = true;
  try {
   const r = await fetch('https://nominatim.openstreetmap.org/search?format=json&limit=1&q=' + encodeURIComponent(dir + ', ' + CIUDAD_BASE));
   const d = await r.json();
-  d.length ? procesarEnvio(+d[0].lat, +d[0].lon) : envioCoordinar('No ubicamos esa dirección. Coordinamos el domicilio por WhatsApp.');
- } catch(e) { envioCoordinar('Sin conexión al mapa. Coordinamos el domicilio por WhatsApp.'); }
+  if (d.length) {
+   procesarCoordenadas(+d[0].lat, +d[0].lon, d[0].display_name);
+  } else {
+   envio = {km:0, costo:0, coordinar:true};
+   mostrarEnvio(`<span>🛵 Dirección guardada. Coordinamos tarifa exacta por WhatsApp.</span>`, 'km-c');
+   renderCarrito();
+  }
+ } catch(e) {
+  envio = {km:0, costo:0, coordinar:true};
+  mostrarEnvio(`<span>🛵 Dirección guardada. Coordinamos tarifa exacta por WhatsApp.</span>`, 'km-c');
+  renderCarrito();
+ }
  $('searching').hidden = true;
 }
+
 function usarGPS(){
- if (!navigator.geolocation) return alerta('GPS no disponible', 'Tu navegador no permite acceder a la ubicación. Escribe tu barrio.', '🚫');
- const b = $('btn-gps'); b.disabled = true; b.textContent = 'Detectando ubicación...';
+ if (!navigator.geolocation) return alerta('GPS no disponible', 'Tu navegador no permite acceder a la ubicación. Escribe tu dirección.', '🚫');
+ const b = $('btn-gps'); b.disabled = true; b.textContent = 'Detectando...';
  const fin = () => { b.disabled = false; b.textContent = '📡 Usar mi ubicación GPS'; };
  navigator.geolocation.getCurrentPosition(pos => {
-  if (!$('dir').value.trim()) $('dir').value = `GPS (${pos.coords.latitude.toFixed(4)}, ${pos.coords.longitude.toFixed(4)})`;
-  procesarEnvio(pos.coords.latitude, pos.coords.longitude); fin();
- }, () => { fin(); alerta('GPS bloqueado', 'Activa el permiso de ubicación o escribe tu barrio manualmente.', '📡'); }, {timeout:10000});
+  procesarCoordenadas(pos.coords.latitude, pos.coords.longitude, `Mi Ubicación GPS (${pos.coords.latitude.toFixed(4)}, ${pos.coords.longitude.toFixed(4)})`);
+  fin();
+ }, () => { fin(); alerta('GPS bloqueado', 'Activa el permiso de ubicación en tu celular o escribe tu dirección.', '📡'); }, {timeout:10000});
 }
 
 /* ==========================================================
@@ -647,16 +697,17 @@ function enviarWhatsApp(){
  let m = '🪷 *NUEVO PEDIDO · ASTRAL SHOP* 🪷\n\n';
  carrito.forEach(i => m += `• *${i.cantidad}x* ${i.n}${i.opcion ? ` _[${i.opcion}]_` : ''} — ${money(i.p*i.cantidad)}\n`);
  m += `\n💰 *Subtotal:* ${money(sub)}`;
- m += envio && !envio.coordinar ? `\n🛵 *Domicilio desde Calle 30:* ${money(costo)} (${envio.km.toFixed(1)} km aprox.)` : '\n🛵 *Domicilio:* a coordinar';
- m += `\n📍 *Entrega en:* ${dir}`;
+ m += envio && !envio.coordinar ? `\n🛵 *Domicilio:* ${money(costo)} (${envio.km.toFixed(1)} km aprox.)` : '\n🛵 *Domicilio:* a coordinar';
+ m += `\n📍 *Entrega (Cliente):* ${dir}`;
  m += envio && !envio.coordinar ? `\n\n✨ *TOTAL ESTIMADO: ${money(total)}*` : `\n\n✨ *SUBTOTAL: ${money(sub)}* (+ domicilio)`;
- m += `\n\n¡Gracias por tu compra! En unos momentos te responderemos y ajustamos lo del domicilio ✦`;
+ m += `\n\n¡Gracias por tu compra! En unos momentos te responderemos ✦`;
 
  const waUrl = `https://wa.me/${WHATSAPP_NUM}?text=${encodeURIComponent(m)}`;
 
  cerrar('cart');
+ 
  lanzarEstrellaFugaz(() => {
-  window.open(waUrl, '_blank', 'noopener');
+  window.location.href = waUrl;
  });
 }
 
@@ -682,8 +733,17 @@ document.addEventListener('click', e => {
  }
  const cat = t.closest('[data-cat]'); if (cat) { categoria = cat.dataset.cat; renderCats(); renderCatalogo(); return; }
  const q = t.closest('[data-q]'); if (q) { cambiarCant(q.dataset.k, +q.dataset.q); return; }
- if (t.closest('[data-close]') || t.classList.contains('modal')) cerrar('cart');
+ 
+ const sug = t.closest('.suggestion-item');
+ if (sug) {
+  procesarCoordenadas(+sug.dataset.lat, +sug.dataset.lon, sug.dataset.name);
+  $('suggestions').hidden = true;
+  return;
+ }
+
+ if (t.closest('[data-close]') || t.classList.contains('modal')) { cerrar('cart'); $('suggestions').hidden = true; }
 });
+
 $('btn-cart').onclick = $('float-btn').onclick = () => abrir('cart');
 $('btn-share').onclick = compartir;
 $('btn-clear').onclick = () => { carrito = []; save(); renderCarrito(); toast('Pedido vaciado'); };
@@ -691,10 +751,23 @@ $('btn-calc').onclick = calcularManual;
 $('btn-gps').onclick = usarGPS;
 $('btn-wa').onclick = enviarWhatsApp;
 $('al-ok').onclick = () => cerrar('alert');
-$('dir').addEventListener('keydown', e => { if (e.key === 'Enter') calcularManual(); });
-$('dir').addEventListener('input', () => { if (envio) { envio = null; $('ship-info').hidden = true; renderCarrito(); } });
+
+$('dir').addEventListener('keydown', e => { if (e.key === 'Enter') { $('suggestions').hidden = true; calcularManual(); } });
+
+let searchTimer;
+$('dir').addEventListener('input', e => {
+ if (envio) { envio = null; $('ship-info').hidden = true; renderCarrito(); }
+ clearTimeout(searchTimer);
+ const val = e.target.value.trim();
+ if (val.length >= 3) {
+  searchTimer = setTimeout(() => buscarDireccion(val), 300);
+ } else {
+  $('suggestions').hidden = true;
+ }
+});
+
 let timer; $('q').addEventListener('input', () => { clearTimeout(timer); timer = setTimeout(renderCatalogo, 150); });
-document.addEventListener('keydown', e => { if (e.key === 'Escape') { if ($('alert').classList.contains('on')) cerrar('alert'); else if ($('cart').classList.contains('on')) cerrar('cart'); } });
+document.addEventListener('keydown', e => { if (e.key === 'Escape') { if ($('alert').classList.contains('on')) cerrar('alert'); else if ($('cart').classList.contains('on')) cerrar('cart'); $('suggestions').hidden = true; } });
 
 /* Verificación de edad (+18) */
 if (store.get('astral_age_ok') !== '1') {
