@@ -6,15 +6,15 @@
 <meta name="theme-color" content="#040208">
 
 <!-- METADATOS & SEO -->
-<title>Astral Shop | Santuario & Catálogo</title>
+<title>Astral Shop</title>
 <meta name="description" content="Catálogo exclusivo de Astral Shop. Vaporizadores, destilados, gomitas cannábicas, jeringas y extractos cósmicos. Domicilios y pedidos directos por WhatsApp.">
 <meta property="og:title" content="Astral Shop">
 <meta property="og:image" content="assets/logo-astral.png">
 
 <!-- FAVICON -->
-<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png?v=16">
-<link rel="icon" type="image/png" sizes="192x192" href="assets/favicon-192.png?v=16">
-<link rel="apple-touch-icon" href="assets/favicon-192.png?v=16">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png?v=14">
+<link rel="icon" type="image/png" sizes="192x192" href="assets/favicon-192.png?v=14">
+<link rel="apple-touch-icon" href="assets/favicon-192.png?v=14">
 
 <!-- GOOGLE FONTS -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -390,7 +390,7 @@ background-image:
 <!-- ALERTA GENERAL -->
 <div id="alert" class="alert" role="alertdialog" aria-modal="true"><div class="alert-c"><span class="ic" id="al-ic">🪷</span><h4 class="gold" id="al-t"></h4><p id="al-m"></p><button class="btn-g" id="al-ok">Entendido</button></div></div>
 
-<!-- ALERTA DE MAYORÍA DE EDAD (+18) AL ENTRAR (FORZADA DESDE EL INICIO) -->
+<!-- ALERTA DE MAYORÍA DE EDAD (+18) AL ENTRAR -->
 <div id="age" class="alert" role="dialog" aria-modal="true" aria-labelledby="age-t">
  <div class="alert-c">
   <span class="ic">🔞</span>
@@ -434,10 +434,10 @@ const store = {
  set(k,v){try{localStorage.setItem(k,v)}catch(e){}}
 };
 let carrito = [], categoria = 'Todas', envio = null;
-try { carrito = JSON.parse(store.get('astral_cart_v16') || '[]').filter(i => productos.some(p => p.id === i.id)); } catch(e) { carrito = []; }
+try { carrito = JSON.parse(store.get('astral_cart_v14') || '[]').filter(i => productos.some(p => p.id === i.id)); } catch(e) { carrito = []; }
 const subtotal = () => carrito.reduce((s,i) => s + i.p * i.cantidad, 0);
 const prod = id => productos.find(p => p.id === id);
-const save = () => store.set('astral_cart_v16', JSON.stringify(carrito));
+const save = () => store.set('astral_cart_v14', JSON.stringify(carrito));
 
 /* ===== RENDER ===== */
 const FALLA = "this.remove()";
@@ -517,13 +517,7 @@ function procesarCoordenadas(lat, lon, displayName){
   envio = {km, costo:0, coordinar:true};
   mostrarEnvio(`<span>🛵 ${km.toFixed(1)} km: el domicilio se coordina por WhatsApp.</span>`, 'km-c');
  }
- 
- // Limpiamos el nombre de la dirección para que no salgan coordenadas feas, sino formato legible
- if (displayName) {
-  // Limpiamos partes innecesarias muy largas si las trae Nominatim
-  let cleanName = displayName.split(',')[0] + ', ' + (displayName.split(',')[1] || CIUDAD_BASE);
-  $('dir').value = cleanName.trim();
- }
+ if (displayName) $('dir').value = displayName;
  renderCarrito();
 }
 
@@ -570,18 +564,8 @@ function usarGPS(){
  const b = $('btn-gps'); b.disabled = true; b.textContent = 'Detectando...';
  const fin = () => { b.disabled = false; b.textContent = '📡 Usar mi ubicación GPS'; };
  navigator.geolocation.getCurrentPosition(pos => {
-  // Usamos geocodificación inversa para obtener la dirección normal en texto en vez de coordenadas
-  fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${pos.coords.latitude}&lon=${pos.coords.longitude}`)
-   .then(res => res.json())
-   .then(data => {
-    let readableDir = data.display_name ? (data.display_name.split(',')[0] + ', ' + (data.display_name.split(',')[1] || 'Itagüí')) : 'Mi ubicación GPS actual';
-    procesarCoordenadas(pos.coords.latitude, pos.coords.longitude, readableDir);
-    fin();
-   })
-   .catch(() => {
-    procesarCoordenadas(pos.coords.latitude, pos.coords.longitude, 'Mi ubicación GPS actual');
-    fin();
-   });
+  procesarCoordenadas(pos.coords.latitude, pos.coords.longitude, `Mi Ubicación GPS (${pos.coords.latitude.toFixed(4)}, ${pos.coords.longitude.toFixed(4)})`);
+  fin();
  }, () => { fin(); alerta('GPS bloqueado', 'Activa el permiso de ubicación en tu celular o escribe tu dirección.', '📡'); }, {timeout:10000});
 }
 
@@ -752,8 +736,7 @@ document.addEventListener('click', e => {
  
  const sug = t.closest('.suggestion-item');
  if (sug) {
-  let cleanName = sug.dataset.name.split(',')[0] + ', ' + (sug.dataset.name.split(',')[1] || CIUDAD_BASE);
-  procesarCoordenadas(+sug.dataset.lat, +sug.dataset.lon, cleanName);
+  procesarCoordenadas(+sug.dataset.lat, +sug.dataset.lon, sug.dataset.name);
   $('suggestions').hidden = true;
   return;
  }
@@ -786,7 +769,7 @@ $('dir').addEventListener('input', e => {
 let timer; $('q').addEventListener('input', () => { clearTimeout(timer); timer = setTimeout(renderCatalogo, 150); });
 document.addEventListener('keydown', e => { if (e.key === 'Escape') { if ($('alert').classList.contains('on')) cerrar('alert'); else if ($('cart').classList.contains('on')) cerrar('cart'); $('suggestions').hidden = true; } });
 
-/* ===== VERIFICACIÓN DE EDAD OBLIGATORIA DESDE EL INICIO ===== */
+/* Verificación de edad (+18) */
 if (store.get('astral_age_ok') !== '1') {
   $('age').classList.add('on');
   document.body.classList.add('lock');
