@@ -367,7 +367,7 @@ background-image:
    <div class="deliv">
     <div class="deliv-h"><span>📍 Dirección de Entrega</span><span>Tarifa por zona</span></div>
     <div class="dir-wrapper">
-     <input class="dir" id="dir" type="text" autocomplete="street-address" aria-label="Dirección de entrega" placeholder="Ej. Calle 40 # 50-23">
+     <input class="dir" id="dir" type="text" autocomplete="street-address" aria-label="Dirección de entrega" placeholder="Ej. Calle 40 # 60-101, Barrio...">
      <button class="calc" id="btn-calc">Calcular</button>
      <div id="suggestions" class="suggestions" hidden></div>
     </div>
@@ -409,7 +409,7 @@ background-image:
 /* ===== CONFIGURACIÓN Y PUNTO DE REFERENCIA INTERNO (Punto A: Itagüí San Pío) ===== */
 const WHATSAPP_NUM = "573002872963";
 const CIUDAD_BASE = "Antioquia, Colombia";
-const LAT_ORIGEN = 6.1738, LON_ORIGEN = -75.6074; // Itagüí San Pío aprox (Calle 30 # 50-63)
+const LAT_ORIGEN = 6.1738, LON_ORIGEN = -75.6074; // Punto A: Calle 30 # 50-63, Itagüí San Pío
 const KM_BASE = 3, TARIFA_BASE = 5000, VALOR_KM_EXTRA = 1500, KM_MAX_AUTO = 25;
 
 const VIEWBOX_ABURRA = "-75.72,6.05,-75.30,6.46";
@@ -501,7 +501,7 @@ function abrir(id){ lastFocus = document.activeElement; $(id).classList.add('on'
 function cerrar(id){ $(id).classList.remove('on'); $(id).setAttribute('aria-hidden','true'); if (!document.querySelector('.modal.on,.alert.on')) document.body.classList.remove('lock'); if (lastFocus) lastFocus.focus?.(); }
 function alerta(t, m, ic='🪷'){ $('al-t').textContent = t; $('al-m').textContent = m; $('al-ic').textContent = ic; $('alert').classList.add('on'); $('al-ok').focus(); }
 
-/* ===== CÁLCULO DE DOMICILIO FLEXIBLE (SOPORTA NOMENCLATURA COLOMBIANA) ===== */
+/* ===== CÁLCULO DE DOMICILIO & GEOCODIFICACIÓN INVERSA ===== */
 function haversine(a,b,c,d){
  const r = x => x*Math.PI/180, dLat = r(c-a), dLon = r(d-b);
  const h = Math.sin(dLat/2)**2 + Math.cos(r(a))*Math.cos(r(c))*Math.sin(dLon/2)**2;
@@ -601,14 +601,50 @@ async function calcularManual(){
  $('searching').hidden = true;
 }
 
-function usarGPS(){
+/* GPS INTELIGENTE: TRADUCE A CALLE/BARRIO Y CALCULA AUTOMÁTICAMENTE */
+async function usarGPS(){
  if (!navigator.geolocation) return alerta('GPS no disponible', 'Tu navegador no permite acceder a la ubicación. Escribe tu dirección.', '🚫');
- const b = $('btn-gps'); b.disabled = true; b.textContent = 'Detectando...';
+ const b = $('btn-gps'); b.disabled = true; b.textContent = '📡 Detectando ubicación...';
+ 
  const fin = () => { b.disabled = false; b.textContent = '📡 Usar mi ubicación GPS'; };
- navigator.geolocation.getCurrentPosition(pos => {
-  procesarCoordenadas(pos.coords.latitude, pos.coords.longitude, `Mi Ubicación GPS (${pos.coords.latitude.toFixed(4)}, ${pos.coords.longitude.toFixed(4)})`, false);
+
+ navigator.geolocation.getCurrentPosition(async pos => {
+  const lat = pos.coords.latitude;
+  const lon = pos.coords.longitude;
+  
+  try {
+    const res = await fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lon}&zoom=18&addressdetails=1`);
+    const data = await res.json();
+    
+    let direccionLegible = "";
+    if (data && data.address) {
+      const a = data.address;
+      const via = a.road || a.pedestrian || a.suburb || a.neighbourhood || '';
+      const numero = a.house_number ? `# ${a.house_number}` : '';
+      const barrio = a.suburb || a.neighbourhood || a.residential || '';
+      const ciudad = a.city || a.town || a.municipality || 'Itagüí';
+      
+      direccionLegible = [via, numero, barrio, ciudad].filter(Boolean).join(', ');
+    }
+    
+    if (!direccionLegible && data && data.display_name) {
+      direccionLegible = data.display_name.split(',').slice(0, 3).join(',').trim();
+    }
+
+    if (!direccionLegible) {
+      direccionLegible = `Ubicación GPS (${lat.toFixed(4)}, ${lon.toFixed(4)})`;
+    }
+
+    // Coloca la dirección en el input y calcula automáticamente el domicilio y kilómetros
+    procesarCoordenadas(lat, lon, direccionLegible, false);
+  } catch(e) {
+    procesarCoordenadas(lat, lon, `Ubicación GPS (${lat.toFixed(4)}, ${lon.toFixed(4)})`, false);
+  }
   fin();
- }, () => { fin(); alerta('GPS bloqueado', 'Activa el permiso de ubicación en tu celular o escribe tu dirección.', '📡'); }, {timeout:10000});
+ }, () => { 
+  fin(); 
+  alerta('GPS bloqueado', 'Activa el permiso de ubicación en tu celular o escribe tu dirección.', '📡'); 
+}, {timeout:10000});
 }
 
 /* ==========================================================
