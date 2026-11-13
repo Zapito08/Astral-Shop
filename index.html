@@ -50,7 +50,6 @@ button{cursor:pointer}
 :focus-visible{outline:2px solid var(--pink);outline-offset:2px}
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
 
-/* OCULTAR INSIGNIA FLOTANTE DE NETLIFY PARA QUE NO ESTORBE EN MÓVILES */
 iframe#netlify-badge, a[href*="netlify.com/experimental"] { display: none !important; visibility: hidden !important; opacity: 0 !important; pointer-events: none !important; }
 
 /* ==========================================================
@@ -70,7 +69,6 @@ background-image:
 @keyframes drift{to{transform:translateY(-420px) rotate(10deg)}}
 .gold{background:linear-gradient(135deg,var(--gold-b),var(--gold) 52%,var(--pink) 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:var(--gold)}
 
-/* Logo alternativo */
 .logo{position:relative;border-radius:50%;overflow:hidden;background:radial-gradient(circle,#2a1252,#0b0517);display:grid;place-items:center;color:var(--pink);flex:none}
 .logo::before{content:"✦";position:absolute}
 .logo img{position:relative;width:100%;height:100%;object-fit:cover}
@@ -89,7 +87,6 @@ background-image:
 .ibtn{width:44px;height:44px;border-radius:50%;background:rgba(23,13,44,.85);border:1px solid var(--b-pink);color:var(--gold-b);display:grid;place-items:center;position:relative;transition:var(--ease)}
 .ibtn:hover{border-color:var(--pink);box-shadow:0 0 20px var(--pink-glow);transform:translateY(-2px)}
 
-/* Botón Estrella del Carrito */
 .star-cart-btn{position:relative;width:56px;height:56px;background:none;border:none;padding:0;display:grid;place-items:center;transition:var(--ease);filter:drop-shadow(0 0 12px rgba(244,114,182,.4))}
 .star-cart-btn:hover{transform:scale(1.08) rotate(-4deg);filter:drop-shadow(0 0 18px rgba(252,231,178,.8))}
 .star-cart-btn:active{transform:scale(.95)}
@@ -177,7 +174,7 @@ background-image:
 .empty{grid-column:1/-1;text-align:center;color:var(--muted);padding:50px 0;font-size:14px}
 
 /* ==========================================================
-   7. BARRA FLOTANTE & MODAL CARRITO (CON SCROLL FLUIDO MÓVIL)
+   7. BARRA FLOTANTE & MODAL CARRITO (DISEÑO ADAPTABLE PC / MÓVIL)
 ========================================================== */
 .float{position:fixed;bottom:calc(16px + var(--safe-b));left:0;right:0;padding:0 var(--pad);z-index:40;pointer-events:none}
 .float-btn{max-width:480px;margin:0 auto;width:100%;display:none;justify-content:space-between;align-items:center;gap:10px;background:linear-gradient(135deg,#250E3A,#0B0517);border:1.5px solid var(--pink);color:var(--gold-b);padding:12px 22px;border-radius:99px;pointer-events:auto;box-shadow:0 14px 35px rgba(0,0,0,.85),0 0 25px rgba(244,114,182,.35)}
@@ -186,52 +183,53 @@ background-image:
 .float-star-wrap svg{position:absolute;inset:0;width:100%;height:100%}
 .float-star-num{position:relative;z-index:2;color:#160C02;font-size:11px;font-weight:900;margin-top:2px}
 
-.modal{position:fixed;inset:0;z-index:50;display:none;align-items:flex-end;justify-content:center;background:rgba(2,1,6,.85);backdrop-filter:blur(14px);overscroll-behavior:contain}
+.modal{position:fixed;inset:0;z-index:50;display:none;align-items:flex-end;justify-content:center;background:rgba(2,1,6,.88);backdrop-filter:blur(14px);overscroll-behavior:contain;padding:0}
 .modal.on{display:flex}
-.panel{background:#0D061A;border:1px solid var(--pink);width:100%;max-width:520px;max-height:90dvh;border-radius:var(--r-l) var(--r-l) 0 0;display:flex;flex-direction:column;overflow-y:auto;-webkit-overflow-scrolling:touch;overscroll-behavior:contain;box-shadow:0 25px 60px rgba(0,0,0,.95);animation:up .25s ease}
-@keyframes up{from{transform:translateY(24px);opacity:0}}
-@media(min-width:640px){.modal{align-items:center;padding:20px}.panel{border-radius:var(--r-l);max-height:88dvh}}
-.m-top{position:sticky;top:0;z-index:10;padding:16px 22px;border-bottom:1px solid var(--b-pink);display:flex;justify-content:space-between;align-items:center;background:rgba(28,12,44,.98);backdrop-filter:blur(10px);flex:none}
-.m-top h3{font-family:'Cinzel Decorative',serif;font-size:17px;font-weight:900}
-.m-close{border:0;background:none;font-size:28px;color:var(--muted);width:44px;height:44px;margin:-8px -10px -8px 0}
-.m-scroll{padding:16px 22px;display:flex;flex-direction:column;gap:10px;flex:none}
-.m-bot{padding:16px 22px calc(24px + var(--safe-b));background:rgba(14,7,28,.98);border-top:1px solid var(--b-pink);display:flex;flex-direction:column;gap:12px;flex:none}
+.panel{background:#0D061A;border:1px solid var(--pink);width:100%;max-width:520px;max-height:88dvh;border-radius:24px 24px 0 0;display:flex;flex-direction:column;overflow:hidden;box-shadow:0 -10px 40px rgba(0,0,0,.95);animation:up .25s ease}
+@keyframes up{from{transform:translateY(30px);opacity:0}}
+@media(min-width:640px){.modal{align-items:center;padding:20px}.panel{border-radius:var(--r-l);max-height:85dvh}}
 
-.row{background:rgba(255,255,255,.03);border:1px solid var(--b-vio);padding:10px 12px;border-radius:var(--r-m);display:flex;align-items:center;gap:12px}
-.thumb{width:48px;height:48px;border-radius:var(--r-s);object-fit:cover;border:1px solid var(--pink);flex:none;background:#1a0b33}
+.m-top{position:relative;padding:16px 20px;border-bottom:1px solid var(--b-pink);display:flex;justify-content:space-between;align-items:center;background:rgba(28,12,44,.98);flex:none}
+.m-top h3{font-family:'Cinzel Decorative',serif;font-size:17px;font-weight:900}
+.m-close{border:0;background:none;font-size:28px;color:var(--muted);width:40px;height:40px;display:grid;place-items:center}
+.m-scroll{padding:16px 20px;display:flex;flex-direction:column;gap:10px;overflow-y:auto;-webkit-overflow-scrolling:touch;flex:1}
+.m-bot{padding:16px 20px calc(18px + var(--safe-b));background:rgba(14,7,28,.98);border-top:1px solid var(--b-pink);display:flex;flex-direction:column;gap:10px;flex:none}
+
+.row{background:rgba(255,255,255,.03);border:1px solid var(--b-vio);padding:10px 12px;border-radius:var(--r-m);display:flex;align-items:center;gap:10px}
+.thumb{width:44px;height:44px;border-radius:var(--r-s);object-fit:cover;border:1px solid var(--pink);flex:none;background:#1a0b33}
 .row-i{flex:1;min-width:0;font-size:13px;font-weight:800;overflow-wrap:anywhere}
 .row-i small{display:block;color:var(--pink);font-size:11px;font-weight:700}
 .row-i b{display:block;color:var(--gold-b);margin-top:2px}
-.qty{display:flex;align-items:center;gap:6px;background:rgba(0,0,0,.45);padding:3px 6px;border-radius:var(--r-s);border:1px solid var(--b-gold);flex:none}
-.qty button{width:34px;height:34px;background:var(--card);border:1px solid var(--b-gold);border-radius:8px;font-weight:800;color:var(--gold-b)}
-.qty span{font-size:13px;font-weight:800;min-width:18px;text-align:center}
-.deliv{background:rgba(255,255,255,.03);border:1px solid var(--b-pink);padding:14px;border-radius:var(--r-m);display:flex;flex-direction:column;gap:10px}
+.qty{display:flex;align-items:center;gap:4px;background:rgba(0,0,0,.45);padding:3px 6px;border-radius:var(--r-s);border:1px solid var(--b-gold);flex:none}
+.qty button{width:30px;height:30px;background:var(--card);border:1px solid var(--b-gold);border-radius:6px;font-weight:800;color:var(--gold-b);font-size:14px}
+.qty span{font-size:13px;font-weight:800;min-width:16px;text-align:center}
+
+.deliv{background:rgba(255,255,255,.03);border:1px solid var(--b-pink);padding:12px;border-radius:var(--r-m);display:flex;flex-direction:column;gap:8px}
 .deliv-h{font-size:11px;font-weight:800;color:var(--gold-b);display:flex;justify-content:space-between;gap:8px}
 .deliv-h span+span{color:var(--pink)}
-.dir-wrapper{position:relative;display:flex;gap:8px}
-.dir{flex:1;min-width:0;padding:11px 14px;border-radius:var(--r-s);border:1px solid var(--b-vio);background:rgba(4,2,8,.85);font-size:16px;outline:none}
+.dir-wrapper{position:relative;display:flex;gap:6px}
+.dir{flex:1;min-width:0;padding:10px 12px;border-radius:var(--r-s);border:1px solid var(--b-vio);background:rgba(4,2,8,.85);font-size:15px;outline:none}
 .dir:focus{border-color:var(--pink)}
 
-/* Sugestiones de direcciones */
-.suggestions{position:absolute;top:calc(100% + 4px);left:0;right:0;background:#15092B;border:1px solid var(--pink);border-radius:var(--r-s);z-index:20;max-height:180px;overflow-y:auto;box-shadow:0 10px 25px rgba(0,0,0,.8)}
-.suggestion-item{padding:10px 14px;font-size:13px;color:var(--text);border-bottom:1px solid rgba(255,255,255,.06);cursor:pointer;transition:var(--ease)}
+.suggestions{position:absolute;bottom:calc(100% + 4px);left:0;right:0;background:#15092B;border:1px solid var(--pink);border-radius:var(--r-s);z-index:20;max-height:160px;overflow-y:auto;box-shadow:0 10px 25px rgba(0,0,0,.8)}
+.suggestion-item{padding:10px 12px;font-size:13px;color:var(--text);border-bottom:1px solid rgba(255,255,255,.06);cursor:pointer;transition:var(--ease)}
 .suggestion-item:hover{background:rgba(244,114,182,.15);color:#FBCFE8}
 
-.calc{background:linear-gradient(135deg,var(--gold-b),var(--gold));color:#160C02;border:0;padding:0 16px;border-radius:var(--r-s);font-size:13px;font-weight:800}
+.calc{background:linear-gradient(135deg,var(--gold-b),var(--gold));color:#160C02;border:0;padding:0 14px;border-radius:var(--r-s);font-size:12px;font-weight:800;flex:none}
 .gps-group{display:flex;gap:8px}
-.gps{flex:1;background:rgba(244,114,182,.18);border:1px solid var(--b-pink);color:#FBCFE8;padding:11px;border-radius:var(--r-s);font-size:13px;font-weight:700;display:flex;align-items:center;justify-content:center;gap:6px}
+.gps{flex:1;background:rgba(244,114,182,.18);border:1px solid var(--b-pink);color:#FBCFE8;padding:10px;border-radius:var(--r-s);font-size:13px;font-weight:700;display:flex;align-items:center;justify-content:center;gap:6px}
 
-.note{font-size:12px;color:var(--pink);font-weight:700;text-align:center}
-.km{font-size:12px;font-weight:700;padding:9px 12px;border-radius:var(--r-s);display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap}
+.note{font-size:11px;color:var(--pink);font-weight:700;text-align:center}
+.km{font-size:11px;font-weight:700;padding:8px 10px;border-radius:var(--r-s);display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap}
 .km-ok{background:rgba(34,197,94,.15);color:#4ADE80;border:1px solid rgba(34,197,94,.35)}
 .km-c{background:rgba(244,114,182,.15);color:#FBCFE8;border:1px solid var(--b-pink)}
-.sum{display:flex;justify-content:space-between;font-size:13px;color:var(--muted);font-weight:600}
+.sum{display:flex;justify-content:space-between;font-size:12px;color:var(--muted);font-weight:600}
 .total{display:flex;justify-content:space-between;align-items:baseline;gap:10px}
-.total span:first-child{font-size:12px;color:var(--muted);font-weight:700}
-.total span:last-child{font-size:clamp(20px,5vw,24px);font-weight:900;text-align:right}
-.wa{background:linear-gradient(135deg,var(--em),var(--em-d));color:#021208;border:0;padding:15px;border-radius:var(--r-m);font-weight:900;font-size:15px;width:100%;box-shadow:0 6px 24px rgba(34,197,94,.38);margin-bottom:6px;}
+.total span:first-child{font-size:11px;color:var(--muted);font-weight:700}
+.total span:last-child{font-size:clamp(18px,4.5vw,22px);font-weight:900;text-align:right}
+.wa{background:linear-gradient(135deg,var(--em),var(--em-d));color:#021208;border:0;padding:14px;border-radius:var(--r-m);font-weight:900;font-size:14px;width:100%;box-shadow:0 6px 24px rgba(34,197,94,.38)}
 .wa:disabled{opacity:.45;box-shadow:none}
-.clear{background:none;border:0;color:#F87171;font-size:12px;font-weight:700;align-self:flex-start;padding:4px 0}
+.clear{background:none;border:0;color:#F87171;font-size:12px;font-weight:700;align-self:flex-start;padding:2px 0}
 
 /* ==========================================================
    8. LIENZO DE ESTRELLA FUGAZ REALISTA (CANVAS)
@@ -256,19 +254,13 @@ background-image:
 .foot{position:relative;z-index:1;text-align:center;padding:36px var(--pad) 10px;border-top:1px solid var(--b-pink);margin-top:50px;color:var(--muted);font-size:12px}
 .foot p+p{margin-top:6px;font-size:11px;opacity:.8}
 
-/* Responsive adjustments */
-@media(max-width:380px){.brand-tag{display:none}.brand .logo{width:40px;height:40px}.ibtn{width:40px;height:40px}.star-cart-btn{width:50px;height:50px}.actions{gap:8px}.info{padding:12px 14px 16px}.m-top,.m-scroll,.m-bot{padding-left:16px;padding-right:16px}.trust span{font-size:11px;padding:5px 11px}}
-@media(pointer:coarse){.chip{padding:9px 13px}.cat{padding:11px 17px}.add{padding:12px 18px}.qty button{width:38px;height:38px}.gps,.calc{min-height:44px}}
-@media(max-height:520px){.header,.controls{position:static}.hero-logo{width:clamp(150px,50vh,300px)}}
-@media(min-width:700px) and (max-width:1023px){.info{padding:16px 18px 20px}}
-@media(min-width:1400px){.title{font-size:17px}.desc{font-size:14px}}
+@media(max-width:380px){.brand-tag{display:none}.brand .logo{width:40px;height:40px}.ibtn{width:40px;height:40px}.star-cart-btn{width:50px;height:50px}.actions{gap:8px}}
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
 </style>
 </head>
 <body>
 <div class="cosmos" aria-hidden="true"><div class="stars"></div></div>
 
-<!-- CANVAS PARA LA ESTRELLA FUGAZ REALISTA -->
 <canvas id="comet-canvas" aria-hidden="true"></canvas>
 
 <header class="header">
@@ -280,7 +272,6 @@ background-image:
   <div class="actions">
    <button class="ibtn" id="btn-share" aria-label="Compartir catálogo"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24" width="20" height="20"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.7 13.3c.2-.4.3-.8.3-1.3s-.1-.9-.3-1.3m0 2.6a3 3 0 110-2.6m0 2.6l6.6 3.3m-6.6-6l6.6-3.3m0 0a3 3 0 105.4-2.7 3 3 0 00-5.4 2.7zm0 9.3a3 3 0 105.4 2.7 3 3 0 00-5.4-2.7z"/></svg></button>
    
-   <!-- BOTÓN ESTRELLA CON CARRITO -->
    <button class="star-cart-btn" id="btn-cart" aria-label="Ver mi pedido">
      <svg class="star-shape-svg" viewBox="0 0 64 64" fill="none">
        <defs>
@@ -341,7 +332,6 @@ background-image:
  </section>
 </main>
 
-<!-- BARRA FLOTANTE -->
 <div class="float">
   <button class="float-btn" id="float-btn">
     <span style="display:flex;align-items:center;gap:10px">
@@ -367,7 +357,7 @@ background-image:
    <div class="deliv">
     <div class="deliv-h"><span>📍 Dirección de Entrega</span><span>Tarifa por zona</span></div>
     <div class="dir-wrapper">
-     <input class="dir" id="dir" type="text" autocomplete="street-address" aria-label="Dirección de entrega" placeholder="Ej. Calle 30 # 50-63, Itagüí San Pío...">
+     <input class="dir" id="dir" type="text" autocomplete="street-address" aria-label="Dirección de entrega" placeholder="Ej. Calle 10 # 50-101, Barrio...">
      <button class="calc" id="btn-calc">Calcular</button>
      <div id="suggestions" class="suggestions" hidden></div>
     </div>
@@ -387,10 +377,8 @@ background-image:
  </div>
 </div>
 
-<!-- ALERTA GENERAL -->
 <div id="alert" class="alert" role="alertdialog" aria-modal="true"><div class="alert-c"><span class="ic" id="al-ic">🪷</span><h4 class="gold" id="al-t"></h4><p id="al-m"></p><button class="btn-g" id="al-ok">Entendido</button></div></div>
 
-<!-- ALERTA DE MAYORÍA DE EDAD (+18) AL ENTRAR -->
 <div id="age" class="alert" role="dialog" aria-modal="true" aria-labelledby="age-t">
  <div class="alert-c">
   <span class="ic">🔞</span>
@@ -409,9 +397,8 @@ background-image:
 /* ===== CONFIGURACIÓN Y PUNTO DE REFERENCIA INTERNO (Punto A: Itagüí San Pío) ===== */
 const WHATSAPP_NUM = "573002872963";
 const CIUDAD_BASE = "Antioquia, Colombia";
-const LAT_ORIGEN = 6.1738, LON_ORIGEN = -75.6074; // Punto A: Calle 30 # 50-63, Itagüí San Pío
+const LAT_ORIGEN = 6.1738, LON_ORIGEN = -75.6074;
 const KM_BASE = 3, TARIFA_BASE = 5000, VALOR_KM_EXTRA = 1500, KM_MAX_AUTO = 25;
-
 const VIEWBOX_ABURRA = "-75.72,6.05,-75.30,6.46";
 
 const CATEGORIAS = [["Todas","🪷 Todo el universo"],["Vaporizadores","💨 Vaporizadores"],["Destilados","💧 Destilados"],["Gomitas","🍬 Gomitas"],["Jeringas","💉 Jeringas"],["Accesorios","🔮 Accesorios"]];
@@ -427,33 +414,16 @@ const productos = [
  {id:8,n:"Batería 510 Voltaje Variable",p:45000,c:"650 mAh · USB-C",cat:"Accesorios",d:"Batería compacta con precalentamiento y 3 niveles de potencia.",opc:["Negro Obsidiana","Púrpura Nebulosa","Dorado"],img:"https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=600&q=80"}
 ];
 
-/* ===== ESTADO (PERSISTENTE EN LOCALSTORAGE) ===== */
+/* ===== ESTADO (VOLÁTIL: TODO SE BORRA AL RECARGAR O CERRAR) ===== */
 const $ = id => document.getElementById(id);
 const money = n => '$' + Math.round(n).toLocaleString('es-CO');
 const esc = s => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-const store = {
- get(k){try{return localStorage.getItem(k)}catch(e){return null}},
- set(k,v){try{localStorage.setItem(k,v)}catch(e){}}
-};
 
 let carrito = [], categoria = 'Todas', envio = null;
 
-// Cargar carrito guardado
-try { carrito = JSON.parse(store.get('astral_cart_v14') || '[]').filter(i => productos.some(p => p.id === i.id)); } catch(e) { carrito = []; }
-
 const subtotal = () => carrito.reduce((s,i) => s + i.p * i.cantidad, 0);
 const prod = id => productos.find(p => p.id === id);
-const save = () => store.set('astral_cart_v14', JSON.stringify(carrito));
-
-// Guardar y recuperar dirección guardada automáticamente
-const guardarDir = () => store.set('astral_dir', $('dir').value);
-const cargarDir = () => {
- const savedDir = store.get('astral_dir');
- if (savedDir) {
-  $('dir').value = savedDir;
-  calcularManual(); // Calcula de una vez si ya había dirección guardada
- }
-};
+const save = () => {}; // Vacío para evitar persistencia al recargar
 
 /* ===== RENDER ===== */
 const FALLA = "this.remove()";
@@ -499,12 +469,12 @@ function agregar(id, opcion){
  const p = prod(id), cartId = opcion ? id+'-'+opcion : ''+id;
  const it = carrito.find(i => i.cartId === cartId);
  if (it) it.cantidad++; else carrito.push({cartId, id, n:p.n, p:p.p, cantidad:1, opcion, img:p.img});
- save(); renderCarrito();
+ renderCarrito();
 }
 function cambiarCant(cartId, d){
  const i = carrito.findIndex(x => x.cartId === cartId); if (i < 0) return;
  carrito[i].cantidad += d; if (carrito[i].cantidad <= 0) carrito.splice(i,1);
- save(); renderCarrito();
+ renderCarrito();
 }
 function toast(msg){
  const t = document.createElement('div'); t.className = 'toast'; t.textContent = '✦ ' + msg;
@@ -560,7 +530,6 @@ function procesarCoordenadas(lat, lon, displayName, mantenerTextoUsuario = false
  }
  if (displayName && !mantenerTextoUsuario) {
   $('dir').value = displayName;
-  guardarDir();
  }
  renderCarrito();
 }
@@ -585,7 +554,6 @@ async function buscarDireccion(query){
 async function calcularManual(){
  const dir = $('dir').value.trim();
  if (dir.length < 3) return;
- guardarDir();
  $('searching').hidden = false;
  $('suggestions').hidden = true;
 
@@ -619,7 +587,6 @@ async function calcularManual(){
  $('searching').hidden = true;
 }
 
-/* GPS INTELIGENTE: TRADUCE A CALLE/BARRIO Y CALCULA AUTOMÁTICAMENTE */
 async function usarGPS(){
  if (!navigator.geolocation) return alerta('GPS no disponible', 'Tu navegador no permite acceder a la ubicación. Escribe tu dirección.', '🚫');
  const b = $('btn-gps'); b.disabled = true; b.textContent = '📡 Detectando ubicación...';
@@ -664,9 +631,6 @@ async function usarGPS(){
 }, {timeout:10000});
 }
 
-/* ==========================================================
-   ESTRELLA FUGAZ REALISTA CON PARTÍCULAS (CANVAS)
-========================================================== */
 function lanzarEstrellaFugaz(callback){
   const canvas = $('comet-canvas');
   const ctx = canvas.getContext('2d');
@@ -780,9 +744,6 @@ function lanzarEstrellaFugaz(callback){
   requestAnimationFrame(animate);
 }
 
-/* ==========================================================
-   MENSAJE DE WHATSAPP MEJORADO (TICKET CÓSMICO VIP)
-========================================================== */
 async function enviarWhatsApp(){
  if (!carrito.length) return;
  const dir = $('dir').value.trim();
@@ -850,7 +811,6 @@ async function compartir(){
  try { if (navigator.share) await navigator.share(data); else { await navigator.clipboard.writeText(location.href); toast('Enlace copiado'); } } catch(e) {}
 }
 
-/* ===== EVENTOS ===== */
 document.addEventListener('click', e => {
  const t = e.target;
  if (!t.closest('.dir-wrapper')) $('suggestions').hidden = true;
@@ -884,8 +844,6 @@ $('btn-cart').onclick = $('float-btn').onclick = () => abrir('cart');
 $('btn-share').onclick = compartir;
 $('btn-clear').onclick = () => { 
   carrito = []; 
-  save(); 
-  store.set('astral_dir', '');
   $('dir').value = '';
   envio = null;
   $('ship-info').hidden = true;
@@ -898,14 +856,13 @@ $('btn-wa').onclick = enviarWhatsApp;
 $('al-ok').onclick = () => cerrar('alert');
 
 $('dir').addEventListener('keydown', e => { if (e.key === 'Enter') { $('suggestions').hidden = true; calcularManual(); } });
-$('dir').addEventListener('blur', calcularManual); // Calcula automáticamente al salir del campo de texto
+$('dir').addEventListener('blur', calcularManual);
 
 let searchTimer;
 $('dir').addEventListener('input', e => {
  if (envio) { envio = null; $('ship-info').hidden = true; renderCarrito(); }
  clearTimeout(searchTimer);
  const val = e.target.value.trim();
- guardarDir();
  if (val.length >= 3) {
   searchTimer = setTimeout(() => buscarDireccion(val), 300);
  } else {
@@ -916,13 +873,12 @@ $('dir').addEventListener('input', e => {
 let timer; $('q').addEventListener('input', () => { clearTimeout(timer); timer = setTimeout(renderCatalogo, 150); });
 document.addEventListener('keydown', e => { if (e.key === 'Escape') { if ($('alert').classList.contains('on')) cerrar('alert'); else if ($('cart').classList.contains('on')) cerrar('cart'); $('suggestions').hidden = true; } });
 
-/* Verificación de edad (+18) */
-if (store.get('astral_age_ok') !== '1') {
+if (sessionStorage.getItem('astral_age_ok') !== '1') {
   $('age').classList.add('on');
   document.body.classList.add('lock');
 }
 $('age-yes').onclick = () => {
-  store.set('astral_age_ok', '1');
+  sessionStorage.setItem('astral_age_ok', '1');
   $('age').classList.remove('on');
   document.body.classList.remove('lock');
 };
@@ -933,7 +889,6 @@ $('age-no').onclick = () => {
 renderCats(); 
 renderCatalogo(); 
 renderCarrito();
-cargarDir(); // Carga la dirección guardada en localStorage al abrir la página
 </script>
 </body>
 </html>
