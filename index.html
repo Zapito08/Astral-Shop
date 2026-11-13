@@ -177,7 +177,7 @@ background-image:
 .empty{grid-column:1/-1;text-align:center;color:var(--muted);padding:50px 0;font-size:14px}
 
 /* ==========================================================
-   7. BARRA FLOTANTE & MODAL CARRITO
+   7. BARRA FLOTANTE & MODAL CARRITO (CON SCROLL FLUIDO MÓVIL)
 ========================================================== */
 .float{position:fixed;bottom:calc(16px + var(--safe-b));left:0;right:0;padding:0 var(--pad);z-index:40;pointer-events:none}
 .float-btn{max-width:480px;margin:0 auto;width:100%;display:none;justify-content:space-between;align-items:center;gap:10px;background:linear-gradient(135deg,#250E3A,#0B0517);border:1.5px solid var(--pink);color:var(--gold-b);padding:12px 22px;border-radius:99px;pointer-events:auto;box-shadow:0 14px 35px rgba(0,0,0,.85),0 0 25px rgba(244,114,182,.35)}
@@ -186,16 +186,17 @@ background-image:
 .float-star-wrap svg{position:absolute;inset:0;width:100%;height:100%}
 .float-star-num{position:relative;z-index:2;color:#160C02;font-size:11px;font-weight:900;margin-top:2px}
 
-.modal{position:fixed;inset:0;z-index:50;display:none;align-items:flex-end;justify-content:center;background:rgba(2,1,6,.85);backdrop-filter:blur(14px)}
+.modal{position:fixed;inset:0;z-index:50;display:none;align-items:flex-end;justify-content:center;background:rgba(2,1,6,.85);backdrop-filter:blur(14px);overscroll-behavior:contain}
 .modal.on{display:flex}
-.panel{background:#0D061A;border:1px solid var(--pink);width:100%;max-width:520px;max-height:92vh;max-height:92dvh;border-radius:var(--r-l) var(--r-l) 0 0;display:flex;flex-direction:column;overflow:hidden;box-shadow:0 25px 60px rgba(0,0,0,.95);animation:up .25s ease}
+.panel{background:#0D061A;border:1px solid var(--pink);width:100%;max-width:520px;max-height:90dvh;border-radius:var(--r-l) var(--r-l) 0 0;display:flex;flex-direction:column;overflow-y:auto;-webkit-overflow-scrolling:touch;overscroll-behavior:contain;box-shadow:0 25px 60px rgba(0,0,0,.95);animation:up .25s ease}
 @keyframes up{from{transform:translateY(24px);opacity:0}}
-@media(min-width:640px){.modal{align-items:center;padding:20px}.panel{border-radius:var(--r-l);max-height:90vh;max-height:90dvh}}
-.m-top{padding:16px 22px;border-bottom:1px solid var(--b-pink);display:flex;justify-content:space-between;align-items:center;background:rgba(28,12,44,.95)}
+@media(min-width:640px){.modal{align-items:center;padding:20px}.panel{border-radius:var(--r-l);max-height:88dvh}}
+.m-top{position:sticky;top:0;z-index:10;padding:16px 22px;border-bottom:1px solid var(--b-pink);display:flex;justify-content:space-between;align-items:center;background:rgba(28,12,44,.98);backdrop-filter:blur(10px);flex:none}
 .m-top h3{font-family:'Cinzel Decorative',serif;font-size:17px;font-weight:900}
 .m-close{border:0;background:none;font-size:28px;color:var(--muted);width:44px;height:44px;margin:-8px -10px -8px 0}
-.m-scroll{padding:16px 22px;overflow-y:auto;flex:1;display:flex;flex-direction:column;gap:10px;min-height:90px;overscroll-behavior:contain}
-.m-bot{padding:16px 22px calc(24px + var(--safe-b));background:rgba(14,7,28,.98);border-top:1px solid var(--b-pink);display:flex;flex-direction:column;gap:12px;overflow-y:auto}
+.m-scroll{padding:16px 22px;display:flex;flex-direction:column;gap:10px;flex:none}
+.m-bot{padding:16px 22px calc(24px + var(--safe-b));background:rgba(14,7,28,.98);border-top:1px solid var(--b-pink);display:flex;flex-direction:column;gap:12px;flex:none}
+
 .row{background:rgba(255,255,255,.03);border:1px solid var(--b-vio);padding:10px 12px;border-radius:var(--r-m);display:flex;align-items:center;gap:12px}
 .thumb{width:48px;height:48px;border-radius:var(--r-s);object-fit:cover;border:1px solid var(--pink);flex:none;background:#1a0b33}
 .row-i{flex:1;min-width:0;font-size:13px;font-weight:800;overflow-wrap:anywhere}
@@ -259,7 +260,6 @@ background-image:
 @media(max-width:380px){.brand-tag{display:none}.brand .logo{width:40px;height:40px}.ibtn{width:40px;height:40px}.star-cart-btn{width:50px;height:50px}.actions{gap:8px}.info{padding:12px 14px 16px}.m-top,.m-scroll,.m-bot{padding-left:16px;padding-right:16px}.trust span{font-size:11px;padding:5px 11px}}
 @media(pointer:coarse){.chip{padding:9px 13px}.cat{padding:11px 17px}.add{padding:12px 18px}.qty button{width:38px;height:38px}.gps,.calc{min-height:44px}}
 @media(max-height:520px){.header,.controls{position:static}.hero-logo{width:clamp(150px,50vh,300px)}}
-@media(max-height:720px){.panel{overflow-y:auto}.m-top{position:sticky;top:0;z-index:2}.m-scroll{overflow:visible;flex:none}.m-bot{overflow:visible}}
 @media(min-width:700px) and (max-width:1023px){.info{padding:16px 18px 20px}}
 @media(min-width:1400px){.title{font-size:17px}.desc{font-size:14px}}
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
@@ -367,7 +367,7 @@ background-image:
    <div class="deliv">
     <div class="deliv-h"><span>📍 Dirección de Entrega</span><span>Tarifa por zona</span></div>
     <div class="dir-wrapper">
-     <input class="dir" id="dir" type="text" autocomplete="street-address" aria-label="Dirección de entrega" placeholder="Ej. Barrio, Conjunto, Referencia...">
+     <input class="dir" id="dir" type="text" autocomplete="street-address" aria-label="Dirección de entrega" placeholder="Ej. Calle 40 # 50-23">
      <button class="calc" id="btn-calc">Calcular</button>
      <div id="suggestions" class="suggestions" hidden></div>
     </div>
@@ -406,11 +406,13 @@ background-image:
 <footer class="foot"><p>✦ <strong class="gold">ASTRAL SHOP</strong> ✦ Catálogo Cósmico &copy; 2026</p><p>Venta exclusiva a mayores de 18 años. Consume con responsabilidad.</p></footer>
 
 <script>
-/* ===== CONFIGURACIÓN Y PUNTO DE REFERENCIA INTERNO ===== */
+/* ===== CONFIGURACIÓN Y PUNTO DE REFERENCIA INTERNO (Punto A: Itagüí San Pío) ===== */
 const WHATSAPP_NUM = "573002872963";
-const CIUDAD_BASE = "Itagüí, Antioquia, Colombia";
-const LAT_ORIGEN = 6.1738, LON_ORIGEN = -75.6074;
+const CIUDAD_BASE = "Antioquia, Colombia";
+const LAT_ORIGEN = 6.1738, LON_ORIGEN = -75.6074; // Itagüí San Pío aprox (Calle 30 # 50-63)
 const KM_BASE = 3, TARIFA_BASE = 5000, VALOR_KM_EXTRA = 1500, KM_MAX_AUTO = 25;
+
+const VIEWBOX_ABURRA = "-75.72,6.05,-75.30,6.46";
 
 const CATEGORIAS = [["Todas","🪷 Todo el universo"],["Vaporizadores","💨 Vaporizadores"],["Destilados","💧 Destilados"],["Gomitas","🍬 Gomitas"],["Jeringas","💉 Jeringas"],["Accesorios","🔮 Accesorios"]];
 
@@ -499,7 +501,7 @@ function abrir(id){ lastFocus = document.activeElement; $(id).classList.add('on'
 function cerrar(id){ $(id).classList.remove('on'); $(id).setAttribute('aria-hidden','true'); if (!document.querySelector('.modal.on,.alert.on')) document.body.classList.remove('lock'); if (lastFocus) lastFocus.focus?.(); }
 function alerta(t, m, ic='🪷'){ $('al-t').textContent = t; $('al-m').textContent = m; $('al-ic').textContent = ic; $('alert').classList.add('on'); $('al-ok').focus(); }
 
-/* ===== CÁLCULO DE DOMICILIO FLEXIBLE ===== */
+/* ===== CÁLCULO DE DOMICILIO FLEXIBLE (SOPORTA NOMENCLATURA COLOMBIANA) ===== */
 function haversine(a,b,c,d){
  const r = x => x*Math.PI/180, dLat = r(c-a), dLon = r(d-b);
  const h = Math.sin(dLat/2)**2 + Math.cos(r(a))*Math.cos(r(c))*Math.sin(dLon/2)**2;
@@ -507,25 +509,52 @@ function haversine(a,b,c,d){
 }
 function mostrarEnvio(html, cls){ const el = $('ship-info'); el.hidden = false; el.className = 'km ' + cls; el.innerHTML = html; }
 
-function procesarCoordenadas(lat, lon, displayName){
+function normalizarDireccionCO(texto) {
+  let s = texto
+    .replace(/\b(apto|apartamento|torre|bloque|int|interior|piso|local|casa|oficina|urb|urbanizacion|conjunto|ed|edificio)\b\.?\s*[a-z0-9-]+/gi, '')
+    .replace(/\b(cra|cr|kr|k)\b\.?\s*/gi, 'Carrera ')
+    .replace(/\b(cll|cl|c)\b\.?\s*/gi, 'Calle ')
+    .replace(/\b(tv|trv|transv)\b\.?\s*/gi, 'Transversal ')
+    .replace(/\b(dg|diag)\b\.?\s*/gi, 'Diagonal ')
+    .replace(/\b(av|avda)\b\.?\s*/gi, 'Avenida ')
+    .replace(/\b(circ)\b\.?\s*/gi, 'Circular ')
+    .replace(/[#°No\.]+/gi, ' ')
+    .replace(/(\d+)\s*-\s*\d+/g, '$1')
+    .replace(/\s+/g, ' ')
+    .trim();
+
+  const tieneMunicipio = /(itagui|itagüí|medellin|medellín|envigado|sabaneta|bello|la estrella|caldas|copacabana|girardota|barbosa)/i.test(s);
+  return tieneMunicipio ? `${s}, Antioquia, Colombia` : `${s}, Itagüí, Antioquia, Colombia`;
+}
+
+async function consultarNominatim(query, limitarAburra = true) {
+  const vb = limitarAburra ? `&viewbox=${VIEWBOX_ABURRA}&bounded=1` : '';
+  const url = `https://nominatim.openstreetmap.org/search?format=json&limit=5&countrycodes=co${vb}&q=${encodeURIComponent(query)}`;
+  const r = await fetch(url);
+  return await r.json();
+}
+
+function procesarCoordenadas(lat, lon, displayName, mantenerTextoUsuario = false){
  const km = haversine(LAT_ORIGEN, LON_ORIGEN, lat, lon) * 1.25;
  if (km <= KM_MAX_AUTO) {
   const costo = km <= KM_BASE ? TARIFA_BASE : TARIFA_BASE + Math.ceil(km - KM_BASE) * VALOR_KM_EXTRA;
-  envio = {km, costo, coordinar:false};
+  envio = {km, costo, coordinar:false, lat, lon};
   mostrarEnvio(`<span>Distancia aprox: <b>${km.toFixed(1)} km</b></span><span>Domicilio: <b>${money(costo)}</b></span>`, 'km-ok');
  } else {
-  envio = {km, costo:0, coordinar:true};
+  envio = {km, costo:0, coordinar:true, lat, lon};
   mostrarEnvio(`<span>🛵 ${km.toFixed(1)} km: el domicilio se coordina por WhatsApp.</span>`, 'km-c');
  }
- if (displayName) $('dir').value = displayName;
+ if (displayName && !mantenerTextoUsuario) $('dir').value = displayName;
  renderCarrito();
 }
 
 async function buscarDireccion(query){
  if (!query || query.length < 3) { $('suggestions').hidden = true; return; }
  try {
-  const r = await fetch(`https://nominatim.openstreetmap.org/search?format=json&limit=5&q=${encodeURIComponent(query + ', ' + CIUDAD_BASE)}`);
-  const data = await r.json();
+  const limpia = normalizarDireccionCO(query);
+  let data = await consultarNominatim(limpia, true);
+  if (!data.length) data = await consultarNominatim(`${query}, ${CIUDAD_BASE}`, true);
+
   const box = $('suggestions');
   if (data.length) {
    box.innerHTML = data.map(item => `<div class="suggestion-item" data-lat="${item.lat}" data-lon="${item.lon}" data-name="${esc(item.display_name)}">${esc(item.display_name)}</div>`).join('');
@@ -538,14 +567,27 @@ async function buscarDireccion(query){
 
 async function calcularManual(){
  const dir = $('dir').value.trim();
- if (dir.length < 3) return alerta('Dirección incompleta', 'Escribe tu dirección o barrio para calcular el domicilio.', '📍');
+ if (dir.length < 3) return alerta('Dirección incompleta', 'Escribe tu dirección, barrio o municipio para calcular el domicilio.', '📍');
  $('searching').hidden = false;
  $('suggestions').hidden = true;
+
  try {
-  const r = await fetch('https://nominatim.openstreetmap.org/search?format=json&limit=1&q=' + encodeURIComponent(dir + ', ' + CIUDAD_BASE));
-  const d = await r.json();
+  const dirNormalizada = normalizarDireccionCO(dir);
+  let d = await consultarNominatim(dirNormalizada, true);
+
+  if (!d.length) {
+   d = await consultarNominatim(`${dir}, ${CIUDAD_BASE}`, true);
+  }
+
+  if (!d.length) {
+   const partes = dir.split(/[,|-]/).map(p => p.trim()).filter(Boolean);
+   if (partes.length > 1) {
+    d = await consultarNominatim(`${partes[partes.length - 1]}, ${CIUDAD_BASE}`, true);
+   }
+  }
+
   if (d.length) {
-   procesarCoordenadas(+d[0].lat, +d[0].lon, d[0].display_name);
+   procesarCoordenadas(+d[0].lat, +d[0].lon, d[0].display_name, true);
   } else {
    envio = {km:0, costo:0, coordinar:true};
    mostrarEnvio(`<span>🛵 Dirección guardada. Coordinamos tarifa exacta por WhatsApp.</span>`, 'km-c');
@@ -564,7 +606,7 @@ function usarGPS(){
  const b = $('btn-gps'); b.disabled = true; b.textContent = 'Detectando...';
  const fin = () => { b.disabled = false; b.textContent = '📡 Usar mi ubicación GPS'; };
  navigator.geolocation.getCurrentPosition(pos => {
-  procesarCoordenadas(pos.coords.latitude, pos.coords.longitude, `Mi Ubicación GPS (${pos.coords.latitude.toFixed(4)}, ${pos.coords.longitude.toFixed(4)})`);
+  procesarCoordenadas(pos.coords.latitude, pos.coords.longitude, `Mi Ubicación GPS (${pos.coords.latitude.toFixed(4)}, ${pos.coords.longitude.toFixed(4)})`, false);
   fin();
  }, () => { fin(); alerta('GPS bloqueado', 'Activa el permiso de ubicación en tu celular o escribe tu dirección.', '📡'); }, {timeout:10000});
 }
@@ -685,22 +727,61 @@ function lanzarEstrellaFugaz(callback){
   requestAnimationFrame(animate);
 }
 
-function enviarWhatsApp(){
+/* ==========================================================
+   MENSAJE DE WHATSAPP MEJORADO (TICKET CÓSMICO VIP)
+========================================================== */
+async function enviarWhatsApp(){
  if (!carrito.length) return;
  const dir = $('dir').value.trim();
  if (!dir) { alerta('Falta el destino', 'Escribe tu dirección o usa el GPS para enviar el pedido.', '📍'); return; }
 
+ if (!envio) {
+  await calcularManual();
+ }
+
  const sub = subtotal();
  const costo = envio && !envio.coordinar ? envio.costo : 0;
  const total = sub + costo;
+ const cantTotal = carrito.reduce((s, i) => s + i.cantidad, 0);
 
- let m = '🪷 *NUEVO PEDIDO · ASTRAL SHOP* 🪷\n\n';
- carrito.forEach(i => m += `• *${i.cantidad}x* ${i.n}${i.opcion ? ` _[${i.opcion}]_` : ''} — ${money(i.p*i.cantidad)}\n`);
- m += `\n💰 *Subtotal:* ${money(sub)}`;
- m += envio && !envio.coordinar ? `\n🛵 *Domicilio:* ${money(costo)} (${envio.km.toFixed(1)} km aprox.)` : '\n🛵 *Domicilio:* a coordinar';
- m += `\n📍 *Entrega (Cliente):* ${dir}`;
- m += envio && !envio.coordinar ? `\n\n✨ *TOTAL ESTIMADO: ${money(total)}*` : `\n\n✨ *SUBTOTAL: ${money(sub)}* (+ domicilio)`;
- m += `\n\n¡Gracias por tu compra! En unos momentos te responderemos ✦`;
+ const ordenId = 'AST-' + Math.floor(1000 + Math.random() * 9000);
+ const hora = new Date().toLocaleTimeString('es-CO', { hour: '2-digit', minute: '2-digit', hour12: true });
+
+ const mapsLink = (envio && envio.lat && envio.lon)
+  ? `https://maps.google.com/?q=${envio.lat},${envio.lon}`
+  : `https://maps.google.com/?q=${encodeURIComponent(dir + ', ' + CIUDAD_BASE)}`;
+
+ let m = `✨🌌 *ASTRAL SHOP · ORDEN CÓSMICA* 🌌✨\n`;
+ m += `━━━━━━━━━━━━━━━━━━━━━━\n`;
+ m += `🎟️ *Ticket:* \`#${ordenId}\`  |  🕒 *Hora:* ${hora}\n`;
+ m += `━━━━━━━━━━━━━━━━━━━━━━\n\n`;
+
+ m += `🔮 *RELIQUIAS SELECCIONADAS (${cantTotal}):*\n\n`;
+ carrito.forEach((i, idx) => {
+  const itemTotal = money(i.p * i.cantidad);
+  m += `*${idx + 1}. ${i.n}*\n`;
+  if (i.opcion) m += `   ↳ _Variante:_ *${i.opcion}*\n`;
+  m += `   ↳ _Cant:_ *${i.cantidad}x* (${money(i.p)} c/u) ➔ *${itemTotal}*\n\n`;
+ });
+
+ m += `━━━━━━━━━━━━━━━━━━━━━━\n`;
+ m += `🛸 *DATOS DE ENTREGA*\n`;
+ m += `📍 *Destino:* ${dir}\n`;
+ m += `🗺️ *Mapa directo:* ${mapsLink}\n`;
+ m += `━━━━━━━━━━━━━━━━━━━━━━\n\n`;
+
+ m += `💎 *RESUMEN DE INVERSIÓN*\n`;
+ m += `• *Subtotal:* ${money(sub)}\n`;
+ if (envio && !envio.coordinar) {
+  m += `• *Domicilio (${envio.km.toFixed(1)} km):* ${money(costo)}\n`;
+  m += `\n👑 *TOTAL A PAGAR: ${money(total)}* 👑\n`;
+ } else {
+  m += `• *Domicilio:* _Por coordinar según zona_\n`;
+  m += `\n👑 *SUBTOTAL: ${money(sub)}* _(+ envío)_ 👑\n`;
+ }
+
+ m += `\n━━━━━━━━━━━━━━━━━━━━━━\n`;
+ m += `🪷 _Hola Astral Shop, envío mi orden lista para despacho. Quedo atento para confirmar método de pago._ ✨`;
 
  const waUrl = `https://wa.me/${WHATSAPP_NUM}?text=${encodeURIComponent(m)}`;
 
@@ -719,6 +800,8 @@ async function compartir(){
 /* ===== EVENTOS ===== */
 document.addEventListener('click', e => {
  const t = e.target;
+ if (!t.closest('.dir-wrapper')) $('suggestions').hidden = true;
+
  const chip = t.closest('.chip'); if (chip) { chip.parentElement.querySelectorAll('.chip').forEach(c => c.classList.remove('sel')); chip.classList.add('sel'); return; }
  const add = t.closest('[data-add]');
  if (add) {
@@ -736,7 +819,7 @@ document.addEventListener('click', e => {
  
  const sug = t.closest('.suggestion-item');
  if (sug) {
-  procesarCoordenadas(+sug.dataset.lat, +sug.dataset.lon, sug.dataset.name);
+  procesarCoordenadas(+sug.dataset.lat, +sug.dataset.lon, sug.dataset.name, false);
   $('suggestions').hidden = true;
   return;
  }
