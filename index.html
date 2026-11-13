@@ -367,7 +367,7 @@ background-image:
    <div class="deliv">
     <div class="deliv-h"><span>📍 Dirección de Entrega</span><span>Tarifa por zona</span></div>
     <div class="dir-wrapper">
-     <input class="dir" id="dir" type="text" autocomplete="street-address" aria-label="Dirección de entrega" placeholder="Ej. Calle 40 # 60-101, Barrio...">
+     <input class="dir" id="dir" type="text" autocomplete="street-address" aria-label="Dirección de entrega" placeholder="Ej. Calle 30 # 50-63, Itagüí San Pío...">
      <button class="calc" id="btn-calc">Calcular</button>
      <div id="suggestions" class="suggestions" hidden></div>
     </div>
@@ -427,7 +427,7 @@ const productos = [
  {id:8,n:"Batería 510 Voltaje Variable",p:45000,c:"650 mAh · USB-C",cat:"Accesorios",d:"Batería compacta con precalentamiento y 3 niveles de potencia.",opc:["Negro Obsidiana","Púrpura Nebulosa","Dorado"],img:"https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=600&q=80"}
 ];
 
-/* ===== ESTADO ===== */
+/* ===== ESTADO (PERSISTENTE EN LOCALSTORAGE) ===== */
 const $ = id => document.getElementById(id);
 const money = n => '$' + Math.round(n).toLocaleString('es-CO');
 const esc = s => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -435,11 +435,25 @@ const store = {
  get(k){try{return localStorage.getItem(k)}catch(e){return null}},
  set(k,v){try{localStorage.setItem(k,v)}catch(e){}}
 };
+
 let carrito = [], categoria = 'Todas', envio = null;
+
+// Cargar carrito guardado
 try { carrito = JSON.parse(store.get('astral_cart_v14') || '[]').filter(i => productos.some(p => p.id === i.id)); } catch(e) { carrito = []; }
+
 const subtotal = () => carrito.reduce((s,i) => s + i.p * i.cantidad, 0);
 const prod = id => productos.find(p => p.id === id);
 const save = () => store.set('astral_cart_v14', JSON.stringify(carrito));
+
+// Guardar y recuperar dirección guardada automáticamente
+const guardarDir = () => store.set('astral_dir', $('dir').value);
+const cargarDir = () => {
+ const savedDir = store.get('astral_dir');
+ if (savedDir) {
+  $('dir').value = savedDir;
+  calcularManual(); // Calcula de una vez si ya había dirección guardada
+ }
+};
 
 /* ===== RENDER ===== */
 const FALLA = "this.remove()";
@@ -544,7 +558,10 @@ function procesarCoordenadas(lat, lon, displayName, mantenerTextoUsuario = false
   envio = {km, costo:0, coordinar:true, lat, lon};
   mostrarEnvio(`<span>🛵 ${km.toFixed(1)} km: el domicilio se coordina por WhatsApp.</span>`, 'km-c');
  }
- if (displayName && !mantenerTextoUsuario) $('dir').value = displayName;
+ if (displayName && !mantenerTextoUsuario) {
+  $('dir').value = displayName;
+  guardarDir();
+ }
  renderCarrito();
 }
 
@@ -567,7 +584,8 @@ async function buscarDireccion(query){
 
 async function calcularManual(){
  const dir = $('dir').value.trim();
- if (dir.length < 3) return alerta('Dirección incompleta', 'Escribe tu dirección, barrio o municipio para calcular el domicilio.', '📍');
+ if (dir.length < 3) return;
+ guardarDir();
  $('searching').hidden = false;
  $('suggestions').hidden = true;
 
@@ -635,7 +653,6 @@ async function usarGPS(){
       direccionLegible = `Ubicación GPS (${lat.toFixed(4)}, ${lon.toFixed(4)})`;
     }
 
-    // Coloca la dirección en el input y calcula automáticamente el domicilio y kilómetros
     procesarCoordenadas(lat, lon, direccionLegible, false);
   } catch(e) {
     procesarCoordenadas(lat, lon, `Ubicación GPS (${lat.toFixed(4)}, ${lon.toFixed(4)})`, false);
@@ -865,19 +882,30 @@ document.addEventListener('click', e => {
 
 $('btn-cart').onclick = $('float-btn').onclick = () => abrir('cart');
 $('btn-share').onclick = compartir;
-$('btn-clear').onclick = () => { carrito = []; save(); renderCarrito(); toast('Pedido vaciado'); };
+$('btn-clear').onclick = () => { 
+  carrito = []; 
+  save(); 
+  store.set('astral_dir', '');
+  $('dir').value = '';
+  envio = null;
+  $('ship-info').hidden = true;
+  renderCarrito(); 
+  toast('Pedido vaciado'); 
+};
 $('btn-calc').onclick = calcularManual;
 $('btn-gps').onclick = usarGPS;
 $('btn-wa').onclick = enviarWhatsApp;
 $('al-ok').onclick = () => cerrar('alert');
 
 $('dir').addEventListener('keydown', e => { if (e.key === 'Enter') { $('suggestions').hidden = true; calcularManual(); } });
+$('dir').addEventListener('blur', calcularManual); // Calcula automáticamente al salir del campo de texto
 
 let searchTimer;
 $('dir').addEventListener('input', e => {
  if (envio) { envio = null; $('ship-info').hidden = true; renderCarrito(); }
  clearTimeout(searchTimer);
  const val = e.target.value.trim();
+ guardarDir();
  if (val.length >= 3) {
   searchTimer = setTimeout(() => buscarDireccion(val), 300);
  } else {
@@ -902,7 +930,10 @@ $('age-no').onclick = () => {
   window.location.href = 'https://www.google.com';
 };
 
-renderCats(); renderCatalogo(); renderCarrito();
+renderCats(); 
+renderCatalogo(); 
+renderCarrito();
+cargarDir(); // Carga la dirección guardada en localStorage al abrir la página
 </script>
 </body>
 </html>
