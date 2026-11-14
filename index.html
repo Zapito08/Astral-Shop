@@ -137,7 +137,7 @@ background-image:
 .cat.on{background:linear-gradient(135deg,rgba(244,114,182,.32),rgba(126,34,206,.45));border-color:var(--pink);color:#FFF;box-shadow:0 0 20px rgba(244,114,182,.35)}
 
 /* ==========================================================
-   6. CATÁLOGO & TARJETAS
+   6. CATÁLOGO & TARJETAS (IMAGEN GRANDE + DESCUENTOS)
 ========================================================== */
 .wrap{position:relative;z-index:1;max-width:var(--maxw);margin:28px auto;padding:0 var(--pad)}
 .divider{display:flex;align-items:center;gap:14px;margin-bottom:18px}
@@ -145,31 +145,46 @@ background-image:
 .divider .count{order:2}
 .divider h2{font-family:'Cinzel Decorative',serif;font-size:clamp(15px,3.6vw,20px);font-weight:900;letter-spacing:.05em}
 .count{font-size:12px;color:var(--muted);font-weight:600;white-space:nowrap}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(230px,100%),1fr));gap:clamp(14px,2.2vw,22px)}
-.card{background:var(--card);backdrop-filter:blur(14px);border:1px solid var(--b-gold);border-radius:var(--r-l);overflow:hidden;display:flex;flex-direction:column;box-shadow:0 12px 30px rgba(0,0,0,.6);transition:var(--ease);position:relative;min-width:0}
-.card::before{content:"";position:absolute;inset:5px;border:1px solid rgba(244,114,182,.14);border-radius:21px;pointer-events:none;z-index:3}
-@media(hover:hover){.card:hover{transform:translateY(-6px);border-color:var(--pink);box-shadow:0 18px 40px rgba(0,0,0,.85),0 0 28px rgba(244,114,182,.3)}.card:hover .photo{transform:scale(1.07)}}
-.media{position:relative;aspect-ratio:4/3;overflow:hidden;background:radial-gradient(circle,#2a1252,#090412);display:grid;place-items:center;color:var(--pink);font-size:34px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(250px,100%),1fr));gap:clamp(14px,2.2vw,24px)}
+
+.card{background:var(--card);border:1px solid var(--b-gold);border-radius:var(--r-l);overflow:hidden;display:flex;flex-direction:column;box-shadow:0 12px 30px rgba(0,0,0,.6);transition:var(--ease);position:relative;min-width:0}
+.card.promo{border-color:var(--b-pink)}
+@media(hover:hover){.card:hover{transform:translateY(-6px);border-color:var(--pink);box-shadow:0 18px 40px rgba(0,0,0,.85),0 0 28px rgba(244,114,182,.3)}.card:hover .photo{transform:scale(1.05)}}
+
+/* Imagen grande y limpia */
+.media{position:relative;aspect-ratio:1/1;overflow:hidden;background:radial-gradient(circle,#2a1252,#090412);display:grid;place-items:center;color:var(--pink);font-size:40px}
 .media::before{content:"✦";position:absolute}
-.media::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(23,13,44,.95),transparent 45%);z-index:2}
 .photo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .6s ease;z-index:1}
 .badges{position:absolute;top:12px;left:12px;right:12px;z-index:4;display:flex;justify-content:space-between;align-items:flex-start;gap:6px;flex-wrap:wrap}
-.star-tag{background:linear-gradient(135deg,#FBCFE8,var(--pink));color:#2A0818;font-size:10px;font-weight:900;padding:4px 11px;border-radius:99px;text-transform:uppercase;white-space:nowrap}
-.spec{margin-left:auto;background:rgba(4,2,8,.85);border:1px solid var(--b-gold);color:var(--gold-b);font-size:10px;font-weight:700;padding:4px 10px;border-radius:99px;white-space:nowrap}
-.info{padding:14px 18px 18px;display:flex;flex-direction:column;flex:1;position:relative;z-index:4}
+.star-tag{background:linear-gradient(135deg,#FBCFE8,var(--pink));color:#2A0818;font-size:10px;font-weight:900;padding:4px 11px;border-radius:99px;text-transform:uppercase;white-space:nowrap;box-shadow:0 2px 8px rgba(0,0,0,.45)}
+.spec{margin-left:auto;background:rgba(4,2,8,.82);border:1px solid var(--b-gold);color:var(--gold-b);font-size:10px;font-weight:700;padding:4px 10px;border-radius:99px;white-space:nowrap}
+
+/* Etiqueta de descuento sobre la foto (solo en productos con descuento) */
+.off{position:absolute;left:12px;bottom:12px;z-index:4;display:inline-flex;align-items:stretch;border-radius:99px;overflow:hidden;box-shadow:0 4px 14px rgba(0,0,0,.6);font-weight:900;max-width:calc(100% - 24px)}
+.off b{background:linear-gradient(135deg,#F472B6,#DB2777);color:#fff;font-size:14px;padding:6px 11px;white-space:nowrap}
+.off span{background:rgba(4,2,8,.9);color:#4ADE80;font-size:11px;padding:6px 11px 6px 9px;white-space:nowrap;display:flex;align-items:center}
+
+/* Información ordenada: todo alineado entre tarjetas */
+.info{padding:14px 16px 16px;display:flex;flex-direction:column;gap:8px;flex:1}
 .cat-l{font-size:10px;font-weight:800;text-transform:uppercase;color:var(--pink);letter-spacing:.1em}
-.title{font-size:16px;font-weight:800;line-height:1.25;margin:2px 0 6px;overflow-wrap:anywhere}
-.desc{font-size:13px;color:var(--muted);line-height:1.45;margin-bottom:14px}
-.v-label{font-size:11px;font-weight:700;color:var(--gold);margin-bottom:6px}
-.chips{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px}
-.chip{background:rgba(255,255,255,.04);border:1px solid var(--b-vio);padding:7px 11px;border-radius:var(--r-s);font-size:12px;font-weight:700;color:var(--muted);transition:var(--ease)}
-.chip:hover{border-color:var(--pink);color:var(--text)}
-.chip.sel{background:linear-gradient(135deg,rgba(244,114,182,.35),rgba(126,34,206,.45));border-color:var(--pink);color:#FFF;box-shadow:0 0 12px rgba(244,114,182,.35)}
-.card.err .chips{animation:shake .4s}
+.title{font-size:16px;font-weight:800;line-height:1.25;min-height:2.5em;overflow-wrap:anywhere;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.desc{font-size:13px;color:var(--muted);line-height:1.45;min-height:2.9em;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+
+.opt-select{margin-top:auto;width:100%;height:42px;padding:0 38px 0 14px;border-radius:var(--r-s);border:1px solid var(--b-vio);background:rgba(255,255,255,.05) url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%23F472B6' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'><polyline points='6 9 12 15 18 9'/></svg>") no-repeat right 14px center;color:var(--muted);font-size:13px;font-weight:700;-webkit-appearance:none;appearance:none;outline:none;transition:var(--ease);text-overflow:ellipsis}
+.opt-select:focus{border-color:var(--pink)}
+.opt-select.sel{border-color:var(--pink);background-color:rgba(244,114,182,.16);color:#fff}
+.opt-select option{background:#15092B;color:#fff}
+.opt-one{margin-top:auto;height:42px;display:flex;align-items:center;padding:0 14px;border-radius:var(--r-s);border:1px dashed var(--b-vio);color:var(--muted);font-size:12px;font-weight:700}
+.card.err .opt-select{animation:shake .4s;border-color:#F87171}
 @keyframes shake{25%{transform:translateX(-5px)}75%{transform:translateX(5px)}}
-.bottom{display:flex;align-items:center;justify-content:space-between;gap:8px;padding-top:12px;margin-top:auto;border-top:1px solid rgba(244,114,182,.18)}
-.price{font-size:18px;font-weight:800;color:var(--gold-b);white-space:nowrap}
-.add{background:linear-gradient(135deg,var(--em),var(--em-d));color:#021208;border:0;padding:10px 16px;border-radius:var(--r-m);font-size:13px;font-weight:800;display:inline-flex;align-items:center;gap:5px;box-shadow:0 4px 16px rgba(34,197,94,.32);transition:var(--ease);white-space:nowrap}
+
+/* Precio: el precio siempre queda abajo; si hay descuento, el precio viejo va encima */
+.bottom{display:flex;align-items:flex-end;justify-content:space-between;gap:8px;padding-top:12px;border-top:1px solid rgba(244,114,182,.18)}
+.price-box{display:flex;flex-direction:column;line-height:1.15;min-width:0}
+.price-old{font-size:12px;font-weight:700;color:var(--muted);text-decoration:line-through;text-decoration-color:var(--pink)}
+.price{font-size:19px;font-weight:800;color:var(--gold-b);white-space:nowrap}
+.promo .price{color:#FFF}
+.add{background:linear-gradient(135deg,var(--em),var(--em-d));color:#021208;border:0;padding:11px 16px;border-radius:var(--r-m);font-size:13px;font-weight:800;display:inline-flex;align-items:center;gap:5px;box-shadow:0 4px 16px rgba(34,197,94,.32);transition:var(--ease);white-space:nowrap}
 .add:hover{transform:scale(1.04)}.add:active{transform:scale(.96)}
 .empty{grid-column:1/-1;text-align:center;color:var(--muted);padding:50px 0;font-size:14px}
 
@@ -200,6 +215,7 @@ background-image:
 .row-i{flex:1;min-width:0;font-size:14px;font-weight:800;overflow-wrap:anywhere}
 .row-i small{display:block;color:var(--pink);font-size:11px;font-weight:700}
 .row-i b{display:block;color:var(--gold-b);margin-top:2px}
+.row-i s{color:var(--muted);font-size:11px;font-weight:600;margin-left:6px;text-decoration-color:var(--pink)}
 .qty{display:flex;align-items:center;gap:6px;background:rgba(0,0,0,.45);padding:4px 8px;border-radius:var(--r-s);border:1px solid var(--b-gold);flex:none}
 .qty button{width:32px;height:32px;background:var(--card);border:1px solid var(--b-gold);border-radius:6px;font-weight:800;color:var(--gold-b);font-size:15px}
 .qty span{font-size:14px;font-weight:800;min-width:18px;text-align:center}
@@ -224,6 +240,7 @@ background-image:
 .km-ok{background:rgba(34,197,94,.15);color:#4ADE80;border:1px solid rgba(34,197,94,.35)}
 .km-c{background:rgba(244,114,182,.15);color:#FBCFE8;border:1px solid var(--b-pink)}
 .sum{display:flex;justify-content:space-between;font-size:13px;color:var(--muted);font-weight:600}
+.sum.save-row{color:#4ADE80}
 .total{display:flex;justify-content:space-between;align-items:baseline;gap:10px}
 .total span:first-child{font-size:12px;color:var(--muted);font-weight:700}
 .total span:last-child{font-size:clamp(20px,5vw,24px);font-weight:900;text-align:right}
@@ -266,7 +283,7 @@ background-image:
 <header class="header">
  <div class="header-in">
   <a href="#" class="brand" aria-label="Astral Shop, inicio">
-   <span class="logo"><img src="assets/logo-astral.png" alt="" width="46" height="46" loading="eager" onerror="this.remove()"></span>
+   <span class="logo"><img src="assets/icono.png" alt="" width="46" height="46" loading="eager" onerror="this.remove()"></span>
    <span><span class="brand-name gold">Astral Shop</span><span class="brand-tag">✦ Santuario & Catálogo</span></span>
   </a>
   <div class="actions">
@@ -370,6 +387,7 @@ background-image:
     <div id="ship-info" hidden></div>
    </div>
    <div class="sum"><span>Subtotal</span><span id="sum-sub">$0</span></div>
+   <div class="sum save-row" id="save-row" hidden><span>🎁 Descuentos aplicados</span><span id="sum-save">$0</span></div>
    <div class="sum"><span>Domicilio</span><span id="sum-ship">Por calcular</span></div>
    <div class="total"><span>TOTAL ESTIMADO</span><span class="gold" id="total">$0</span></div>
    <button class="wa" id="btn-wa">Enviar pedido por WhatsApp</button>
@@ -395,23 +413,25 @@ background-image:
 
 <script>
 /* ===== CONFIGURACIÓN Y PUNTO DE REFERENCIA INTERNO (Punto A: Itagüí San Pío) ===== */
-const WHATSAPP_NUM = "573002872963";
+const WHATSAPP_NUM = "57300287293";
 const CIUDAD_BASE = "Antioquia, Colombia";
 const LAT_ORIGEN = 6.1738, LON_ORIGEN = -75.6074;
 const KM_BASE = 3, TARIFA_BASE = 5000, VALOR_KM_EXTRA = 1500, KM_MAX_AUTO = 25;
 const VIEWBOX_ABURRA = "-75.72,6.05,-75.30,6.46";
 
-const CATEGORIAS = [["Todas","🪷 Todo el universo"],["Vaporizadores","💨 Vaporizadores"],["Destilados","💧 Destilados"],["Gomitas","🍬 Gomitas"],["Jeringas","💉 Jeringas"],["Accesorios","🔮 Accesorios"]];
+const CATEGORIAS = [["Todas","🪷 Todo el universo"],["Vaporizadores","💨 Vaporizadores"],["Destilados","💧 Destilados"],["Jeringas","💉 Jeringas"],["Accesorios","🔮 Accesorios"]];
 
+/* DESCUENTOS: para que un producto muestre descuento, agrégale  original_price:  con el precio ANTES de la rebaja.
+   (p = precio actual con descuento). Si no tiene original_price, se muestra normal, sin descuento. */
 const productos = [
- {id:1,n:"Vape Live Resin 2G Astral",p:135000,c:"2 ML · 94%",cat:"Vaporizadores",d:"Extracción pura de espectro completo con batería recargable USB-C y calada suave.",opc:["Indica · Purple Punch","Sativa · Sour Diesel","Híbrida · Gelato"],img:"https://images.unsplash.com/photo-1560913210-91b7c3d3880c?auto=format&fit=crop&w=600&q=80",popular:true},
- {id:2,n:"Cartucho Destilado 1G Gold",p:95000,c:"1 ML · Rosca 510",cat:"Destilados",d:"Destilado cristalino de alta pureza con terpenos botánicos seleccionados.",opc:["Mango Kush","Blue Dream","OG Kush"],img:"https://images.unsplash.com/photo-1615485290382-441e4d049cb5?auto=format&fit=crop&w=600&q=80",popular:true},
- {id:3,n:"Gomitas Cósmicas Infused",p:65000,c:"10 Unds · 500mg",cat:"Gomitas",d:"Gomitas artesanales de efecto prolongado y sabor frutal intenso.",opc:["Sandía Ácida","Fresa Silvestre","Maracuyá"],img:"https://images.unsplash.com/photo-1582058091505-f87a2e55a40f?auto=format&fit=crop&w=600&q=80",popular:true},
- {id:4,n:"Jeringa Destilado Puro 1ML",p:85000,c:"1 ML · Activado",cat:"Jeringas",d:"Jeringa graduada de cristal lista para recargar pods, dabbing o comestibles.",opc:["Natural","Terpenos Cítricos"],img:"https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?auto=format&fit=crop&w=600&q=80",popular:true},
- {id:5,n:"Pod Recargable Nebula 2.5G",p:155000,c:"2.5 ML · Dual Coil",cat:"Vaporizadores",d:"Doble resistencia cerámica para vapor denso sin quemar el aceite.",opc:["Zkittlez","Wedding Cake"],img:"https://images.unsplash.com/photo-1527661591475-527312dd65f5?auto=format&fit=crop&w=600&q=80"},
- {id:6,n:"Gomitas Luna Llena CBN + THC",p:75000,c:"15 Unds · Relax",cat:"Gomitas",d:"Fórmula diseñada para relajación profunda y descanso nocturno.",opc:["Uva Cósmica","Mora Azul"],img:"https://images.unsplash.com/photo-1621939514649-280e2ee25f60?auto=format&fit=crop&w=600&q=80"},
- {id:7,n:"Jeringa Distillate Bulk 3ML",p:220000,c:"3 ML · Alta Pureza",cat:"Jeringas",d:"Presentación rendidora con punta metálica incluida para rellenado preciso.",img:"https://images.unsplash.com/photo-1579165466741-7f35e4755660?auto=format&fit=crop&w=600&q=80"},
- {id:8,n:"Batería 510 Voltaje Variable",p:45000,c:"650 mAh · USB-C",cat:"Accesorios",d:"Batería compacta con precalentamiento y 3 niveles de potencia.",opc:["Negro Obsidiana","Púrpura Nebulosa","Dorado"],img:"https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=600&q=80"}
+ { "id": 1, "n": "Baddie Bar - Rosado", "p": 35000, "original_price": 40000, "c": "15000 Puffs · 15 ML", "cat": "Vaporizadores", "d": "Vaporizador desechable edición Rosado con sabores frutales y refrescantes.", "img": "https://acdn-us.mitiendanube.com/stores/003/226/011/products/baddie-bar-15k-sultry-strawberry-banana-af1a4092ebb1c03c7f17848479115595-1024-1024.webp", "popular": true },
+ {id:2,n:"Cartucho Destilado 1G Gold",p:95000,c:"1 ML · Rosca 510",cat:"Destilados",d:"Destilado cristalino de alta pureza con terpenos botánicos seleccionados.",opc:["Mango Kush","Blue Dream","OG Kush"],img:"",popular:true},
+ {id:3,n:"Gomitas Cósmicas Infused",p:65000,c:"10 Unds · 500mg",cat:"Gomitas",d:"Gomitas artesanales de efecto prolongado y sabor frutal intenso.",opc:["Sandía Ácida","Fresa Silvestre","Maracuyá"],img:"",popular:true},
+ {id:4,n:"Jeringa Destilado Puro 1ML",p:85000,c:"1 ML · Activado",cat:"Jeringas",d:"Jeringa graduada de cristal lista para recargar pods, dabbing o comestibles.",opc:["Natural","Terpenos Cítricos"],img:"h",popular:true},
+ {id:5,n:"Pod Recargable Nebula 2.5G",p:155000,c:"2.5 ML · Dual Coil",cat:"Vaporizadores",d:"Doble resistencia cerámica para vapor denso sin quemar el aceite.",opc:["Zkittlez","Wedding Cake"],img:""},
+ {id:6,n:"Gomitas Luna Llena CBN + THC",p:75000,c:"15 Unds · Relax",cat:"Gomitas",d:"Fórmula diseñada para relajación profunda y descanso nocturno.",opc:["Uva Cósmica","Mora Azul"],img:""},
+ {id:7,n:"Jeringa Distillate Bulk 3ML",p:220000,c:"3 ML · Alta Pureza",cat:"Jeringas",d:"Presentación rendidora con punta metálica incluida para rellenado preciso.",img:""},
+ {id:8,n:"Batería 510 Voltaje Variable",p:45000,c:"650 mAh · USB-C",cat:"Accesorios",d:"Batería compacta con precalentamiento y 3 niveles de potencia.",opc:["Negro Obsidiana","Púrpura Nebulosa","Dorado"],img:""}
 ];
 
 /* ===== ESTADO (VOLÁTIL: TODO SE BORRA AL RECARGAR O CERRAR) ===== */
@@ -422,18 +442,35 @@ const esc = s => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>'
 let carrito = [], categoria = 'Todas', envio = null;
 
 const subtotal = () => carrito.reduce((s,i) => s + i.p * i.cantidad, 0);
+const ahorroTotal = () => carrito.reduce((s,i) => s + (i.orig > i.p ? (i.orig - i.p) * i.cantidad : 0), 0);
 const prod = id => productos.find(p => p.id === id);
 const save = () => {};
 
 /* ===== RENDER ===== */
 const FALLA = "this.remove()";
 function tarjeta(p){
- return `<article class="card" data-id="${p.id}">
-  <div class="media"><img class="photo" src="${esc(p.img)}" alt="${esc(p.n)}" loading="lazy" width="300" height="225" onerror="${FALLA}">
-   <div class="badges">${p.popular ? '<span class="star-tag">✦ Top Astral</span>' : ''}<span class="spec">${esc(p.c)}</span></div></div>
-  <div class="info"><div><span class="cat-l">${esc(p.cat)}</span><h3 class="title">${esc(p.n)}</h3><p class="desc">${esc(p.d)}</p></div>
-   ${p.opc ? `<div class="v-label">Elige tu opción:</div><div class="chips" role="group" aria-label="Opciones de ${esc(p.n)}">${p.opc.map(o => `<button class="chip" data-opt="${esc(o)}">${esc(o)}</button>`).join('')}</div>` : ''}
-   <div class="bottom"><span class="price">${money(p.p)}</span><button class="add" data-add="${p.id}">＋ Agregar</button></div></div>
+ const tieneImg = p.img && /^(https?:|assets\/|\/|data:)/.test(p.img);
+ const tieneDcto = p.original_price && p.original_price > p.p;
+ const pct = tieneDcto ? Math.round((1 - p.p / p.original_price) * 100) : 0;
+ const ahorro = tieneDcto ? p.original_price - p.p : 0;
+ return `<article class="card${tieneDcto ? ' promo' : ''}" data-id="${p.id}">
+  <div class="media">
+   ${tieneImg ? `<img class="photo" src="${esc(p.img)}" alt="${esc(p.n)}" loading="lazy" width="400" height="400" onerror="${FALLA}">` : ''}
+   <div class="badges">${p.popular ? '<span class="star-tag">✦ Top Astral</span>' : ''}<span class="spec">${esc(p.c)}</span></div>
+   ${tieneDcto ? `<div class="off"><b>-${pct}%</b><span>Ahorras ${money(ahorro)}</span></div>` : ''}
+  </div>
+  <div class="info">
+   <span class="cat-l">${esc(p.cat)}</span>
+   <h3 class="title">${esc(p.n)}</h3>
+   <p class="desc">${esc(p.d)}</p>
+   ${p.opc
+     ? `<select class="opt-select" aria-label="Opciones de ${esc(p.n)}"><option value="">Elige tu opción</option>${p.opc.map(o => `<option value="${esc(o)}">${esc(o)}</option>`).join('')}</select>`
+     : '<div class="opt-one">✓ Presentación única</div>'}
+   <div class="bottom">
+    <div class="price-box">${tieneDcto ? `<s class="price-old">${money(p.original_price)}</s>` : ''}<span class="price">${money(p.p)}</span></div>
+    <button class="add" data-add="${p.id}">＋ Agregar</button>
+   </div>
+  </div>
  </article>`;
 }
 function renderCats(){
@@ -448,19 +485,21 @@ function renderCatalogo(){
  $('count').textContent = res.length + (res.length===1 ? ' producto' : ' productos');
 }
 function renderCarrito(){
- const n = carrito.reduce((s,i) => s + i.cantidad, 0), sub = subtotal();
+ const n = carrito.reduce((s,i) => s + i.cantidad, 0), sub = subtotal(), ahorro = ahorroTotal();
  const costo = envio && !envio.coordinar ? envio.costo : 0;
  ['nav-count','float-count'].forEach(id => $(id).textContent = n);
  $('float-total').textContent = money(sub);
  $('float-btn').classList.toggle('show', n > 0);
  $('sum-sub').textContent = money(sub);
+ $('save-row').hidden = ahorro <= 0;
+ $('sum-save').textContent = '-' + money(ahorro);
  $('sum-ship').textContent = !envio ? 'Por calcular' : envio.coordinar ? 'A coordinar' : money(envio.costo);
  $('total').textContent = envio && envio.coordinar ? money(sub) + ' + envío' : money(sub + costo);
  $('btn-wa').disabled = n === 0;
  $('btn-clear').hidden = n === 0;
  $('cart-items').innerHTML = n === 0 ? '<p style="text-align:center;color:var(--muted);padding:26px 0;font-size:13px">Tu santuario está vacío. Agrega productos del catálogo ✦</p>' :
   carrito.map(i => `<div class="row"><img class="thumb" src="${esc(i.img)}" alt="" width="52" height="52" loading="lazy" onerror="${FALLA}">
-   <div class="row-i">${esc(i.n)}${i.opcion ? `<small>• ${esc(i.opcion)}</small>` : ''}<b>${money(i.p*i.cantidad)}</b></div>
+   <div class="row-i">${esc(i.n)}${i.opcion ? `<small>• ${esc(i.opcion)}</small>` : ''}<b>${money(i.p*i.cantidad)}${i.orig > i.p ? `<s>${money(i.orig*i.cantidad)}</s>` : ''}</b></div>
    <div class="qty"><button data-q="-1" data-k="${esc(i.cartId)}" aria-label="Quitar uno">−</button><span>${i.cantidad}</span><button data-q="1" data-k="${esc(i.cartId)}" aria-label="Agregar uno">+</button></div></div>`).join('');
 }
 
@@ -468,7 +507,7 @@ function renderCarrito(){
 function agregar(id, opcion){
  const p = prod(id), cartId = opcion ? id+'-'+opcion : ''+id;
  const it = carrito.find(i => i.cartId === cartId);
- if (it) it.cantidad++; else carrito.push({cartId, id, n:p.n, p:p.p, cantidad:1, opcion, img:p.img});
+ if (it) it.cantidad++; else carrito.push({cartId, id, n:p.n, p:p.p, orig:p.original_price || 0, cantidad:1, opcion, img:p.img});
  renderCarrito();
 }
 function cambiarCant(cartId, d){
@@ -754,6 +793,7 @@ async function enviarWhatsApp(){
  }
 
  const sub = subtotal();
+ const ahorro = ahorroTotal();
  const costo = envio && !envio.coordinar ? envio.costo : 0;
  const total = sub + costo;
  const cantTotal = carrito.reduce((s, i) => s + i.cantidad, 0);
@@ -775,7 +815,9 @@ async function enviarWhatsApp(){
   const itemTotal = money(i.p * i.cantidad);
   m += `*${idx + 1}. ${i.n}*\n`;
   if (i.opcion) m += `   ↳ _Variante:_ *${i.opcion}*\n`;
-  m += `   ↳ _Cant:_ *${i.cantidad}x* (${money(i.p)} c/u) ➔ *${itemTotal}*\n\n`;
+  m += `   ↳ _Cant:_ *${i.cantidad}x* (${money(i.p)} c/u) ➔ *${itemTotal}*\n`;
+  if (i.orig > i.p) m += `   ↳ 🎁 _Promo:_ antes ~${money(i.orig)}~ (ahorras ${money((i.orig - i.p) * i.cantidad)})\n`;
+  m += `\n`;
  });
 
  m += `━━━━━━━━━━━━━━━━━━━━━━\n`;
@@ -786,6 +828,7 @@ async function enviarWhatsApp(){
 
  m += `💎 *RESUMEN DE INVERSIÓN*\n`;
  m += `• *Subtotal:* ${money(sub)}\n`;
+ if (ahorro > 0) m += `• *Descuentos aplicados:* -${money(ahorro)}\n`;
  if (envio && !envio.coordinar) {
   m += `• *Domicilio (${envio.km.toFixed(1)} km):* ${money(costo)}\n`;
   m += `\n👑 *TOTAL A PAGAR: ${money(total)}* 👑\n`;
@@ -815,15 +858,17 @@ document.addEventListener('click', e => {
  const t = e.target;
  if (!t.closest('.dir-wrapper')) $('suggestions').hidden = true;
 
- const chip = t.closest('.chip'); if (chip) { chip.parentElement.querySelectorAll('.chip').forEach(c => c.classList.remove('sel')); chip.classList.add('sel'); return; }
  const add = t.closest('[data-add]');
  if (add) {
   const card = add.closest('.card'), id = +add.dataset.add, p = prod(id);
   let opcion = null;
   if (p.opc) {
-   const s = card.querySelector('.chip.sel');
-   if (!s) { card.classList.remove('err'); void card.offsetWidth; card.classList.add('err'); return alerta('Elige una opción', 'Selecciona el sabor o la cepa antes de agregar al pedido.', '✨'); }
-   opcion = s.dataset.opt;
+   const sel = card.querySelector('.opt-select');
+   if (!sel || !sel.value) {
+    card.classList.remove('err'); void card.offsetWidth; card.classList.add('err');
+    return alerta('Elige una opción', 'Selecciona el sabor o la cepa antes de agregar al pedido.', '✨');
+   }
+   opcion = sel.value;
   }
   agregar(id, opcion); toast('Agregado: ' + p.n); return;
  }
@@ -838,6 +883,11 @@ document.addEventListener('click', e => {
  }
 
  if (t.closest('[data-close]') || t.classList.contains('modal')) { cerrar('cart'); $('suggestions').hidden = true; }
+});
+
+/* Marca el menú de opciones cuando ya se eligió algo */
+document.addEventListener('change', e => {
+ if (e.target.classList.contains('opt-select')) e.target.classList.toggle('sel', !!e.target.value);
 });
 
 $('btn-cart').onclick = $('float-btn').onclick = () => abrir('cart');
