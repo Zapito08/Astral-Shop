@@ -90,6 +90,8 @@ background-image:
 .star-cart-btn{position:relative;width:56px;height:56px;background:none;border:none;padding:0;display:grid;place-items:center;transition:var(--ease);filter:drop-shadow(0 0 12px rgba(244,114,182,.4))}
 .star-cart-btn:hover{transform:scale(1.08) rotate(-4deg);filter:drop-shadow(0 0 18px rgba(252,231,178,.8))}
 .star-cart-btn:active{transform:scale(.95)}
+.star-cart-btn.bump{animation:bump .5s ease}
+@keyframes bump{30%{transform:scale(1.28) rotate(-10deg)}60%{transform:scale(.94)}}
 .star-shape-svg{position:absolute;inset:0;width:100%;height:100%}
 .star-cart-inner{position:relative;z-index:2;color:#160C02;display:flex;align-items:center;justify-content:center;margin-top:2px}
 .star-badge{position:absolute;top:-2px;right:-2px;z-index:3;min-width:20px;height:20px;padding:0 5px;border-radius:99px;background:linear-gradient(135deg,#F472B6,#DB2777);color:#FFF;font-size:10px;font-weight:900;display:grid;place-items:center;border:2px solid var(--void);box-shadow:0 2px 8px rgba(0,0,0,.7)}
@@ -421,28 +423,37 @@ const VIEWBOX_ABURRA = "-75.72,6.05,-75.30,6.46";
 
 const CATEGORIAS = [["Todas","🪷 Todo el universo"],["Vaporizadores","💨 Vaporizadores"],["Destilados","💧 Destilados"],["Jeringas","💉 Jeringas"],["Accesorios","🔮 Accesorios"]];
 
-/* DESCUENTOS: para que un producto muestre descuento, agrégale  original_price:  con el precio ANTES de la rebaja.
-   (p = precio actual con descuento). Si no tiene original_price, se muestra normal, sin descuento. */
+/* DESCUENTOS: para que un producto muestre descuento, agrégale original_price con el precio ANTES de la rebaja.
+   (p = precio actual con descuento). Si no tiene original_price, se muestra normal, sin descuento.
+   FOTOS POR OPCIÓN: en "opc" puedes poner objetos { "nombre": "Sabor", "img": "assets/foto.png" } para que cambie la imagen al elegirlo. */
 const productos = [
- {"id": 1, "n": "Baddie Bar - Rosado", "p": 31900, "original_price": 40000, "c": "15000 Puffs · 15 ML", "cat": "Vaporizadores", "d": "Vaporizador edición Rosado con brillos para girls, sabor Sultry Strawberry Banana.", "img": "/assets/baddie-rosado.png", "popular": true },
- {"id": 2, "n": "Baddie Bar - Morado", "p": 31900, "original_price": 40000, "c": "15000 Puffs · 15 ML", "cat": "Vaporizadores", "d": "Vaporizador edición Morado con brillos para girls, sabor Razzle Dazzle Grape.", "img": "/assets/baddie-morado.png", "popular": false },
- {"id": 3, "n": "Baddie Bar - Amarrillo/Rosado", "p": 31900, "original_price": 40000, "c": "15000 Puffs · 15 ML", "cat": "Vaporizadores", "d": "Vaporizador edición Amarillo/rosado con brillos para girls, sabor Pink Lemonade.", "img": "/assets/baddie-amarrilloPink.png", "popular": false },
- {"id": 4, "n": "Baddie Bar - Plateado", "p": 31900, "original_price": 40000, "c": "15000 Puffs · 15 ML", "cat": "Vaporizadores", "d": "Vaporizador edición Plateado con brillos para girls, sabor Pretty clear.", "img": "/assets/baddie-plateado.png", "popular": false },
- {"id": 5, "n": "Humo Azul 24K", "p": 37900, "original_price": 45000, "c": "24000 Puffs · 24 ML", "cat": "Vaporizadores", "d": "Vaporizador desechable recargable Clase azul.", "opc": ["Blueberry Ice", "Watermelon Ice", "Peach Ice", "Blue Razz Ice", "Grape Ice", "Strawberry Watermelon Grape"], "img": "/assets/humoAzul-claseazul.png", "layout": "horizontal", "popular": true },
- {"id": 6, "n": "Humo Azul 24K", "p": 37900, "original_price": 45000, "c": "24000 Puffs · 24 ML", "cat": "Vaporizadores", "d": "Vaporizador desechable recargable Clase plateada.", "opc": ["Blueberry Ice", "Watermelon Ice", "Peach Ice", "Blue Razz Ice", "Grape Ice", "Strawberry Watermelon Grape"], "img": "/assets/humoAzul-claseplateada.png", "layout": "horizontal", "popular": false },
- {id:2,n:"Cartucho Destilado 1G Gold",p:95000,c:"1 ML · Rosca 510",cat:"Destilados",d:"Destilado cristalino de alta pureza con terpenos botánicos seleccionados.",opc:["Mango Kush","Blue Dream","OG Kush"],img:"",popular:true},
- {id:3,n:"Gomitas Cósmicas Infused",p:65000,c:"10 Unds · 500mg",cat:"Gomitas",d:"Gomitas artesanales de efecto prolongado y sabor frutal intenso.",opc:["Sandía Ácida","Fresa Silvestre","Maracuyá"],img:"",popular:true},
- {id:4,n:"Jeringa Destilado Puro 1ML",p:85000,c:"1 ML · Activado",cat:"Jeringas",d:"Jeringa graduada de cristal lista para recargar pods, dabbing o comestibles.",opc:["Natural","Terpenos Cítricos"],img:"h",popular:true},
- {id:5,n:"Pod Recargable Nebula 2.5G",p:155000,c:"2.5 ML · Dual Coil",cat:"Vaporizadores",d:"Doble resistencia cerámica para vapor denso sin quemar el aceite.",opc:["Zkittlez","Wedding Cake"],img:""},
- {id:6,n:"Gomitas Luna Llena CBN + THC",p:75000,c:"15 Unds · Relax",cat:"Gomitas",d:"Fórmula diseñada para relajación profunda y descanso nocturno.",opc:["Uva Cósmica","Mora Azul"],img:""},
- {id:7,n:"Jeringa Distillate Bulk 3ML",p:220000,c:"3 ML · Alta Pureza",cat:"Jeringas",d:"Presentación rendidora con punta metálica incluida para rellenado preciso.",img:""},
- {id:8,n:"Batería 510 Voltaje Variable",p:45000,c:"650 mAh · USB-C",cat:"Accesorios",d:"Batería compacta con precalentamiento y 3 niveles de potencia.",opc:["Negro Obsidiana","Púrpura Nebulosa","Dorado"],img:""}
+ {"id": 1, "n": "Baddie Bar - Rosado", "p": 31900, "original_price": 40000, "c": "15000 Puffs · 15 ML", "cat": "Vaporizadores", "d": "Vaporizador edición Rosado con brillos para girls, sabor Sultry Strawberry Banana.", "img": "assets/baddie-rosado.png", "popular": true },
+ {"id": 2, "n": "Baddie Bar - Morado", "p": 31900, "original_price": 40000, "c": "15000 Puffs · 15 ML", "cat": "Vaporizadores", "d": "Vaporizador edición Morado con brillos para girls, sabor Razzle Dazzle Grape.", "img": "assets/baddie-morado.png", "popular": false },
+ {"id": 3, "n": "Baddie Bar - Amarrillo/Rosado", "p": 31900, "original_price": 40000, "c": "15000 Puffs · 15 ML", "cat": "Vaporizadores", "d": "Vaporizador edición Amarillo/rosado con brillos para girls, sabor Pink Lemonade.", "img": "assets/baddie-amarrilloPink.png", "popular": false },
+ {"id": 4, "n": "Baddie Bar - Plateado", "p": 31900, "original_price": 40000, "c": "15000 Puffs · 15 ML", "cat": "Vaporizadores", "d": "Vaporizador edición Plateado con brillos para girls, sabor Pretty clear.", "img": "assets/baddie-plateado.png", "popular": false },
+ {"id": 5, "n": "Humo Azul 24K", "p": 37900, "original_price": 45000, "c": "24000 Puffs · 24 ML", "cat": "Vaporizadores", "d": "Vaporizador desechable recargable Clase azul.", "opc": ["Blueberry Ice", "Watermelon Ice", "Peach Ice", "Blue Razz Ice", "Grape Ice", "Strawberry Watermelon Grape"], "img": "assets/humoAzul-claseazul.png", "layout": "horizontal", "popular": true },
+ {"id": 6, "n": "Humo Azul 24K", "p": 37900, "original_price": 45000, "c": "24000 Puffs · 24 ML", "cat": "Vaporizadores", "d": "Vaporizador desechable recargable Clase plateada.", "opc": ["Love 66", "Blueberry Ice", "Watermelon Ice", "Grape Ice", "Peach Ice", "Cool Mint"], "img": "assets/humoAzul-claseplateada.png", "layout": "horizontal", "popular": false },
+ {"id": 7, "n": "Humo Azul 24K", "p": 37900, "original_price": 45000, "c": "24000 Puffs · 24 ML", "cat": "Vaporizadores", "d": "Vaporizador desechable recargable Clase rosada.", "opc": ["Strawberry Watermelon", "Watermelon Ice", "Strawberry Ice", "Peach Ice", "Blueberry Ice", "Cool Mint"], "img": "assets/humoAzul-claserosada.png", "layout": "horizontal", "popular": false },
+ {"id": 8, "n": "Humo Azul 24K", "p": 37900, "original_price": 45000, "c": "24000 Puffs · 24 ML", "cat": "Vaporizadores", "d": "Vaporizador desechable recargable Clase dorada.", "opc": ["Love 66", "Passion Fruit Kiwi", "Mango Ice", "Pineapple Ice", "Grape Ice", "Watermelon Ice"], "img": "assets/humoAzul-clasedorada.png", "layout": "horizontal", "popular": false },
+ {"id": 9, "n": "Nicky Jam x Fume 10K", "p": 18000, "original_price": 25000, "c": "10000 Puffs · LED Display", "cat": "Vaporizadores", "d": "Vaporizador desechable recargable edición especial Nicky Jam x Fume con pantalla LED.", "opc": [
+   {"nombre": "Ojos Rojos (Cereza y bayas maduras)", "img": "assets/nickyjam-ojosrojo.png.jpeg"},
+   {"nombre": "Summer Amante (Mango, Melon y coco)", "img": "assets/nickyjam-summeramante.png.jpeg"},
+   {"nombre": "Blue Miami (Arabdanos mentolados)", "img": "assets/nickjam-bluemaimi.jpeg"},
+   {"nombre": "Lush Medellín (Sandia y menta helada)", "img": "assets/nickyjam-lushmedellin.jpeg"},
+   {"nombre": "Black Hat Black ice (Hielo negro)", "img": "assets/nickyjam-black.jpeg"},
+   {"nombre": "Peach XXX (Melocoton mentolado)", "img": "assets/nickyjam-peachxxx.jpeg"},
+   {"nombre": "Miamint (Menta dulce)", "img": "assets/nickyjam-miamint.jpeg"},
+   {"nombre": "Fantasía Fume (Uva y kiwi)", "img": "assets/nickyjam-fantasiafume.jpeg"},
+   {"nombre": "El ganador (Mango y kiwi)", "img": "assets/nickyjam-elganador.jpeg"},
+   {"nombre": "Calor Juice (Banana y Piña)", "img": "assets/nickyjam-calorjuice.jpeg"}
+ ], "img": "assets/nickyjam-todos.png", "layout": "horizontal", "popular": false }
 ];
 
 /* ===== ESTADO (VOLÁTIL: TODO SE BORRA AL RECARGAR O CERRAR) ===== */
 const $ = id => document.getElementById(id);
 const money = n => '$' + Math.round(n).toLocaleString('es-CO');
 const esc = s => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const isValidImg = s => !!s && /^(https?:|assets\/|\/|data:)/.test(s);
 
 let carrito = [], categoria = 'Todas', envio = null;
 
@@ -454,13 +465,13 @@ const save = () => {};
 /* ===== RENDER ===== */
 const FALLA = "this.remove()";
 function tarjeta(p){
- const tieneImg = p.img && /^(https?:|assets\/|\/|data:)/.test(p.img);
+ const tieneImg = isValidImg(p.img);
  const tieneDcto = p.original_price && p.original_price > p.p;
  const pct = tieneDcto ? Math.round((1 - p.p / p.original_price) * 100) : 0;
  const ahorro = tieneDcto ? p.original_price - p.p : 0;
  return `<article class="card${tieneDcto ? ' promo' : ''}" data-id="${p.id}">
   <div class="media">
-   ${tieneImg ? `<img class="photo" src="${esc(p.img)}" alt="${esc(p.n)}" loading="lazy" width="400" height="400" onerror="${FALLA}">` : ''}
+   ${tieneImg ? `<img class="photo" src="${esc(p.img)}" data-default="${esc(p.img)}" alt="${esc(p.n)}" loading="lazy" width="400" height="400" onerror="${FALLA}">` : ''}
    <div class="badges">${p.popular ? '<span class="star-tag">✦ Top Astral</span>' : ''}<span class="spec">${esc(p.c)}</span></div>
    ${tieneDcto ? `<div class="off"><b>-${pct}%</b><span>Ahorras ${money(ahorro)}</span></div>` : ''}
   </div>
@@ -469,7 +480,11 @@ function tarjeta(p){
    <h3 class="title">${esc(p.n)}</h3>
    <p class="desc">${esc(p.d)}</p>
    ${p.opc
-     ? `<select class="opt-select" aria-label="Opciones de ${esc(p.n)}"><option value="">Elige tu opción</option>${p.opc.map(o => `<option value="${esc(o)}">${esc(o)}</option>`).join('')}</select>`
+     ? `<select class="opt-select" aria-label="Opciones de ${esc(p.n)}"><option value="">Elige tu opción</option>${p.opc.map(o => {
+         const nom = typeof o === 'object' ? o.nombre : o;
+         const im = typeof o === 'object' && o.img ? o.img : '';
+         return `<option value="${esc(nom)}"${im ? ` data-img="${esc(im)}"` : ''}>${esc(nom)}</option>`;
+       }).join('')}</select>`
      : '<div class="opt-one">✓ Presentación única</div>'}
    <div class="bottom">
     <div class="price-box">${tieneDcto ? `<s class="price-old">${money(p.original_price)}</s>` : ''}<span class="price">${money(p.p)}</span></div>
@@ -509,11 +524,13 @@ function renderCarrito(){
 }
 
 /* ===== ACCIONES ===== */
-function agregar(id, opcion){
+function agregar(id, opcion, imgOpcion){
  const p = prod(id), cartId = opcion ? id+'-'+opcion : ''+id;
+ const imgFinal = imgOpcion || p.img;
  const it = carrito.find(i => i.cartId === cartId);
- if (it) it.cantidad++; else carrito.push({cartId, id, n:p.n, p:p.p, orig:p.original_price || 0, cantidad:1, opcion, img:p.img});
+ if (it) it.cantidad++; else carrito.push({cartId, id, n:p.n, p:p.p, orig:p.original_price || 0, cantidad:1, opcion, img:imgFinal});
  renderCarrito();
+ const b = $('btn-cart'); b.classList.remove('bump'); void b.offsetWidth; b.classList.add('bump');
 }
 function cambiarCant(cartId, d){
  const i = carrito.findIndex(x => x.cartId === cartId); if (i < 0) return;
@@ -866,7 +883,7 @@ document.addEventListener('click', e => {
  const add = t.closest('[data-add]');
  if (add) {
   const card = add.closest('.card'), id = +add.dataset.add, p = prod(id);
-  let opcion = null;
+  let opcion = null, imgOpcion = null;
   if (p.opc) {
    const sel = card.querySelector('.opt-select');
    if (!sel || !sel.value) {
@@ -874,8 +891,9 @@ document.addEventListener('click', e => {
     return alerta('Elige una opción', 'Selecciona el sabor o la cepa antes de agregar al pedido.', '✨');
    }
    opcion = sel.value;
+   imgOpcion = sel.options[sel.selectedIndex]?.dataset.img || null;
   }
-  agregar(id, opcion); toast('Agregado: ' + p.n); return;
+  agregar(id, opcion, imgOpcion); toast('Agregado: ' + p.n); return;
  }
  const cat = t.closest('[data-cat]'); if (cat) { categoria = cat.dataset.cat; renderCats(); renderCatalogo(); return; }
  const q = t.closest('[data-q]'); if (q) { cambiarCant(q.dataset.k, +q.dataset.q); return; }
@@ -890,9 +908,34 @@ document.addEventListener('click', e => {
  if (t.closest('[data-close]') || t.classList.contains('modal')) { cerrar('cart'); $('suggestions').hidden = true; }
 });
 
-/* Marca el menú de opciones cuando ya se eligió algo */
+/* Marca el menú de opciones y cambia la imagen de la tarjeta según la opción elegida */
 document.addEventListener('change', e => {
- if (e.target.classList.contains('opt-select')) e.target.classList.toggle('sel', !!e.target.value);
+ if (e.target.classList.contains('opt-select')) {
+  const sel = e.target;
+  sel.classList.toggle('sel', !!sel.value);
+  const card = sel.closest('.card');
+  const media = card?.querySelector('.media');
+  if (!media) return;
+  const opt = sel.options[sel.selectedIndex];
+  const imgOpc = opt?.dataset.img || '';
+  let foto = media.querySelector('.photo');
+  const defecto = foto?.dataset.default || prod(+card.dataset.id)?.img || '';
+  const destino = imgOpc || defecto;
+  if (isValidImg(destino)) {
+   if (!foto) {
+    foto = document.createElement('img');
+    foto.className = 'photo';
+    foto.alt = card.querySelector('.title')?.textContent || '';
+    foto.loading = 'lazy';
+    foto.width = 400;
+    foto.height = 400;
+    foto.onerror = function(){ this.remove(); };
+    if (isValidImg(defecto)) foto.dataset.default = defecto;
+    media.prepend(foto);
+   }
+   foto.src = destino;
+  }
+ }
 });
 
 $('btn-cart').onclick = $('float-btn').onclick = () => abrir('cart');
