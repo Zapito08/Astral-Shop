@@ -60,15 +60,19 @@ button{cursor:pointer}
 .controls-in{max-width:var(--maxw);margin:0 auto;padding:0 var(--pad);display:flex;flex-direction:column;gap:10px}
 .search{position:relative;max-width:620px;width:100%;margin:0 auto}
 .search svg{position:absolute;left:16px;top:50%;transform:translateY(-50%);color:var(--pink);pointer-events:none}
-.search input{width:100%;padding:12px 18px 12px 46px;border-radius:99px;border:1px solid var(--b-gold);background:rgba(18,10,34,.92);font-size:16px;outline:none;transition:var(--ease)}
+.search input{width:100%;padding:12px 40px 12px 46px;border-radius:99px;border:1px solid var(--b-gold);background:rgba(18,10,34,.92);font-size:16px;outline:none;transition:var(--ease)}
 .search input::placeholder{color:var(--muted)}
 .search input:focus{border-color:var(--pink);box-shadow:0 0 0 4px rgba(244,114,182,.2)}
+.search input::-webkit-search-cancel-button{-webkit-appearance:none;appearance:none}
+.q-clear{position:absolute;right:10px;top:50%;transform:translateY(-50%);width:28px;height:28px;border-radius:50%;border:0;background:rgba(244,114,182,.22);color:#FBCFE8;font-size:16px;font-weight:800;display:grid;place-items:center}
+.q-clear[hidden]{display:none}
 .cats{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;padding:2px 0;-webkit-overflow-scrolling:touch}
 .cats::-webkit-scrollbar{display:none}
 @media(min-width:900px){.cats{justify-content:center}}
 .cat{flex:none;background:var(--glass);border:1px solid var(--b-vio);padding:9px 16px;border-radius:99px;font-size:12px;font-weight:700;color:var(--muted);white-space:nowrap;transition:var(--ease)}
 .cat:hover{border-color:var(--pink);color:#FBCFE8}
 .cat.on{background:linear-gradient(135deg,rgba(244,114,182,.32),rgba(126,34,206,.45));border-color:var(--pink);color:#FFF;box-shadow:0 0 20px rgba(244,114,182,.35)}
+.cat.cat-promo{border-color:rgba(244,114,182,.45);color:#FBCFE8}
 .wrap{position:relative;z-index:1;max-width:var(--maxw);margin:28px auto;padding:0 var(--pad)}
 .divider{display:flex;align-items:center;gap:14px;margin-bottom:18px}
 .divider::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,var(--b-pink),var(--b-gold),transparent);order:1}
@@ -106,6 +110,7 @@ button{cursor:pointer}
 .promo .price{color:#FFF}
 .add{background:linear-gradient(135deg,var(--em),var(--em-d));color:#021208;border:0;padding:11px 16px;border-radius:var(--r-m);font-size:13px;font-weight:800;display:inline-flex;align-items:center;gap:5px;box-shadow:0 4px 16px rgba(34,197,94,.32);transition:var(--ease);white-space:nowrap}
 .add:hover{transform:scale(1.04)}.add:active{transform:scale(.96)}
+.add.ok{background:linear-gradient(135deg,#FCE7B2,#F472B6);color:#1A0614;box-shadow:0 4px 18px rgba(244,114,182,.45)}
 .empty{grid-column:1/-1;text-align:center;color:var(--muted);padding:50px 0;font-size:14px}
 .float{position:fixed;bottom:calc(16px + var(--safe-b));left:0;right:0;padding:0 var(--pad);z-index:40;pointer-events:none}
 .float-btn{max-width:480px;margin:0 auto;width:100%;display:none;justify-content:space-between;align-items:center;gap:10px;background:linear-gradient(135deg,#250E3A,#0B0517);border:1.5px solid var(--pink);color:var(--gold-b);padding:12px 22px;border-radius:99px;pointer-events:auto;box-shadow:0 14px 35px rgba(0,0,0,.85),0 0 25px rgba(244,114,182,.35)}
@@ -146,7 +151,15 @@ button{cursor:pointer}
 .km{font-size:12px;font-weight:700;padding:8px 12px;border-radius:var(--r-s);display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap}
 .km-ok{background:rgba(34,197,94,.15);color:#4ADE80;border:1px solid rgba(34,197,94,.35)}
 .km-c{background:rgba(244,114,182,.15);color:#FBCFE8;border:1px solid var(--b-pink)}
+.promo-box{display:flex;flex-direction:column;gap:6px}
 .promo-env{font-size:11px;font-weight:700;color:#4ADE80;text-align:center}
+.pbar{height:6px;border-radius:99px;background:rgba(255,255,255,.08);overflow:hidden}
+.pbar-fill{height:100%;width:0%;border-radius:99px;background:linear-gradient(90deg,var(--pink),var(--gold-b),#4ADE80);transition:width .35s ease}
+.pay-chips{display:flex;flex-wrap:wrap;gap:6px}
+.pay-chip{background:rgba(4,2,8,.75);border:1px solid var(--b-vio);color:var(--muted);padding:6px 11px;border-radius:99px;font-size:11px;font-weight:700;transition:var(--ease)}
+.pay-chip.on{border-color:var(--pink);background:rgba(244,114,182,.22);color:#FFF}
+.nota-in{width:100%;padding:9px 12px;border-radius:var(--r-s);border:1px solid var(--b-vio);background:rgba(4,2,8,.85);font-size:14px;outline:none}
+.nota-in:focus{border-color:var(--pink)}
 .sum{display:flex;justify-content:space-between;font-size:13px;color:var(--muted);font-weight:600}
 .sum.save-row{color:#4ADE80}
 .total{display:flex;justify-content:space-between;align-items:baseline;gap:10px}
@@ -199,7 +212,6 @@ body.scrolled .header{box-shadow:0 8px 30px rgba(0,0,0,.6)}
 .f-actions{display:flex;gap:10px}
 .f-actions .btn-g{margin-top:0;flex:1}
 .f-clear{flex:none;background:none;border:1px solid var(--b-vio);color:var(--muted);padding:13px 18px;border-radius:var(--r-m);font-weight:700;font-size:14px}
-@keyframes sheet{from{transform:translateY(100%)}to{transform:none}}
 /* ===== VENTANA DEL PEDIDO ===== */
 .m-body{flex:1;min-height:0;overflow-y:auto;-webkit-overflow-scrolling:touch;overscroll-behavior:contain;padding:16px 24px;display:flex;flex-direction:column;gap:12px}
 .m-items{display:flex;flex-direction:column;gap:10px}
@@ -220,19 +232,19 @@ body.scrolled .header{box-shadow:0 8px 30px rgba(0,0,0,.6)}
  .card{width:100%;max-width:520px;margin:0 auto}
  .opt-select{height:46px;font-size:14px}
  .add{padding:12px 20px;font-size:14px}
-.modal{align-items:center;padding:12px 12px calc(28px + var(--safe-b))}
- .panel{max-width:500px;border-radius:var(--r-l);border-bottom:1.5px solid var(--pink);max-height:84dvh;animation:zoomIn .25s ease}
+ .modal{align-items:center;padding:12px 12px calc(32px + var(--safe-b))}
+ .panel{max-width:500px;border-radius:var(--r-l);border-bottom:1.5px solid var(--pink);max-height:83dvh;animation:zoomIn .25s ease}
  .m-top,.m-scroll,.m-bot,.m-body,.m-foot{padding-left:16px;padding-right:16px}
- .m-foot{padding-bottom:calc(14px + var(--safe-b))}
+ .m-foot{padding-bottom:16px}
  .m-top{padding-top:14px;padding-bottom:14px}
- .m-bot{padding-bottom:calc(18px + var(--safe-b))}
+ .m-bot{padding-bottom:18px}
  .m-scroll{max-height:30vh}
  #filters .m-scroll{max-height:none}
  .float-btn{padding:12px 18px}
 }
 @media(max-width:480px){:root{--hh:64px}body.scrolled{--hh:56px}.brand-tag{display:none}.fbtn-t{display:none}.fbtn{width:46px;padding:0;justify-content:center}.fbadge{position:absolute;top:-4px;right:-4px}}
 @media(max-width:340px){.grid{grid-template-columns:1fr}}
-@media(max-height:520px) and (orientation:landscape){.panel{max-height:100dvh}.m-scroll{max-height:26vh}.hero-logo{width:140px}.controls.tuck{transform:translateY(-125%)}}
+@media(max-height:520px) and (orientation:landscape){.panel{max-height:94dvh}.m-scroll{max-height:26vh}.hero-logo{width:140px}.controls.tuck{transform:translateY(-125%)}}
 @media(max-width:400px){
  .row{flex-wrap:wrap;gap:8px 12px}
  .row-i{flex:1 1 0;min-width:120px}
@@ -283,6 +295,7 @@ body.scrolled .header{box-shadow:0 8px 30px rgba(0,0,0,.6)}
   <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
   <label class="sr" for="q">Buscar productos</label>
   <input id="q" type="search" autocomplete="off" placeholder="Buscar vapes, destilados...">
+  <button class="q-clear" id="q-clear" type="button" aria-label="Limpiar búsqueda" hidden>&times;</button>
  </div>
   <button class="fbtn" id="btn-filter" aria-label="Abrir filtros"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 6h8M18 6h2M4 12h2M12 12h8M4 18h10M20 18h0"/><circle cx="15" cy="6" r="2.2"/><circle cx="9" cy="12" r="2.2"/><circle cx="17" cy="18" r="2.2"/></svg><span class="fbtn-t">Filtros</span><span class="fbadge" id="f-badge" hidden>0</span></button>
  </div>
@@ -307,14 +320,26 @@ body.scrolled .header{box-shadow:0 8px 30px rgba(0,0,0,.6)}
   <div class="deliv">
    <div class="deliv-h"><span>📍 Dirección de Entrega</span><span>Tarifa por zona</span></div>
    <div class="dir-wrapper">
-    <input class="dir" id="dir" type="text" autocomplete="street-address" aria-label="Dirección de entrega" placeholder="Ej. Calle 80 # 60-101, Barrio...">
+    <input class="dir" id="dir" type="text" autocomplete="off" aria-label="Dirección de entrega" placeholder="Ej. Calle 80 # 60-101, Barrio...">
     <button class="calc" id="btn-calc">Calcular</button>
     <div id="suggestions" class="suggestions" hidden></div>
    </div>
    <button class="gps" id="btn-gps">📡 Usar mi ubicación GPS</button>
    <div class="note" id="searching" hidden>Buscando ubicación...</div>
    <div id="ship-info" hidden></div>
-   <div class="promo-env" id="promo-env" hidden></div>
+   <div class="promo-box" id="promo-box" hidden>
+    <div class="pbar"><div class="pbar-fill" id="pbar-fill"></div></div>
+    <div class="promo-env" id="promo-env"></div>
+   </div>
+  </div>
+  <div class="deliv" id="extra-box">
+   <div class="deliv-h"><span>💳 Pago y Nota (Opcional)</span><span>Para agilizar</span></div>
+   <div class="pay-chips" id="pay-chips">
+    <button type="button" class="pay-chip" data-pay="Nequi">Nequi</button>
+    <button type="button" class="pay-chip" data-pay="Bancolombia">Bancolombia</button>
+    <button type="button" class="pay-chip" data-pay="Efectivo">Efectivo</button>
+   </div>
+   <input class="nota-in" id="nota" type="text" maxlength="140" autocomplete="off" aria-label="Nota para el domicilio" placeholder="Ej. Dejar en portería, timbre 302...">
   </div>
   <div class="sum"><span>Subtotal</span><span id="sum-sub">$0</span></div>
   <div class="sum save-row" id="save-row" hidden><span>🎁 Descuentos aplicados</span><span id="sum-save">$0</span></div>
@@ -360,9 +385,9 @@ const KM_MAX_AUTO = 27;
 const ZONAS_ENVIO = [[3,3000],[6,5000],[10,7000],[15,10000],[20,14000],[27,18000]];
 const tarifaPorKm = km => (ZONAS_ENVIO.find(([max]) => km <= max) || [])[1] ?? null;
 /* Promoción de domicilio según subtotal (pon 0 para desactivar) */
-const ENVIO_GRATIS_DESDE = 150000, ENVIO_MITAD_DESDE = 100000;
+const ENVIO_GRATIS_DESDE = 150000, ENVIO_MITAD_DESDE = 10000;
 
-const CATEGORIAS = [["Todas","🪷 Todo el universo"],["Vaporizadores","💨 Vaporizadores"],["Destilados","💧 Destilados"],["Jeringas","💉 Jeringas"],["Accesorios","🔮 Accesorios"]];
+const CATEGORIAS = [["Todas","🪷 Todo el universo"],["Ofertas","🔥 Ofertas"],["Vaporizadores","💨 Vaporizadores"],["Destilados","💧 Destilados"],["Jeringas","💉 Jeringas"],["Accesorios","🔮 Accesorios"]];
 
 /* original_price = precio ANTES de la rebaja (p = precio actual).
    En "opc" puedes usar { "nombre": "Sabor", "img": "assets/foto.png" } para cambiar la foto al elegir. */
@@ -396,14 +421,15 @@ const productos = [
  ],"img":"assets/ebcreate-todos.jpeg","popular":false}
 ];
 
-/* ===== ESTADO ===== */
+/* ===== ESTADO (SIEMPRE LIMPIO AL RECARGAR O CERRAR PESTAÑA) ===== */
 const $ = id => document.getElementById(id);
 const money = n => '$' + Math.round(n).toLocaleString('es-CO');
 const esc = s => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const isValidImg = s => !!s && /^(https?:|assets\/|\/|data:)/.test(s);
 const store = { get: k => { try { return sessionStorage.getItem(k); } catch(e) { return null; } }, set: (k,v) => { try { sessionStorage.setItem(k,v); } catch(e) {} } };
+try { localStorage.removeItem('astral_cart_v1'); } catch(e) {}
 
-let carrito = [], categoria = 'Todas', envio = null;
+let carrito = [], categoria = 'Todas', envio = null, pagoSel = '';
 let filtros = {orden:'rel', precio:0, ofertas:false, top:false};
 const subtotal = () => carrito.reduce((s,i) => s + i.p * i.cantidad, 0);
 const ahorroTotal = () => carrito.reduce((s,i) => s + (i.orig > i.p ? (i.orig - i.p) * i.cantidad : 0), 0);
@@ -417,13 +443,15 @@ const costoEnvio = () => {
  if (ENVIO_MITAD_DESDE && s >= ENVIO_MITAD_DESDE) return Math.round(envio.costo / 2 / 500) * 500;
  return envio.costo;
 };
-function textoPromoEnvio(){
+function infoPromoEnvio(){
  const s = subtotal();
- if (!carrito.length || !envio || envio.coordinar) return '';
- if (ENVIO_GRATIS_DESDE && s >= ENVIO_GRATIS_DESDE) return '🎉 ¡Domicilio gratis aplicado!';
- if (ENVIO_GRATIS_DESDE && ENVIO_MITAD_DESDE && s >= ENVIO_MITAD_DESDE) return `🎁 Domicilio a mitad de precio. Gratis desde ${money(ENVIO_GRATIS_DESDE)} (te faltan ${money(ENVIO_GRATIS_DESDE - s)})`;
- if (ENVIO_MITAD_DESDE) return `💡 Domicilio a mitad de precio desde ${money(ENVIO_MITAD_DESDE)} (te faltan ${money(ENVIO_MITAD_DESDE - s)})`;
- return '';
+ if (!carrito.length || !envio || envio.coordinar) return null;
+ const metaMax = ENVIO_GRATIS_DESDE || ENVIO_MITAD_DESDE || 1;
+ const pct = Math.min(100, Math.round((s / metaMax) * 100));
+ if (ENVIO_GRATIS_DESDE && s >= ENVIO_GRATIS_DESDE) return {pct:100, txt:'🎉 ¡Domicilio gratis aplicado!'};
+ if (ENVIO_GRATIS_DESDE && ENVIO_MITAD_DESDE && s >= ENVIO_MITAD_DESDE) return {pct, txt:`🎁 Domicilio a mitad de precio. Gratis desde ${money(ENVIO_GRATIS_DESDE)} (te faltan ${money(ENVIO_GRATIS_DESDE - s)})`};
+ if (ENVIO_MITAD_DESDE) return {pct, txt:`💡 Domicilio a mitad de precio desde ${money(ENVIO_MITAD_DESDE)} (te faltan ${money(ENVIO_MITAD_DESDE - s)})`};
+ return null;
 }
 
 /* ===== RENDER ===== */
@@ -455,7 +483,7 @@ function tarjeta(p){
  </article>`;
 }
 function renderCats(){
- $('cats').innerHTML = CATEGORIAS.map(([k,l]) => `<button class="cat${k===categoria?' on':''}" role="tab" aria-selected="${k===categoria}" data-cat="${k}">${l}</button>`).join('');
+ $('cats').innerHTML = CATEGORIAS.map(([k,l]) => `<button class="cat${k==='Ofertas'?' cat-promo':''}${k===categoria?' on':''}" role="tab" aria-selected="${k===categoria}" data-cat="${k}">${l}</button>`).join('');
 }
 const RANGOS_PRECIO = [[0,Infinity,'Todos'],[0,25000,'Hasta $25.000'],[25001,35000,'$25.000 a $35.000'],[35001,Infinity,'Más de $35.000']];
 const ORDENES = [['rel','Relevancia'],['asc','Menor precio'],['desc','Mayor precio'],['dcto','Mayor descuento']];
@@ -463,7 +491,7 @@ const pctDcto = p => p.original_price > p.p ? 1 - p.p / p.original_price : 0;
 const nFiltros = () => (filtros.orden !== 'rel') + (filtros.precio !== 0) + (filtros.ofertas ? 1 : 0) + (filtros.top ? 1 : 0);
 function filtrar(){
  const q = $('q').value.toLowerCase().trim(), [mn, mx] = RANGOS_PRECIO[filtros.precio];
- const r = productos.filter(p => (categoria==='Todas' || p.cat===categoria)
+ const r = productos.filter(p => (categoria==='Todas' || (categoria==='Ofertas' ? pctDcto(p) > 0 : p.cat===categoria))
   && (!q || (p.n+' '+p.d+' '+p.cat+' '+(p.opc||[]).map(o => o.nombre || o).join(' ')).toLowerCase().includes(q))
   && p.p >= mn && p.p <= mx && (!filtros.ofertas || pctDcto(p) > 0) && (!filtros.top || p.popular));
  if (filtros.orden === 'asc') r.sort((a,b) => a.p - b.p);
@@ -481,6 +509,7 @@ function renderFiltros(){
 }
 function renderCatalogo(){
  const res = filtrar(), q = $('q').value.trim(), nf = nFiltros();
+ $('q-clear').hidden = !q;
  $('sec-top').hidden = !(categoria==='Todas' && !q && nf === 0);
  $('grid-top').innerHTML = productos.filter(p => p.popular).map(tarjeta).join('');
  $('grid').innerHTML = res.length ? res.map(tarjeta).join('') : `<p class="empty">No encontramos esa reliquia en el universo. Prueba con otra palabra, categoría o filtro.${nf ? '<br><button class="btn-s" data-clearf>Limpiar filtros</button>' : ''}</p>`;
@@ -499,9 +528,12 @@ function renderCarrito(){
  $('sum-save').textContent = '-' + money(ahorro);
  $('sum-ship').textContent = !envio ? 'Por calcular' : envio.coordinar ? 'A coordinar' : costo === 0 ? '¡Gratis!' : money(costo);
  $('total').textContent = envio && envio.coordinar ? money(sub) + ' + envío' : money(sub + costo);
- const pe = textoPromoEnvio(); $('promo-env').hidden = !pe; $('promo-env').textContent = pe;
+ const pe = infoPromoEnvio();
+ $('promo-box').hidden = !pe;
+ if (pe) { $('pbar-fill').style.width = pe.pct + '%'; $('promo-env').textContent = pe.txt; }
  $('btn-wa').disabled = n === 0;
  $('btn-clear').hidden = n === 0;
+ $('extra-box').hidden = n === 0;
  $('cart-items').innerHTML = n === 0 ? '<p style="text-align:center;color:var(--muted);padding:26px 0;font-size:13px">Tu santuario está vacío. Agrega productos del catálogo ✦</p>' :
   carrito.map(i => `<div class="row"><img class="thumb" src="${esc(i.img)}" alt="" width="52" height="52" loading="lazy" onerror="this.remove()">
    <div class="row-i">${esc(i.n)}${i.opcion ? `<small>• ${esc(i.opcion)}</small>` : ''}<b>${money(i.p*i.cantidad)}${i.orig > i.p ? `<s>${money(i.orig*i.cantidad)}</s>` : ''}</b></div>
@@ -509,11 +541,21 @@ function renderCarrito(){
 }
 
 /* ===== ACCIONES ===== */
-function agregar(id, opcion, imgOpcion){
+function feedbackBoton(btn){
+ if (!btn) return;
+ const orig = btn.dataset.orig || btn.textContent;
+ btn.dataset.orig = orig;
+ btn.classList.add('ok');
+ btn.textContent = '✓ Agregado';
+ clearTimeout(btn._t);
+ btn._t = setTimeout(() => { btn.classList.remove('ok'); btn.textContent = orig; }, 1100);
+}
+function agregar(id, opcion, imgOpcion, btnEl){
  const p = prod(id), cartId = opcion ? id+'-'+opcion : ''+id;
  const it = carrito.find(i => i.cartId === cartId);
  if (it) it.cantidad++; else carrito.push({cartId, id, n:p.n, p:p.p, orig:p.original_price || 0, cantidad:1, opcion, img:imgOpcion || p.img});
  renderCarrito();
+ feedbackBoton(btnEl);
  const b = $('btn-cart'); b.classList.remove('bump'); void b.offsetWidth; b.classList.add('bump');
 }
 function cambiarCant(cartId, d){
@@ -547,7 +589,7 @@ function normalizarDireccionCO(texto){
   .replace(/\b(dg|diag)\b\.?\s*/gi, 'Diagonal ')
   .replace(/\b(av|avda)\b\.?\s*/gi, 'Avenida ')
   .replace(/\b(circ)\b\.?\s*/gi, 'Circular ')
-  .replace(/[#°]|\bno\b\.?/gi, ' ')   /* CORREGIDO: antes borraba todas las letras N y O */
+  .replace(/[#°]|\bno\b\.?/gi, ' ')
   .replace(/(\d+)\s*-\s*\d+/g, '$1')
   .replace(/\s+/g, ' ').trim();
  const tieneMunicipio = /(itagui|itagüí|medellin|medellín|envigado|sabaneta|bello|la estrella|caldas|copacabana|girardota|barbosa)/i.test(s);
@@ -683,6 +725,7 @@ async function enviarWhatsApp(){
  const ordenId = 'AST-' + Math.floor(1000 + Math.random() * 9000);
  const hora = new Date().toLocaleTimeString('es-CO', {hour:'2-digit', minute:'2-digit', hour12:true});
  const mapsLink = (envio && envio.lat && envio.lon) ? `https://maps.google.com/?q=${envio.lat},${envio.lon}` : `https://maps.google.com/?q=${encodeURIComponent(dir + ', ' + CIUDAD_BASE)}`;
+ const notaTxt = $('nota').value.trim();
 
  let m = `✨🌌 *ASTRAL SHOP · ORDEN CÓSMICA* 🌌✨\n━━━━━━━━━━━━━━━━━━━━━━\n`;
  m += `🎟️ *Ticket:* \`#${ordenId}\`  |  🕒 *Hora:* ${hora}\n━━━━━━━━━━━━━━━━━━━━━━\n\n`;
@@ -694,7 +737,10 @@ async function enviarWhatsApp(){
   if (i.orig > i.p) m += `   ↳ 🎁 _Promo:_ antes ~${money(i.orig)}~ (ahorras ${money((i.orig - i.p) * i.cantidad)})\n`;
   m += `\n`;
  });
- m += `━━━━━━━━━━━━━━━━━━━━━━\n🛸 *DATOS DE ENTREGA*\n📍 *Destino:* ${dir}\n🗺️ *Mapa directo:* ${mapsLink}\n━━━━━━━━━━━━━━━━━━━━━━\n\n`;
+ m += `━━━━━━━━━━━━━━━━━━━━━━\n🛸 *DATOS DE ENTREGA*\n📍 *Destino:* ${dir}\n🗺️ *Mapa directo:* ${mapsLink}\n`;
+ if (pagoSel) m += `💳 *Pago preferido:* ${pagoSel}\n`;
+ if (notaTxt) m += `📝 *Nota:* ${notaTxt}\n`;
+ m += `━━━━━━━━━━━━━━━━━━━━━━\n\n`;
  m += `💎 *RESUMEN DE INVERSIÓN*\n• *Subtotal:* ${money(sub)}\n`;
  if (ahorro > 0) m += `• *Descuentos aplicados:* -${money(ahorro)}\n`;
  if (envio && !envio.coordinar) {
@@ -729,13 +775,19 @@ document.addEventListener('click', e => {
    opcion = sel.value;
    imgOpcion = (sel.options[sel.selectedIndex] || {}).dataset?.img || null;
   }
-  agregar(id, opcion, imgOpcion); toast('Agregado: ' + p.n); return;
+  agregar(id, opcion, imgOpcion, add); toast('Agregado: ' + p.n); return;
  }
  const cat = t.closest('[data-cat]'); if (cat) { categoria = cat.dataset.cat; renderCats(); renderCatalogo(); return; }
  const q = t.closest('[data-q]'); if (q) { cambiarCant(q.dataset.k, +q.dataset.q); return; }
  const sug = t.closest('.suggestion-item');
  if (sug) { procesarCoordenadas(+sug.dataset.lat, +sug.dataset.lon, sug.dataset.name, false); $('suggestions').hidden = true; return; }
- if (t.closest('[data-close]') || t.classList.contains('modal')) { cerrar('cart'); $('suggestions').hidden = true; }
+ const pay = t.closest('[data-pay]');
+ if (pay) {
+  pagoSel = pagoSel === pay.dataset.pay ? '' : pay.dataset.pay;
+  document.querySelectorAll('.pay-chip').forEach(c => c.classList.toggle('on', c.dataset.pay === pagoSel));
+  return;
+ }
+ if (t.closest('[data-close]') || t.id === 'cart') { cerrar('cart'); $('suggestions').hidden = true; }
 });
 document.addEventListener('change', e => {
  if (!e.target.classList.contains('opt-select')) return;
@@ -761,14 +813,13 @@ document.addEventListener('change', e => {
 
 $('btn-cart').onclick = $('float-btn').onclick = () => abrir('cart');
 $('btn-share').onclick = compartir;
-$('btn-clear').onclick = () => { carrito = []; $('dir').value = ''; envio = null; $('ship-info').hidden = true; renderCarrito(); toast('Pedido vaciado'); };
+$('btn-clear').onclick = () => { carrito = []; $('dir').value = ''; $('nota').value = ''; pagoSel = ''; document.querySelectorAll('.pay-chip').forEach(c => c.classList.remove('on')); envio = null; $('ship-info').hidden = true; renderCarrito(); toast('Pedido vaciado'); };
 $('btn-calc').onclick = calcularManual;
 $('btn-gps').onclick = usarGPS;
 $('btn-wa').onclick = enviarWhatsApp;
 $('al-ok').onclick = () => cerrar('alert');
 
 $('dir').addEventListener('keydown', e => { if (e.key === 'Enter') { $('suggestions').hidden = true; calcularManual(); } });
-/* Al salir del campo, calcula solo si aún no hay tarifa (evita choques al tocar una sugerencia) */
 $('dir').addEventListener('blur', () => setTimeout(() => { if (!envio && $('dir').value.trim().length >= 3 && $('cart').classList.contains('on') && $('suggestions').hidden) calcularManual(); }, 250));
 
 let searchTimer;
@@ -779,6 +830,7 @@ $('dir').addEventListener('input', e => {
  if (val.length >= 3) searchTimer = setTimeout(() => buscarDireccion(val), 400); else $('suggestions').hidden = true;
 });
 let timer; $('q').addEventListener('input', () => { clearTimeout(timer); timer = setTimeout(renderCatalogo, 150); });
+$('q-clear').onclick = () => { $('q').value = ''; renderCatalogo(); $('q').focus(); };
 document.addEventListener('keydown', e => { if (e.key === 'Escape') { if ($('alert').classList.contains('on')) cerrar('alert'); else if ($('cart').classList.contains('on')) cerrar('cart'); $('suggestions').hidden = true; } });
 
 if (store.get('astral_age_ok') !== '1') { $('age').classList.add('on'); document.body.classList.add('lock'); }
