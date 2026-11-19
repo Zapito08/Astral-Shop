@@ -4,78 +4,35 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#040208">
-
-<!-- METADATOS & SEO -->
 <title>Astral Shop</title>
-<meta name="description" content="Catálogo exclusivo de Astral Shop. Vaporizadores, destilados, gomitas cannábicas, jeringas y extractos cósmicos. Domicilios y pedidos directos por WhatsApp.">
+<meta name="description" content="Catálogo exclusivo de Astral Shop. Vaporizadores, destilados y más. Domicilios y pedidos directos por WhatsApp.">
 <meta property="og:title" content="Astral Shop">
 <meta property="og:image" content="assets/logo-astral.png">
-
-<!-- FAVICON -->
 <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png?v=14">
 <link rel="icon" type="image/png" sizes="192x192" href="assets/favicon-192.png?v=14">
 <link rel="apple-touch-icon" href="assets/favicon-192.png?v=14">
-
-<!-- GOOGLE FONTS -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;900&family=Cormorant+Garamond:ital,wght@0,600;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-
 <style>
-/* ==========================================================
-   1. VARIABLES & PALETA ASTRAL (DORADO + PÚRPURA + ROSADO)
-========================================================== */
-:root{
-  --void:#040208; --glass:rgba(18,10,34,.74); --card:rgba(23,13,44,.85);
-  --gold-b:#FCE7B2; --gold:#D8A353; --gold-d:#8C5E22;
-  --pur:#7E22CE; --neon:#B86BFF;
-  --pink:#F472B6; --pink-glow:rgba(244,114,182,.28);
-  --em:#22C55E; --em-d:#16A34A;
-  --text:#F8FAFC; --muted:#B5ACC9;
-  --b-gold:rgba(216,163,83,.35); --b-vio:rgba(184,107,255,.24); --b-pink:rgba(244,114,182,.32);
-  --r-s:10px; --r-m:18px; --r-l:26px; --hh:72px; --ease:.3s cubic-bezier(.16,1,.3,1);
-  --safe-b:env(safe-area-inset-bottom,0px);
-  --pad:max(16px,env(safe-area-inset-left,0px),env(safe-area-inset-right,0px));
-  --maxw:1280px;
-}
+:root{--void:#040208;--glass:rgba(18,10,34,.74);--card:rgba(23,13,44,.85);--gold-b:#FCE7B2;--gold:#D8A353;--pur:#7E22CE;--pink:#F472B6;--pink-glow:rgba(244,114,182,.28);--em:#22C55E;--em-d:#16A34A;--text:#F8FAFC;--muted:#B5ACC9;--b-gold:rgba(216,163,83,.35);--b-vio:rgba(184,107,255,.24);--b-pink:rgba(244,114,182,.32);--r-s:10px;--r-m:18px;--r-l:26px;--hh:72px;--ease:.3s cubic-bezier(.16,1,.3,1);--safe-b:env(safe-area-inset-bottom,0px);--pad:max(16px,env(safe-area-inset-left,0px),env(safe-area-inset-right,0px));--maxw:1280px}
 @media(min-width:1700px){:root{--maxw:1500px}}
-
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
-html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;text-size-adjust:100%;max-width:100%;overflow-x:hidden}
-body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;background:var(--void);color:var(--text);min-height:100vh;min-height:100dvh;max-width:100%;overflow-x:hidden;padding-bottom:calc(110px + var(--safe-b));line-height:1.5}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;max-width:100%;scroll-padding-top:calc(var(--hh) + 90px)}
+body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;background:var(--void);color:var(--text);min-height:100dvh;max-width:100%;overflow-x:clip;padding-bottom:calc(110px + var(--safe-b));line-height:1.5}
 body.lock{overflow:hidden}
 img{max-width:100%;display:block}
 button,input{font:inherit;color:inherit}
 button{cursor:pointer}
 :focus-visible{outline:2px solid var(--pink);outline-offset:2px}
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
-
-iframe#netlify-badge, a[href*="netlify.com/experimental"] { display: none !important; visibility: hidden !important; opacity: 0 !important; pointer-events: none !important; }
-
-/* ==========================================================
-   2. FONDO CÓSMICO CON DESTELLOS ROSADOS Y VIOLETAS
-========================================================== */
-.cosmos{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden;background:
-radial-gradient(ellipse at 18% 12%,rgba(126,34,206,.26),transparent 50%),
-radial-gradient(ellipse at 82% 20%,rgba(244,114,182,.14),transparent 46%),
-radial-gradient(ellipse at 50% 90%,rgba(76,29,149,.32),transparent 60%),var(--void)}
-.stars{position:absolute;inset:-50%;opacity:.7;background-size:420px 420px;animation:drift 90s linear infinite;
-background-image:
-  radial-gradient(1.5px 1.5px at 40px 60px,#FCE7B2,transparent),
-  radial-gradient(1.2px 1.2px at 120px 190px,#F472B6,transparent),
-  radial-gradient(2px 2px at 220px 90px,#B86BFF,transparent),
-  radial-gradient(1px 1px at 310px 260px,#D8A353,transparent),
-  radial-gradient(1.5px 1.5px at 390px 130px,#FBCFE8,transparent)}
+.cosmos{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden;background:radial-gradient(ellipse at 18% 12%,rgba(126,34,206,.26),transparent 50%),radial-gradient(ellipse at 82% 20%,rgba(244,114,182,.14),transparent 46%),radial-gradient(ellipse at 50% 90%,rgba(76,29,149,.32),transparent 60%),var(--void)}
+.stars{position:absolute;inset:-50%;opacity:.7;background-size:420px 420px;animation:drift 90s linear infinite;background-image:radial-gradient(1.5px 1.5px at 40px 60px,#FCE7B2,transparent),radial-gradient(1.2px 1.2px at 120px 190px,#F472B6,transparent),radial-gradient(2px 2px at 220px 90px,#B86BFF,transparent),radial-gradient(1px 1px at 310px 260px,#D8A353,transparent),radial-gradient(1.5px 1.5px at 390px 130px,#FBCFE8,transparent)}
 @keyframes drift{to{transform:translateY(-420px) rotate(10deg)}}
 .gold{background:linear-gradient(135deg,var(--gold-b),var(--gold) 52%,var(--pink) 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:var(--gold)}
-
 .logo{position:relative;border-radius:50%;overflow:hidden;background:radial-gradient(circle,#2a1252,#0b0517);display:grid;place-items:center;color:var(--pink);flex:none}
 .logo::before{content:"✦";position:absolute}
 .logo img{position:relative;width:100%;height:100%;object-fit:cover}
-
-/* ==========================================================
-   3. HEADER & BOTÓN ESTRELLA
-========================================================== */
 .header{position:sticky;top:0;z-index:40;background:rgba(4,2,8,.82);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border-bottom:1px solid var(--b-gold);padding-top:env(safe-area-inset-top,0px)}
 .header-in{max-width:var(--maxw);margin:0 auto;padding:0 var(--pad);height:var(--hh);display:flex;align-items:center;justify-content:space-between;gap:12px}
 .brand{display:flex;align-items:center;gap:12px;text-decoration:none;min-width:0}
@@ -84,46 +41,21 @@ background-image:
 .brand-name{font-family:'Cinzel Decorative',serif;font-size:clamp(15px,4.6vw,19px);font-weight:900;letter-spacing:.05em;line-height:1.1;display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .brand-tag{font-size:10px;font-weight:700;color:var(--pink);letter-spacing:.14em;text-transform:uppercase;white-space:nowrap}
 .actions{display:flex;align-items:center;gap:12px;flex:none}
-.ibtn{width:44px;height:44px;border-radius:50%;background:rgba(23,13,44,.85);border:1px solid var(--b-pink);color:var(--gold-b);display:grid;place-items:center;position:relative;transition:var(--ease)}
+.ibtn{width:44px;height:44px;border-radius:50%;background:rgba(23,13,44,.85);border:1px solid var(--b-pink);color:var(--gold-b);display:grid;place-items:center;transition:var(--ease)}
 .ibtn:hover{border-color:var(--pink);box-shadow:0 0 20px var(--pink-glow);transform:translateY(-2px)}
-
 .star-cart-btn{position:relative;width:56px;height:56px;background:none;border:none;padding:0;display:grid;place-items:center;transition:var(--ease);filter:drop-shadow(0 0 12px rgba(244,114,182,.4))}
-.star-cart-btn:hover{transform:scale(1.08) rotate(-4deg);filter:drop-shadow(0 0 18px rgba(252,231,178,.8))}
-.star-cart-btn:active{transform:scale(.95)}
+.star-cart-btn:hover{transform:scale(1.08) rotate(-4deg)}
 .star-cart-btn.bump{animation:bump .5s ease}
 @keyframes bump{30%{transform:scale(1.28) rotate(-10deg)}60%{transform:scale(.94)}}
 .star-shape-svg{position:absolute;inset:0;width:100%;height:100%}
-.star-cart-inner{position:relative;z-index:2;color:#160C02;display:flex;align-items:center;justify-content:center;margin-top:2px}
-.star-badge{position:absolute;top:-2px;right:-2px;z-index:3;min-width:20px;height:20px;padding:0 5px;border-radius:99px;background:linear-gradient(135deg,#F472B6,#DB2777);color:#FFF;font-size:10px;font-weight:900;display:grid;place-items:center;border:2px solid var(--void);box-shadow:0 2px 8px rgba(0,0,0,.7)}
-
-/* ==========================================================
-   4. HERO TEMPLO
-========================================================== */
+.star-cart-inner{position:relative;z-index:2;color:#160C02;display:flex;margin-top:2px}
+.star-badge{position:absolute;top:-2px;right:-2px;z-index:3;min-width:20px;height:20px;padding:0 5px;border-radius:99px;background:linear-gradient(135deg,#F472B6,#DB2777);color:#FFF;font-size:10px;font-weight:900;display:grid;place-items:center;border:2px solid var(--void)}
 .hero{position:relative;z-index:1;max-width:var(--maxw);margin:20px auto 0;padding:0 var(--pad)}
 .temple{position:relative;border-radius:var(--r-l);padding:clamp(24px,5vw,52px) clamp(14px,3vw,28px) clamp(26px,4vw,42px);text-align:center;overflow:hidden;display:flex;flex-direction:column;align-items:center;border:1px solid var(--b-gold);background:radial-gradient(circle at 50% 42%,rgba(126,34,206,.34),rgba(244,114,182,.08) 45%,rgba(13,6,26,.94) 68%,rgba(4,2,8,.98));box-shadow:0 20px 60px rgba(0,0,0,.85),inset 0 0 50px rgba(244,114,182,.15)}
-.mandala{position:absolute;top:50%;left:50%;width:min(560px,130vw);aspect-ratio:1;opacity:.16;pointer-events:none;animation:rot 70s linear infinite}
-@keyframes rot{from{transform:translate(-50%,-50%) rotate(0)}to{transform:translate(-50%,-50%) rotate(360deg)}}
-.smoke{position:absolute;bottom:-30px;left:50%;width:85%;height:140px;transform:translateX(-50%);background:radial-gradient(ellipse,rgba(244,114,182,.28),rgba(168,85,247,.25) 45%,transparent 70%);filter:blur(28px);pointer-events:none;animation:puff 6s ease-in-out infinite alternate}
-@keyframes puff{from{opacity:.5;transform:translateX(-50%) scale(.95)}to{opacity:.95;transform:translateX(-50%) scale(1.08)}}
-
-.hero-logo{
-  position:relative;
-  z-index:2;
-  width: min(100%, 280px);
-  height: auto;
-  aspect-ratio: 1/1;
-  object-fit: contain;
-  margin: 10px auto;
-  filter: drop-shadow(0 0 28px rgba(244,114,182,.45));
-}
-
+.hero-logo{position:relative;z-index:2;width:min(100%,280px);height:auto;aspect-ratio:1/1;object-fit:contain;margin:10px auto;filter:drop-shadow(0 0 28px rgba(244,114,182,.45))}
 .mantra{position:relative;z-index:2;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(17px,2.4vw,21px);color:var(--gold-b);max-width:540px;line-height:1.4}
 .trust{position:relative;z-index:2;display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin-top:18px}
 .trust span{font-size:12px;font-weight:700;padding:6px 14px;border-radius:99px;border:1px solid var(--b-pink);background:rgba(4,2,8,.6);color:#FBCFE8}
-
-/* ==========================================================
-   5. FILTROS & BUSCADOR
-========================================================== */
 .controls{position:sticky;top:calc(var(--hh) + env(safe-area-inset-top,0px));z-index:30;background:rgba(4,2,8,.86);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border-bottom:1px solid var(--b-vio);padding:12px 0;margin-top:20px}
 .controls-in{max-width:var(--maxw);margin:0 auto;padding:0 var(--pad);display:flex;flex-direction:column;gap:10px}
 .search{position:relative;max-width:620px;width:100%;margin:0 auto}
@@ -131,16 +63,12 @@ background-image:
 .search input{width:100%;padding:12px 18px 12px 46px;border-radius:99px;border:1px solid var(--b-gold);background:rgba(18,10,34,.92);font-size:16px;outline:none;transition:var(--ease)}
 .search input::placeholder{color:var(--muted)}
 .search input:focus{border-color:var(--pink);box-shadow:0 0 0 4px rgba(244,114,182,.2)}
-.cats{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;padding:2px 0;scroll-snap-type:x proximity;-webkit-overflow-scrolling:touch}
+.cats{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;padding:2px 0;-webkit-overflow-scrolling:touch}
 .cats::-webkit-scrollbar{display:none}
 @media(min-width:900px){.cats{justify-content:center}}
-.cat{flex:none;scroll-snap-align:start;background:var(--glass);border:1px solid var(--b-vio);padding:9px 16px;border-radius:99px;font-size:12px;font-weight:700;color:var(--muted);white-space:nowrap;transition:var(--ease)}
+.cat{flex:none;background:var(--glass);border:1px solid var(--b-vio);padding:9px 16px;border-radius:99px;font-size:12px;font-weight:700;color:var(--muted);white-space:nowrap;transition:var(--ease)}
 .cat:hover{border-color:var(--pink);color:#FBCFE8}
 .cat.on{background:linear-gradient(135deg,rgba(244,114,182,.32),rgba(126,34,206,.45));border-color:var(--pink);color:#FFF;box-shadow:0 0 20px rgba(244,114,182,.35)}
-
-/* ==========================================================
-   6. CATÁLOGO & TARJETAS (IMAGEN GRANDE + DESCUENTOS)
-========================================================== */
 .wrap{position:relative;z-index:1;max-width:var(--maxw);margin:28px auto;padding:0 var(--pad)}
 .divider{display:flex;align-items:center;gap:14px;margin-bottom:18px}
 .divider::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,var(--b-pink),var(--b-gold),transparent);order:1}
@@ -148,30 +76,22 @@ background-image:
 .divider h2{font-family:'Cinzel Decorative',serif;font-size:clamp(15px,3.6vw,20px);font-weight:900;letter-spacing:.05em}
 .count{font-size:12px;color:var(--muted);font-weight:600;white-space:nowrap}
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(250px,100%),1fr));gap:clamp(14px,2.2vw,24px)}
-
 .card{background:var(--card);border:1px solid var(--b-gold);border-radius:var(--r-l);overflow:hidden;display:flex;flex-direction:column;box-shadow:0 12px 30px rgba(0,0,0,.6);transition:var(--ease);position:relative;min-width:0}
 .card.promo{border-color:var(--b-pink)}
 @media(hover:hover){.card:hover{transform:translateY(-6px);border-color:var(--pink);box-shadow:0 18px 40px rgba(0,0,0,.85),0 0 28px rgba(244,114,182,.3)}.card:hover .photo{transform:scale(1.05)}}
-
-/* Imagen grande y limpia */
 .media{position:relative;aspect-ratio:1/1;overflow:hidden;background:radial-gradient(circle,#2a1252,#090412);display:grid;place-items:center;color:var(--pink);font-size:40px}
 .media::before{content:"✦";position:absolute}
 .photo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .6s ease;z-index:1}
 .badges{position:absolute;top:12px;left:12px;right:12px;z-index:4;display:flex;justify-content:space-between;align-items:flex-start;gap:6px;flex-wrap:wrap}
-.star-tag{background:linear-gradient(135deg,#FBCFE8,var(--pink));color:#2A0818;font-size:10px;font-weight:900;padding:4px 11px;border-radius:99px;text-transform:uppercase;white-space:nowrap;box-shadow:0 2px 8px rgba(0,0,0,.45)}
+.star-tag{background:linear-gradient(135deg,#FBCFE8,var(--pink));color:#2A0818;font-size:10px;font-weight:900;padding:4px 11px;border-radius:99px;text-transform:uppercase;white-space:nowrap}
 .spec{margin-left:auto;background:rgba(4,2,8,.82);border:1px solid var(--b-gold);color:var(--gold-b);font-size:10px;font-weight:700;padding:4px 10px;border-radius:99px;white-space:nowrap}
-
-/* Etiqueta de descuento sobre la foto (solo en productos con descuento) */
-.off{position:absolute;left:12px;bottom:12px;z-index:4;display:inline-flex;align-items:stretch;border-radius:99px;overflow:hidden;box-shadow:0 4px 14px rgba(0,0,0,.6);font-weight:900;max-width:calc(100% - 24px)}
+.off{position:absolute;left:12px;bottom:12px;z-index:4;display:inline-flex;border-radius:99px;overflow:hidden;box-shadow:0 4px 14px rgba(0,0,0,.6);font-weight:900;max-width:calc(100% - 24px)}
 .off b{background:linear-gradient(135deg,#F472B6,#DB2777);color:#fff;font-size:14px;padding:6px 11px;white-space:nowrap}
 .off span{background:rgba(4,2,8,.9);color:#4ADE80;font-size:11px;padding:6px 11px 6px 9px;white-space:nowrap;display:flex;align-items:center}
-
-/* Información ordenada: todo alineado entre tarjetas */
 .info{padding:14px 16px 16px;display:flex;flex-direction:column;gap:8px;flex:1}
 .cat-l{font-size:10px;font-weight:800;text-transform:uppercase;color:var(--pink);letter-spacing:.1em}
 .title{font-size:16px;font-weight:800;line-height:1.25;min-height:2.5em;overflow-wrap:anywhere;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
 .desc{font-size:13px;color:var(--muted);line-height:1.45;min-height:2.9em;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-
 .opt-select{margin-top:auto;width:100%;height:42px;padding:0 38px 0 14px;border-radius:var(--r-s);border:1px solid var(--b-vio);background:rgba(255,255,255,.05) url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%23F472B6' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'><polyline points='6 9 12 15 18 9'/></svg>") no-repeat right 14px center;color:var(--muted);font-size:13px;font-weight:700;-webkit-appearance:none;appearance:none;outline:none;transition:var(--ease);text-overflow:ellipsis}
 .opt-select:focus{border-color:var(--pink)}
 .opt-select.sel{border-color:var(--pink);background-color:rgba(244,114,182,.16);color:#fff}
@@ -179,8 +99,6 @@ background-image:
 .opt-one{margin-top:auto;height:42px;display:flex;align-items:center;padding:0 14px;border-radius:var(--r-s);border:1px dashed var(--b-vio);color:var(--muted);font-size:12px;font-weight:700}
 .card.err .opt-select{animation:shake .4s;border-color:#F87171}
 @keyframes shake{25%{transform:translateX(-5px)}75%{transform:translateX(5px)}}
-
-/* Precio: el precio siempre queda abajo; si hay descuento, el precio viejo va encima */
 .bottom{display:flex;align-items:flex-end;justify-content:space-between;gap:8px;padding-top:12px;border-top:1px solid rgba(244,114,182,.18)}
 .price-box{display:flex;flex-direction:column;line-height:1.15;min-width:0}
 .price-old{font-size:12px;font-weight:700;color:var(--muted);text-decoration:line-through;text-decoration-color:var(--pink)}
@@ -189,29 +107,21 @@ background-image:
 .add{background:linear-gradient(135deg,var(--em),var(--em-d));color:#021208;border:0;padding:11px 16px;border-radius:var(--r-m);font-size:13px;font-weight:800;display:inline-flex;align-items:center;gap:5px;box-shadow:0 4px 16px rgba(34,197,94,.32);transition:var(--ease);white-space:nowrap}
 .add:hover{transform:scale(1.04)}.add:active{transform:scale(.96)}
 .empty{grid-column:1/-1;text-align:center;color:var(--muted);padding:50px 0;font-size:14px}
-
-/* ==========================================================
-   7. BARRA FLOTANTE & MODAL CARRITO (ADAPTABLE PC Y MÓVIL)
-========================================================== */
 .float{position:fixed;bottom:calc(16px + var(--safe-b));left:0;right:0;padding:0 var(--pad);z-index:40;pointer-events:none}
 .float-btn{max-width:480px;margin:0 auto;width:100%;display:none;justify-content:space-between;align-items:center;gap:10px;background:linear-gradient(135deg,#250E3A,#0B0517);border:1.5px solid var(--pink);color:var(--gold-b);padding:12px 22px;border-radius:99px;pointer-events:auto;box-shadow:0 14px 35px rgba(0,0,0,.85),0 0 25px rgba(244,114,182,.35)}
 .float-btn.show{display:flex}
 .float-star-wrap{position:relative;width:34px;height:34px;display:grid;place-items:center;flex:none}
 .float-star-wrap svg{position:absolute;inset:0;width:100%;height:100%}
 .float-star-num{position:relative;z-index:2;color:#160C02;font-size:11px;font-weight:900;margin-top:2px}
-
-/* MODAL ADAPTABLE (CENTRADO EN PC Y MÓVIL) */
 .modal{position:fixed;inset:0;z-index:50;display:none;align-items:center;justify-content:center;background:rgba(2,1,6,.88);backdrop-filter:blur(14px);overscroll-behavior:contain;padding:16px}
 .modal.on{display:flex}
-.panel{background:#0D061A;border:1.5px solid var(--pink);width:100%;max-width:500px;max-height:85dvh;border-radius:var(--r-l);display:flex;flex-direction:column;overflow:hidden;box-shadow:0 25px 60px rgba(0,0,0,.95),0 0 35px rgba(244,114,182,.25);animation:zoomIn .25s ease}
-@keyframes zoomIn{from{transform:scale(0.92);opacity:0}to{transform:scale(1);opacity:1}}
-
-.m-top{position:relative;padding:18px 24px;border-bottom:1px solid var(--b-pink);display:flex;justify-content:space-between;align-items:center;background:rgba(28,12,44,.98);flex:none}
+.panel{background:#0D061A;border:1.5px solid var(--pink);width:100%;max-width:500px;max-height:90dvh;border-radius:var(--r-l);display:flex;flex-direction:column;overflow:hidden;box-shadow:0 25px 60px rgba(0,0,0,.95),0 0 35px rgba(244,114,182,.25);animation:zoomIn .25s ease}
+@keyframes zoomIn{from{transform:scale(.92);opacity:0}to{transform:scale(1);opacity:1}}
+.m-top{padding:18px 24px;border-bottom:1px solid var(--b-pink);display:flex;justify-content:space-between;align-items:center;background:rgba(28,12,44,.98);flex:none}
 .m-top h3{font-family:'Cinzel Decorative',serif;font-size:18px;font-weight:900}
 .m-close{border:0;background:none;font-size:28px;color:var(--muted);width:40px;height:40px;display:grid;place-items:center}
-.m-scroll{padding:16px 24px;display:flex;flex-direction:column;gap:12px;overflow-y:auto;-webkit-overflow-scrolling:touch;flex:1;max-height:42vh}
-.m-bot{padding:16px 24px 20px;background:rgba(14,7,28,.98);border-top:1px solid var(--b-pink);display:flex;flex-direction:column;gap:10px;flex:none}
-
+.m-scroll{padding:16px 24px;display:flex;flex-direction:column;gap:12px;overflow-y:auto;-webkit-overflow-scrolling:touch;flex:1;min-height:80px;max-height:34vh}
+.m-bot{padding:16px 24px 20px;background:rgba(14,7,28,.98);border-top:1px solid var(--b-pink);display:flex;flex-direction:column;gap:10px;flex:none;overflow-y:auto}
 .row{background:rgba(255,255,255,.03);border:1px solid var(--b-vio);padding:12px 14px;border-radius:var(--r-m);display:flex;align-items:center;gap:12px}
 .thumb{width:52px;height:52px;border-radius:var(--r-s);object-fit:cover;border:1px solid var(--pink);flex:none;background:#1a0b33}
 .row-i{flex:1;min-width:0;font-size:14px;font-weight:800;overflow-wrap:anywhere}
@@ -221,26 +131,22 @@ background-image:
 .qty{display:flex;align-items:center;gap:6px;background:rgba(0,0,0,.45);padding:4px 8px;border-radius:var(--r-s);border:1px solid var(--b-gold);flex:none}
 .qty button{width:32px;height:32px;background:var(--card);border:1px solid var(--b-gold);border-radius:6px;font-weight:800;color:var(--gold-b);font-size:15px}
 .qty span{font-size:14px;font-weight:800;min-width:18px;text-align:center}
-
 .deliv{background:rgba(255,255,255,.03);border:1px solid var(--b-pink);padding:12px 14px;border-radius:var(--r-m);display:flex;flex-direction:column;gap:8px}
 .deliv-h{font-size:11px;font-weight:800;color:var(--gold-b);display:flex;justify-content:space-between;gap:8px}
 .deliv-h span+span{color:var(--pink)}
 .dir-wrapper{position:relative;display:flex;gap:8px}
-.dir{flex:1;min-width:0;padding:10px 14px;border-radius:var(--r-s);border:1px solid var(--b-vio);background:rgba(4,2,8,.85);font-size:15px;outline:none}
+.dir{flex:1;min-width:0;padding:10px 14px;border-radius:var(--r-s);border:1px solid var(--b-vio);background:rgba(4,2,8,.85);font-size:16px;outline:none}
 .dir:focus{border-color:var(--pink)}
-
 .suggestions{position:absolute;bottom:calc(100% + 4px);left:0;right:0;background:#15092B;border:1px solid var(--pink);border-radius:var(--r-s);z-index:20;max-height:160px;overflow-y:auto;box-shadow:0 10px 25px rgba(0,0,0,.8)}
-.suggestion-item{padding:10px 14px;font-size:13px;color:var(--text);border-bottom:1px solid rgba(255,255,255,.06);cursor:pointer;transition:var(--ease)}
+.suggestion-item{padding:10px 14px;font-size:13px;color:var(--text);border-bottom:1px solid rgba(255,255,255,.06);cursor:pointer}
 .suggestion-item:hover{background:rgba(244,114,182,.15);color:#FBCFE8}
-
 .calc{background:linear-gradient(135deg,var(--gold-b),var(--gold));color:#160C02;border:0;padding:0 14px;border-radius:var(--r-s);font-size:13px;font-weight:800;flex:none}
-.gps-group{display:flex;gap:8px}
-.gps{flex:1;background:rgba(244,114,182,.18);border:1px solid var(--b-pink);color:#FBCFE8;padding:10px;border-radius:var(--r-s);font-size:13px;font-weight:700;display:flex;align-items:center;justify-content:center;gap:6px}
-
+.gps{width:100%;background:rgba(244,114,182,.18);border:1px solid var(--b-pink);color:#FBCFE8;padding:10px;border-radius:var(--r-s);font-size:13px;font-weight:700;display:flex;align-items:center;justify-content:center;gap:6px}
 .note{font-size:11px;color:var(--pink);font-weight:700;text-align:center}
 .km{font-size:12px;font-weight:700;padding:8px 12px;border-radius:var(--r-s);display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap}
 .km-ok{background:rgba(34,197,94,.15);color:#4ADE80;border:1px solid rgba(34,197,94,.35)}
 .km-c{background:rgba(244,114,182,.15);color:#FBCFE8;border:1px solid var(--b-pink)}
+.promo-env{font-size:11px;font-weight:700;color:#4ADE80;text-align:center}
 .sum{display:flex;justify-content:space-between;font-size:13px;color:var(--muted);font-weight:600}
 .sum.save-row{color:#4ADE80}
 .total{display:flex;justify-content:space-between;align-items:baseline;gap:10px}
@@ -249,229 +155,266 @@ background-image:
 .wa{background:linear-gradient(135deg,var(--em),var(--em-d));color:#021208;border:0;padding:14px;border-radius:var(--r-m);font-weight:900;font-size:15px;width:100%;box-shadow:0 6px 24px rgba(34,197,94,.38)}
 .wa:disabled{opacity:.45;box-shadow:none}
 .clear{background:none;border:0;color:#F87171;font-size:12px;font-weight:700;align-self:flex-start;padding:2px 0}
-
-/* ==========================================================
-   8. LIENZO DE ESTRELLA FUGAZ REALISTA (CANVAS)
-========================================================== */
-#comet-canvas{position:fixed;inset:0;z-index:9999;pointer-events:none;display:none}
-#comet-canvas.active{display:block}
-
-/* ==========================================================
-   9. ALERTAS, VERIFICACIÓN DE EDAD (+18), TOASTS & FOOTER
-========================================================== */
 .alert{position:fixed;inset:0;z-index:70;display:none;padding:20px;background:rgba(2,1,6,.92);backdrop-filter:blur(12px);overflow-y:auto}
 .alert.on{display:flex}
 .alert-c{background:#150A2B;border:1.5px solid var(--pink);border-radius:var(--r-l);padding:28px 24px;max-width:390px;width:100%;text-align:center;margin:auto;box-shadow:0 20px 50px rgba(0,0,0,.9),0 0 30px rgba(244,114,182,.25)}
 .alert-c .ic{font-size:42px;display:block;margin-bottom:10px}
 .alert-c h4{font-family:'Cinzel Decorative',serif;font-size:19px;font-weight:900;margin-bottom:10px}
 .alert-c p{font-size:13px;color:var(--muted);line-height:1.5}
-.btn-g{background:linear-gradient(135deg,var(--gold-b),var(--gold));color:#160C02;border:0;padding:14px;border-radius:var(--r-m);font-weight:900;font-size:14px;width:100%;margin-top:18px;box-shadow:0 4px 16px rgba(216,163,83,.3)}
+.btn-g{background:linear-gradient(135deg,var(--gold-b),var(--gold));color:#160C02;border:0;padding:14px;border-radius:var(--r-m);font-weight:900;font-size:14px;width:100%;margin-top:18px}
 .btn-s{background:none;border:0;color:var(--muted);font-size:12px;font-weight:600;margin-top:12px;padding:6px;text-decoration:underline}
 #age{z-index:90}
 #toasts{position:fixed;top:calc(12px + env(safe-area-inset-top,0px));left:50%;transform:translateX(-50%);z-index:60;pointer-events:none;width:90%;max-width:340px}
 .toast{background:#180B30;border:1px solid var(--pink);color:#FBCFE8;padding:11px 18px;border-radius:99px;font-size:13px;font-weight:700;box-shadow:0 10px 30px rgba(0,0,0,.8);margin-bottom:8px;text-align:center;animation:zoomIn .25s ease}
 .foot{position:relative;z-index:1;text-align:center;padding:36px var(--pad) 10px;border-top:1px solid var(--b-pink);margin-top:50px;color:var(--muted);font-size:12px}
 .foot p+p{margin-top:6px;font-size:11px;opacity:.8}
-
 @media(max-width:380px){.brand-tag{display:none}.brand .logo{width:40px;height:40px}.ibtn{width:40px;height:40px}.star-cart-btn{width:50px;height:50px}.actions{gap:8px}}
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+.mandala{position:absolute;top:50%;left:50%;width:min(560px,130vw);aspect-ratio:1;opacity:.16;pointer-events:none;animation:rot 70s linear infinite}
+@keyframes rot{from{transform:translate(-50%,-50%) rotate(0)}to{transform:translate(-50%,-50%) rotate(360deg)}}
+.smoke{position:absolute;bottom:-30px;left:50%;width:85%;height:140px;transform:translateX(-50%);background:radial-gradient(ellipse,rgba(244,114,182,.28),rgba(168,85,247,.25) 45%,transparent 70%);filter:blur(28px);pointer-events:none;animation:puff 6s ease-in-out infinite alternate}
+@keyframes puff{from{opacity:.5;transform:translateX(-50%) scale(.95)}to{opacity:.95;transform:translateX(-50%) scale(1.08)}}
+#comet-canvas{position:fixed;inset:0;z-index:9999;pointer-events:none;display:none}
+#comet-canvas.active{display:block}
+
+/* ===== NAVBAR QUE ACOMPAÑA EL SCROLL ===== */
+.header-in{transition:height .25s ease}
+.controls{transition:top .25s ease,transform .25s ease}
+body.scrolled{--hh:60px}
+body.scrolled .header{box-shadow:0 8px 30px rgba(0,0,0,.6)}
+/* ===== BUSCADOR + FILTROS ===== */
+.search-row{display:flex;gap:10px;align-items:center;max-width:720px;width:100%;margin:0 auto}
+.search-row .search{flex:1;min-width:0;max-width:none;margin:0}
+.fbtn{position:relative;flex:none;height:46px;display:flex;align-items:center;gap:8px;padding:0 16px;border-radius:99px;border:1px solid var(--b-gold);background:rgba(18,10,34,.92);color:var(--gold-b);font-size:13px;font-weight:700;transition:var(--ease)}
+.fbtn:hover{border-color:var(--pink)}
+.fbadge{min-width:20px;height:20px;border-radius:99px;background:linear-gradient(135deg,#F472B6,#DB2777);color:#fff;font-size:11px;font-weight:900;display:grid;place-items:center;padding:0 5px}
+.cat{min-height:40px}
+#filters .m-scroll{max-height:none;gap:22px}
+.f-g{display:flex;flex-direction:column;gap:10px}
+.f-g h5{font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--pink)}
+.fchips{display:flex;flex-wrap:wrap;gap:8px}
+.fchip{background:var(--glass);border:1px solid var(--b-vio);padding:10px 16px;border-radius:99px;font-size:13px;font-weight:700;color:var(--muted);min-height:42px;transition:var(--ease)}
+.fchip:hover{border-color:var(--pink);color:#FBCFE8}
+.fchip.on{background:linear-gradient(135deg,rgba(244,114,182,.32),rgba(126,34,206,.45));border-color:var(--pink);color:#FFF}
+.f-actions{display:flex;gap:10px}
+.f-actions .btn-g{margin-top:0;flex:1}
+.f-clear{flex:none;background:none;border:1px solid var(--b-vio);color:var(--muted);padding:13px 18px;border-radius:var(--r-m);font-weight:700;font-size:14px}
+@keyframes sheet{from{transform:translateY(100%)}to{transform:none}}
+/* ===== RESPONSIVE (MÓVIL PRIMERO) ===== */
+@media(max-width:700px){
+ .controls{padding:10px 0;margin-top:14px}
+ .controls.tuck{transform:translateY(-125%)}
+ .hero{margin-top:14px}
+ .temple{padding:22px 12px 24px}
+ .hero-logo{width:min(68%,220px)}
+ .trust span{font-size:11px;padding:5px 10px}
+ .divider h2{font-size:15px}
+ .wrap{margin:20px auto}
+ .grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+ .card{border-radius:18px}
+ .badges{top:8px;left:8px;right:8px}
+ .star-tag{font-size:9px;padding:3px 8px}
+ .spec{font-size:9px;padding:3px 8px}
+ .off{left:8px;bottom:8px}.off b{font-size:12px;padding:5px 9px}.off span{display:none}
+ .info{padding:10px 10px 12px;gap:6px}
+ .title{font-size:14px}.desc{font-size:12px}
+ .opt-select{height:40px;font-size:12px;padding:0 30px 0 10px;background-position:right 10px center}
+ .bottom{flex-direction:column;align-items:stretch;gap:8px}
+ .price{font-size:17px}
+ .add{justify-content:center;width:100%;padding:11px 8px}
+ .modal{align-items:flex-end;padding:0}
+ .panel{max-width:none;border-radius:var(--r-l) var(--r-l) 0 0;border-bottom:0;max-height:92dvh;animation:sheet .28s ease}
+ .m-top,.m-scroll,.m-bot{padding-left:16px;padding-right:16px}
+ .m-bot{padding-bottom:calc(18px + var(--safe-b))}
+ .m-scroll{max-height:30vh}
+ #filters .m-scroll{max-height:none}
+ .float-btn{padding:12px 18px}
+}
+@media(max-width:480px){:root{--hh:64px}body.scrolled{--hh:56px}.brand-tag{display:none}.fbtn-t{display:none}.fbtn{width:46px;padding:0;justify-content:center}.fbadge{position:absolute;top:-4px;right:-4px}}
+@media(max-width:340px){.grid{grid-template-columns:1fr}}
+@media(max-height:520px) and (orientation:landscape){.panel{max-height:100dvh}.m-scroll{max-height:26vh}.hero-logo{width:140px}.controls.tuck{transform:translateY(-125%)}}
 </style>
 </head>
 <body>
 <div class="cosmos" aria-hidden="true"><div class="stars"></div></div>
-
 <canvas id="comet-canvas" aria-hidden="true"></canvas>
 
-<header class="header">
- <div class="header-in">
-  <a href="#" class="brand" aria-label="Astral Shop, inicio">
-   <span class="logo"><img src="assets/icono.png" alt="" width="46" height="46" loading="eager" onerror="this.remove()"></span>
-   <span><span class="brand-name gold">Astral Shop</span><span class="brand-tag">✦ Santuario & Catálogo</span></span>
-  </a>
-  <div class="actions">
-   <button class="ibtn" id="btn-share" aria-label="Compartir catálogo"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24" width="20" height="20"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.7 13.3c.2-.4.3-.8.3-1.3s-.1-.9-.3-1.3m0 2.6a3 3 0 110-2.6m0 2.6l6.6 3.3m-6.6-6l6.6-3.3m0 0a3 3 0 105.4-2.7 3 3 0 00-5.4 2.7zm0 9.3a3 3 0 105.4 2.7 3 3 0 00-5.4-2.7z"/></svg></button>
-   
-   <button class="star-cart-btn" id="btn-cart" aria-label="Ver mi pedido">
-     <svg class="star-shape-svg" viewBox="0 0 64 64" fill="none">
-       <defs>
-         <linearGradient id="starGrad" x1="8" y1="6" x2="56" y2="58" gradientUnits="userSpaceOnUse">
-           <stop offset="0%" stop-color="#FCE7B2"/>
-           <stop offset="55%" stop-color="#D8A353"/>
-           <stop offset="100%" stop-color="#F472B6"/>
-         </linearGradient>
-       </defs>
-       <path d="M32 3.5L39.8 20.6L58.5 22.8L44.6 35.6L48.4 54L32 44.8L15.6 54L19.4 35.6L5.5 22.8L24.2 20.6L32 3.5Z" fill="url(#starGrad)" stroke="#FFF3D1" stroke-width="1.5" stroke-linejoin="round"/>
-     </svg>
-     <span class="star-cart-inner">
-       <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" width="18" height="18" stroke-width="2.4">
-         <path stroke-linecap="round" stroke-linejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.3 2.3c-.6.6-.2 1.7.7 1.7H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 100 4 2 2 0 000-4z"/>
-       </svg>
-     </span>
-     <span class="star-badge" id="nav-count">0</span>
-   </button>
-  </div>
+<header class="header"><div class="header-in">
+ <a href="#" class="brand" aria-label="Astral Shop, inicio">
+  <span class="logo"><img src="assets/icono.png" alt="" width="46" height="46" onerror="this.remove()"></span>
+  <span><span class="brand-name gold">Astral Shop</span><span class="brand-tag">✦ Santuario & Catálogo</span></span>
+ </a>
+ <div class="actions">
+  <button class="ibtn" id="btn-share" aria-label="Compartir catálogo"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24" width="20" height="20"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.7 13.3c.2-.4.3-.8.3-1.3s-.1-.9-.3-1.3m0 2.6a3 3 0 110-2.6m0 2.6l6.6 3.3m-6.6-6l6.6-3.3m0 0a3 3 0 105.4-2.7 3 3 0 00-5.4 2.7zm0 9.3a3 3 0 105.4 2.7 3 3 0 00-5.4-2.7z"/></svg></button>
+  <button class="star-cart-btn" id="btn-cart" aria-label="Ver mi pedido">
+   <svg class="star-shape-svg" viewBox="0 0 64 64" fill="none"><defs><linearGradient id="starGrad" x1="8" y1="6" x2="56" y2="58" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#FCE7B2"/><stop offset="55%" stop-color="#D8A353"/><stop offset="100%" stop-color="#F472B6"/></linearGradient></defs><path d="M32 3.5L39.8 20.6L58.5 22.8L44.6 35.6L48.4 54L32 44.8L15.6 54L19.4 35.6L5.5 22.8L24.2 20.6L32 3.5Z" fill="url(#starGrad)" stroke="#FFF3D1" stroke-width="1.5" stroke-linejoin="round"/></svg>
+   <span class="star-cart-inner"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24" width="18" height="18" stroke-width="2.4"><path stroke-linecap="round" stroke-linejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.3 2.3c-.6.6-.2 1.7.7 1.7H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 100 4 2 2 0 000-4z"/></svg></span>
+   <span class="star-badge" id="nav-count">0</span>
+  </button>
  </div>
-</header>
+</div></header>
 
-<section class="hero">
- <div class="temple">
-  <svg class="mandala" viewBox="0 0 400 400" fill="none" stroke="#F472B6" aria-hidden="true">
-   <circle cx="200" cy="200" r="190" stroke-width=".8"/><circle cx="200" cy="200" r="165" stroke-width=".5" stroke-dasharray="4 4"/><circle cx="200" cy="200" r="130" stroke-width=".8"/><circle cx="200" cy="200" r="95" stroke-width=".5"/>
-   <polygon points="200,15 360,292 40,292" stroke-width=".6"/><polygon points="200,385 360,108 40,108" stroke-width=".6"/>
-   <rect x="70" y="70" width="260" height="260" stroke-width=".5"/><rect x="70" y="70" width="260" height="260" transform="rotate(45 200 200)" stroke-width=".5"/>
-   <circle cx="200" cy="70" r="35" stroke-width=".5"/><circle cx="200" cy="330" r="35" stroke-width=".5"/><circle cx="70" cy="200" r="35" stroke-width=".5"/><circle cx="330" cy="200" r="35" stroke-width=".5"/>
-  </svg>
-  <div class="smoke"></div>
-  <img class="hero-logo" src="assets/logo-astral.png" alt="Astral Shop" width="280" height="280" loading="eager" onerror="this.remove()">
-  <h1 class="sr">Astral Shop</h1>
-  <p class="mantra">“Eleva tu frecuencia, conecta con el cosmos. Vaporizadores, destilados y elixires seleccionados para tu viaje.”</p>
-  <div class="trust"><span>🛵 Domicilios en el Valle de Aburrá</span><span>💬 Pedido directo por WhatsApp</span></div>
- </div>
-</section>
+<section class="hero"><div class="temple">
+ <svg class="mandala" viewBox="0 0 400 400" fill="none" stroke="#F472B6" aria-hidden="true">
+  <circle cx="200" cy="200" r="190" stroke-width=".8"/><circle cx="200" cy="200" r="165" stroke-width=".5" stroke-dasharray="4 4"/><circle cx="200" cy="200" r="130" stroke-width=".8"/><circle cx="200" cy="200" r="95" stroke-width=".5"/>
+  <polygon points="200,15 360,292 40,292" stroke-width=".6"/><polygon points="200,385 360,108 40,108" stroke-width=".6"/>
+  <rect x="70" y="70" width="260" height="260" stroke-width=".5"/><rect x="70" y="70" width="260" height="260" transform="rotate(45 200 200)" stroke-width=".5"/>
+  <circle cx="200" cy="70" r="35" stroke-width=".5"/><circle cx="200" cy="330" r="35" stroke-width=".5"/><circle cx="70" cy="200" r="35" stroke-width=".5"/><circle cx="330" cy="200" r="35" stroke-width=".5"/>
+ </svg>
+ <div class="smoke"></div>
+ <img class="hero-logo" src="assets/logo-astral.png" alt="Astral Shop" width="280" height="280" onerror="this.remove()">
+ <h1 class="sr">Astral Shop</h1>
+ <p class="mantra">“Eleva tu frecuencia, conecta con el cosmos. Vaporizadores, destilados y elixires seleccionados para tu viaje.”</p>
+ <div class="trust"><span>🛵 Domicilios en el Valle de Aburrá</span><span>💬 Pedido directo por WhatsApp</span></div>
+</div></section>
 
-<div class="controls">
- <div class="controls-in">
-  <div class="search">
-   <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
-   <label class="sr" for="q">Buscar productos</label>
-   <input id="q" type="search" autocomplete="off" placeholder="Buscar vapes, destilados, gomitas...">
-  </div>
-  <div class="cats" id="cats" role="tablist" aria-label="Categorías"></div>
+<div class="controls"><div class="controls-in">
+ <div class="search-row"><div class="search">
+  <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+  <label class="sr" for="q">Buscar productos</label>
+  <input id="q" type="search" autocomplete="off" placeholder="Buscar vapes, destilados...">
  </div>
-</div>
+  <button class="fbtn" id="btn-filter" aria-label="Abrir filtros"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 6h8M18 6h2M4 12h2M12 12h8M4 18h10M20 18h0"/><circle cx="15" cy="6" r="2.2"/><circle cx="9" cy="12" r="2.2"/><circle cx="17" cy="18" r="2.2"/></svg><span class="fbtn-t">Filtros</span><span class="fbadge" id="f-badge" hidden>0</span></button>
+ </div>
+ <div class="cats" id="cats" role="tablist" aria-label="Categorías"></div>
+</div></div>
 
 <main class="wrap">
- <section id="sec-top" style="margin-bottom:40px">
-  <div class="divider"><h2 class="gold">✦ Reliquias Destacadas</h2></div>
-  <div id="grid-top" class="grid"></div>
- </section>
- <section>
-  <div class="divider"><h2 class="gold" id="cat-title">✦ Catálogo Cósmico</h2><span class="count" id="count"></span></div>
-  <div id="grid" class="grid" aria-live="polite"></div>
- </section>
+ <section id="sec-top" style="margin-bottom:40px"><div class="divider"><h2 class="gold">✦ Reliquias Destacadas</h2></div><div id="grid-top" class="grid"></div></section>
+ <section><div class="divider"><h2 class="gold">✦ Catálogo Cósmico</h2><span class="count" id="count"></span></div><div id="grid" class="grid" aria-live="polite"></div></section>
 </main>
 
-<div class="float">
-  <button class="float-btn" id="float-btn">
-    <span style="display:flex;align-items:center;gap:10px">
-      <span class="float-star-wrap">
-        <svg viewBox="0 0 64 64" fill="none">
-          <path d="M32 3.5L39.8 20.6L58.5 22.8L44.6 35.6L48.4 54L32 44.8L15.6 54L19.4 35.6L5.5 22.8L24.2 20.6L32 3.5Z" fill="#FBCFE8" stroke="#F472B6" stroke-width="2"/>
-        </svg>
-        <span class="float-star-num" id="float-count">0</span>
-      </span>
-      <b>Ver mi pedido</b>
-    </span>
-    <b id="float-total">$0</b>
-  </button>
-</div>
+<div class="float"><button class="float-btn" id="float-btn">
+ <span style="display:flex;align-items:center;gap:10px"><span class="float-star-wrap"><svg viewBox="0 0 64 64" fill="none"><path d="M32 3.5L39.8 20.6L58.5 22.8L44.6 35.6L48.4 54L32 44.8L15.6 54L19.4 35.6L5.5 22.8L24.2 20.6L32 3.5Z" fill="#FBCFE8" stroke="#F472B6" stroke-width="2"/></svg><span class="float-star-num" id="float-count">0</span></span><b>Ver mi pedido</b></span>
+ <b id="float-total">$0</b>
+</button></div>
 
-<!-- MODAL DEL CARRITO -->
-<div id="cart" class="modal" role="dialog" aria-modal="true" aria-labelledby="cart-h" aria-hidden="true">
- <div class="panel">
-  <div class="m-top"><h3 class="gold" id="cart-h">Tu Pedido Astral</h3><button class="m-close" data-close aria-label="Cerrar">&times;</button></div>
-  <div id="cart-items" class="m-scroll"></div>
-  <div class="m-bot">
-   <button class="clear" id="btn-clear">🗑️ Vaciar pedido</button>
-   <div class="deliv">
-    <div class="deliv-h"><span>📍 Dirección de Entrega</span><span>Tarifa por zona</span></div>
-    <div class="dir-wrapper">
-     <input class="dir" id="dir" type="text" autocomplete="street-address" aria-label="Dirección de entrega" placeholder="Ej. Calle 80 # 60-101, Barrio...">
-     <button class="calc" id="btn-calc">Calcular</button>
-     <div id="suggestions" class="suggestions" hidden></div>
-    </div>
-    
-    <div class="gps-group">
-     <button class="gps" id="btn-gps" style="width:100%">📡 Usar mi ubicación GPS</button>
-    </div>
-
-    <div class="note" id="searching" hidden>Buscando ubicación...</div>
-    <div id="ship-info" hidden></div>
+<div id="cart" class="modal" role="dialog" aria-modal="true" aria-labelledby="cart-h" aria-hidden="true"><div class="panel">
+ <div class="m-top"><h3 class="gold" id="cart-h">Tu Pedido Astral</h3><button class="m-close" data-close aria-label="Cerrar">&times;</button></div>
+ <div id="cart-items" class="m-scroll"></div>
+ <div class="m-bot">
+  <button class="clear" id="btn-clear">🗑️ Vaciar pedido</button>
+  <div class="deliv">
+   <div class="deliv-h"><span>📍 Dirección de Entrega</span><span>Tarifa por zona</span></div>
+   <div class="dir-wrapper">
+    <input class="dir" id="dir" type="text" autocomplete="street-address" aria-label="Dirección de entrega" placeholder="Ej. Calle 80 # 60-101, Barrio...">
+    <button class="calc" id="btn-calc">Calcular</button>
+    <div id="suggestions" class="suggestions" hidden></div>
    </div>
-   <div class="sum"><span>Subtotal</span><span id="sum-sub">$0</span></div>
-   <div class="sum save-row" id="save-row" hidden><span>🎁 Descuentos aplicados</span><span id="sum-save">$0</span></div>
-   <div class="sum"><span>Domicilio</span><span id="sum-ship">Por calcular</span></div>
-   <div class="total"><span>TOTAL ESTIMADO</span><span class="gold" id="total">$0</span></div>
-   <button class="wa" id="btn-wa">Enviar pedido por WhatsApp</button>
+   <button class="gps" id="btn-gps">📡 Usar mi ubicación GPS</button>
+   <div class="note" id="searching" hidden>Buscando ubicación...</div>
+   <div id="ship-info" hidden></div>
+   <div class="promo-env" id="promo-env" hidden></div>
   </div>
+  <div class="sum"><span>Subtotal</span><span id="sum-sub">$0</span></div>
+  <div class="sum save-row" id="save-row" hidden><span>🎁 Descuentos aplicados</span><span id="sum-save">$0</span></div>
+  <div class="sum"><span>Domicilio</span><span id="sum-ship">Por calcular</span></div>
+  <div class="total"><span>TOTAL ESTIMADO</span><span class="gold" id="total">$0</span></div>
+  <button class="wa" id="btn-wa">Enviar pedido por WhatsApp</button>
  </div>
-</div>
+</div></div>
+
+<div id="filters" class="modal" role="dialog" aria-modal="true" aria-labelledby="f-h" aria-hidden="true"><div class="panel">
+ <div class="m-top"><h3 class="gold" id="f-h">Filtros</h3><button class="m-close" data-close-f aria-label="Cerrar">&times;</button></div>
+ <div class="m-scroll">
+  <div class="f-g"><h5>Ordenar por</h5><div class="fchips" id="f-orden"></div></div>
+  <div class="f-g"><h5>Precio</h5><div class="fchips" id="f-precio"></div></div>
+  <div class="f-g"><h5>Mostrar</h5><div class="fchips" id="f-mostrar"></div></div>
+ </div>
+ <div class="m-bot"><div class="f-actions"><button class="f-clear" id="f-clear">Limpiar</button><button class="btn-g" id="f-apply">Ver productos</button></div></div>
+</div></div>
 
 <div id="alert" class="alert" role="alertdialog" aria-modal="true"><div class="alert-c"><span class="ic" id="al-ic">🪷</span><h4 class="gold" id="al-t"></h4><p id="al-m"></p><button class="btn-g" id="al-ok">Entendido</button></div></div>
 
-<div id="age" class="alert" role="dialog" aria-modal="true" aria-labelledby="age-t">
- <div class="alert-c">
-  <span class="ic">🔞</span>
-  <h4 class="gold" id="age-t">Verificación de Edad</h4>
-  <p>Este catálogo está dirigido exclusivamente a personas <strong>mayores de 18 años</strong>.<br><br>¿Confirmas que eres mayor de edad para ingresar al santuario?</p>
-  <button class="btn-g" id="age-yes">✦ Sí, soy mayor de 18 años</button>
-  <button class="btn-s" id="age-no">No, soy menor de edad (Salir)</button>
- </div>
-</div>
+<div id="age" class="alert" role="dialog" aria-modal="true" aria-labelledby="age-t"><div class="alert-c">
+ <span class="ic">🔞</span><h4 class="gold" id="age-t">Verificación de Edad</h4>
+ <p>Este catálogo está dirigido exclusivamente a personas <strong>mayores de 18 años</strong>.<br><br>¿Confirmas que eres mayor de edad para ingresar al santuario?</p>
+ <button class="btn-g" id="age-yes">✦ Sí, soy mayor de 18 años</button>
+ <button class="btn-s" id="age-no">No, soy menor de edad (Salir)</button>
+</div></div>
 
 <div id="toasts" aria-live="polite"></div>
-
 <footer class="foot"><p>✦ <strong class="gold">ASTRAL SHOP</strong> ✦ Catálogo Cósmico &copy; 2026</p><p>Venta exclusiva a mayores de 18 años. Consume con responsabilidad.</p></footer>
 
 <script>
-/* ===== CONFIGURACIÓN Y PUNTO DE REFERENCIA INTERNO (Punto A: Itagüí San Pío) ===== */
+/* ===== CONFIGURACIÓN ===== */
 const WHATSAPP_NUM = "573022255979";
 const CIUDAD_BASE = "Antioquia, Colombia";
-const LAT_ORIGEN = 6.1738, LON_ORIGEN = -75.6074;
-const KM_BASE = 3, TARIFA_BASE = 5000, VALOR_KM_EXTRA = 1500, KM_MAX_AUTO = 25;
+const LAT_ORIGEN = 6.1738, LON_ORIGEN = -75.6074; // Itagüí San Pío
 const VIEWBOX_ABURRA = "-75.72,6.05,-75.30,6.46";
+
+/* TARIFAS DE DOMICILIO: [km máximo, precio]. Edita solo esta lista. */
+const KM_MAX_AUTO = 27;
+const ZONAS_ENVIO = [[3,3000],[6,5000],[10,7000],[15,10000],[20,14000],[27,18000]];
+const tarifaPorKm = km => (ZONAS_ENVIO.find(([max]) => km <= max) || [])[1] ?? null;
+/* Promoción de domicilio según subtotal (pon 0 para desactivar) */
+const ENVIO_GRATIS_DESDE = 90000, ENVIO_MITAD_DESDE = 60000;
 
 const CATEGORIAS = [["Todas","🪷 Todo el universo"],["Vaporizadores","💨 Vaporizadores"],["Destilados","💧 Destilados"],["Jeringas","💉 Jeringas"],["Accesorios","🔮 Accesorios"]];
 
-/* DESCUENTOS: para que un producto muestre descuento, agrégale original_price con el precio ANTES de la rebaja.
-   (p = precio actual con descuento). Si no tiene original_price, se muestra normal, sin descuento.
-   FOTOS POR OPCIÓN: en "opc" puedes poner objetos { "nombre": "Sabor", "img": "assets/foto.png" } para que cambie la imagen al elegirlo. */
+/* original_price = precio ANTES de la rebaja (p = precio actual).
+   En "opc" puedes usar { "nombre": "Sabor", "img": "assets/foto.png" } para cambiar la foto al elegir. */
 const productos = [
- {"id": 1, "n": "Baddie Bar - Rosado", "p": 31900, "original_price": 40000, "c": "15000 Puffs · 15 ML", "cat": "Vaporizadores", "d": "Vaporizador edición Rosado con brillos para girls, sabor Sultry Strawberry Banana.", "img": "assets/baddie-rosado.png", "popular": true },
- {"id": 2, "n": "Baddie Bar - Morado", "p": 31900, "original_price": 40000, "c": "15000 Puffs · 15 ML", "cat": "Vaporizadores", "d": "Vaporizador edición Morado con brillos para girls, sabor Razzle Dazzle Grape.", "img": "assets/baddie-morado.png", "popular": false },
- {"id": 3, "n": "Baddie Bar - Amarrillo/Rosado", "p": 31900, "original_price": 40000, "c": "15000 Puffs · 15 ML", "cat": "Vaporizadores", "d": "Vaporizador edición Amarillo/rosado con brillos para girls, sabor Pink Lemonade.", "img": "assets/baddie-amarrilloPink.png", "popular": false },
- {"id": 4, "n": "Baddie Bar - orange rainbow", "p": 31900, "original_price": 40000, "c": "15000 Puffs · 15 ML", "cat": "Vaporizadores", "d": "Vaporizador edición Orange Rainbow con brillos para girls, sabor orange rainbow.", "img": "assets/baddie-orange.jpeg", "popular": false },
- {"id": 5, "n": "Baddie Bar - Plateado", "p": 31900, "original_price": 40000, "c": "15000 Puffs · 15 ML", "cat": "Vaporizadores", "d": "Vaporizador edición Plateado con brillos para girls, sabor Pretty clear.", "img": "assets/baddie-plateado.png", "popular": false },
- {"id": 6, "n": "Humo Azul 24K", "p": 37900, "original_price": 45000, "c": "24000 Puffs · 24 ML", "cat": "Vaporizadores", "d": "Vaporizador desechable recargable Clase azul.", "opc": ["Blueberry Ice", "Watermelon Ice", "Peach Ice", "Blue Razz Ice", "Grape Ice", "Strawberry Watermelon Grape"], "img": "assets/humoAzul-claseazul.png", "layout": "horizontal", "popular": true },
- {"id": 8, "n": "Humo Azul 24K", "p": 37900, "original_price": 45000, "c": "24000 Puffs · 24 ML", "cat": "Vaporizadores", "d": "Vaporizador desechable recargable Clase plateada.", "opc": ["Love 66", "Blueberry Ice", "Watermelon Ice", "Grape Ice", "Peach Ice", "Cool Mint"], "img": "assets/humoAzul-claseplateada.png", "layout": "horizontal", "popular": false },
- {"id": 9, "n": "Humo Azul 24K", "p": 37900, "original_price": 45000, "c": "24000 Puffs · 24 ML", "cat": "Vaporizadores", "d": "Vaporizador desechable recargable Clase rosada.", "opc": ["Strawberry Watermelon", "Watermelon Ice", "Strawberry Ice", "Peach Ice", "Blueberry Ice", "Cool Mint"], "img": "assets/humoAzul-claserosada.png", "layout": "horizontal", "popular": false },
- {"id": 10, "n": "Humo Azul 24K", "p": 37900, "original_price": 45000, "c": "24000 Puffs · 24 ML", "cat": "Vaporizadores", "d": "Vaporizador desechable recargable Clase dorada.", "opc": ["Love 66", "Passion Fruit Kiwi", "Mango Ice", "Pineapple Ice", "Grape Ice", "Watermelon Ice"], "img": "assets/humoAzul-clasedorada.png", "layout": "horizontal", "popular": false },
- {"id": 11, "n": "Nicky Jam x Fume 10K", "p": 18000, "original_price": 25000, "c": "10000 Puffs · LED Display", "cat": "Vaporizadores", "d": "Vaporizador desechable recargable edición especial Nicky Jam x Fume con pantalla LED.", "opc": [
-   {"nombre": "Ojos Rojos (Cereza y bayas maduras)", "img": "assets/nickyjam-ojosrojo.png.jpeg"},
-   {"nombre": "Summer Amante (Mango, Melon y coco)", "img": "assets/nickyjam-summeramante.png.jpeg"},
-   {"nombre": "Blue Miami (Arabdanos mentolados)", "img": "assets/nickjam-bluemaimi.jpeg"},
-   {"nombre": "Lush Medellín (Sandia y menta helada)", "img": "assets/nickyjam-lushmedellin.jpeg"},
-   {"nombre": "Black Hat Black ice (Hielo negro)", "img": "assets/nickyjam-black.jpeg"},
-   {"nombre": "Peach XXX (Melocoton mentolado)", "img": "assets/nickyjam-peachxxx.jpeg"},
-   {"nombre": "Miamint (Menta dulce)", "img": "assets/nickyjam-miamint.jpeg"},
-   {"nombre": "Fantasía Fume (Uva y kiwi)", "img": "assets/nickyjam-fantasiafume.jpeg"},
-   {"nombre": "El ganador (Mango y kiwi)", "img": "assets/nickyjam-elganador.jpeg"},
-   {"nombre": "Calor Juice (Banana y Piña)", "img": "assets/nickyjam-calorjuice.jpeg"}
- ], "img": "assets/nickyjam-todos.png", "layout": "horizontal", "popular": false },
-
- {"id": 10, "n": "EBCreate BC Pro", "p": 25000, "original_price": 35000, "c": "40K Puffs · 1000mAh", "cat": "Vaporizadores", "d": "Vaporizador desechable recargable de alta capacidad EBCreate BC Pro.", "opc": [
-   {"nombre": "Triple Berry", "img": "assets/ebcreate-tripeberry"},
-   {"nombre": "Watermelon Peach frost", "img": "assets/ebcreate-watermelonpeachfrost.jpeg"},
-   {"nombre": "Black Mint", "img": "assets/ebcreate-blackmint.jpeg"},
-   {"nombre": "Strawberry Kiwi", "img": "assets/ebcreate-straberrykiwi"},
-], "img": "assets/ebcreate-todos.jpeg", "layout": "horizontal", "popular":false }
+ {"id":1,"n":"Baddie Bar - Rosado","p":31900,"original_price":40000,"c":"15000 Puffs · 15 ML","cat":"Vaporizadores","d":"Vaporizador edición Rosado con brillos para girls, sabor Sultry Strawberry Banana.","img":"assets/baddie-rosado.png","popular":true},
+ {"id":2,"n":"Baddie Bar - Morado","p":31900,"original_price":40000,"c":"15000 Puffs · 15 ML","cat":"Vaporizadores","d":"Vaporizador edición Morado con brillos para girls, sabor Razzle Dazzle Grape.","img":"assets/baddie-morado.png","popular":false},
+ {"id":3,"n":"Baddie Bar - Amarillo/Rosado","p":31900,"original_price":40000,"c":"15000 Puffs · 15 ML","cat":"Vaporizadores","d":"Vaporizador edición Amarillo/rosado con brillos para girls, sabor Pink Lemonade.","img":"assets/baddie-amarrilloPink.png","popular":false},
+ {"id":4,"n":"Baddie Bar - Orange Rainbow","p":31900,"original_price":40000,"c":"15000 Puffs · 15 ML","cat":"Vaporizadores","d":"Vaporizador edición Orange Rainbow con brillos para girls, sabor orange rainbow.","img":"assets/baddie-orange.jpeg","popular":false},
+ {"id":5,"n":"Baddie Bar - Plateado","p":31900,"original_price":40000,"c":"15000 Puffs · 15 ML","cat":"Vaporizadores","d":"Vaporizador edición Plateado con brillos para girls, sabor Pretty clear.","img":"assets/baddie-plateado.png","popular":false},
+ {"id":6,"n":"Humo Azul 24K","p":37900,"original_price":45000,"c":"24000 Puffs · 24 ML","cat":"Vaporizadores","d":"Vaporizador desechable recargable Clase azul.","opc":["Blueberry Ice","Watermelon Ice","Peach Ice","Blue Razz Ice","Grape Ice","Strawberry Watermelon Grape"],"img":"assets/humoAzul-claseazul.png","popular":true},
+ {"id":7,"n":"Humo Azul 24K","p":37900,"original_price":45000,"c":"24000 Puffs · 24 ML","cat":"Vaporizadores","d":"Vaporizador desechable recargable Clase plateada.","opc":["Love 66","Blueberry Ice","Watermelon Ice","Grape Ice","Peach Ice","Cool Mint"],"img":"assets/humoAzul-claseplateada.png","popular":false},
+ {"id":8,"n":"Humo Azul 24K","p":37900,"original_price":45000,"c":"24000 Puffs · 24 ML","cat":"Vaporizadores","d":"Vaporizador desechable recargable Clase rosada.","opc":["Strawberry Watermelon","Watermelon Ice","Strawberry Ice","Peach Ice","Blueberry Ice","Cool Mint"],"img":"assets/humoAzul-claserosada.png","popular":false},
+ {"id":9,"n":"Humo Azul 24K","p":37900,"original_price":45000,"c":"24000 Puffs · 24 ML","cat":"Vaporizadores","d":"Vaporizador desechable recargable Clase dorada.","opc":["Love 66","Passion Fruit Kiwi","Mango Ice","Pineapple Ice","Grape Ice","Watermelon Ice"],"img":"assets/humoAzul-clasedorada.png","popular":false},
+ {"id":10,"n":"Nicky Jam x Fume 10K","p":18000,"original_price":25000,"c":"10000 Puffs · LED Display","cat":"Vaporizadores","d":"Vaporizador desechable recargable edición especial Nicky Jam x Fume con pantalla LED.","opc":[
+  {"nombre":"Ojos Rojos (Cereza y bayas maduras)","img":"assets/nickyjam-ojosrojo.png.jpeg"},
+  {"nombre":"Summer Amante (Mango, Melón y coco)","img":"assets/nickyjam-summeramante.png.jpeg"},
+  {"nombre":"Blue Miami (Arándanos mentolados)","img":"assets/nickjam-bluemaimi.jpeg"},
+  {"nombre":"Lush Medellín (Sandía y menta helada)","img":"assets/nickyjam-lushmedellin.jpeg"},
+  {"nombre":"Black Hat Black ice (Hielo negro)","img":"assets/nickyjam-black.jpeg"},
+  {"nombre":"Peach XXX (Melocotón mentolado)","img":"assets/nickyjam-peachxxx.jpeg"},
+  {"nombre":"Miamint (Menta dulce)","img":"assets/nickyjam-miamint.jpeg"},
+  {"nombre":"Fantasía Fume (Uva y kiwi)","img":"assets/nickyjam-fantasiafume.jpeg"},
+  {"nombre":"El ganador (Mango y kiwi)","img":"assets/nickyjam-elganador.jpeg"},
+  {"nombre":"Calor Juice (Banana y Piña)","img":"assets/nickyjam-calorjuice.jpeg"}
+ ],"img":"assets/nickyjam-todos.png","popular":false},
+ {"id":11,"n":"EBCreate BC Pro","p":25000,"original_price":35000,"c":"40K Puffs · 1000mAh","cat":"Vaporizadores","d":"Vaporizador desechable recargable de alta capacidad EBCreate BC Pro.","opc":[
+  {"nombre":"Triple Berry","img":"assets/ebcreate-tripeberry.png"},
+  {"nombre":"Watermelon Peach frost","img":"assets/ebcreate-watermelonpeachfrost.jpeg"},
+  {"nombre":"Black Mint","img":"assets/ebcreate-blackmint.jpeg"},
+  {"nombre":"Strawberry Kiwi","img":"assets/ebcreate-strawberrykiwi.png"}
+ ],"img":"assets/ebcreate-todos.jpeg","popular":false}
 ];
 
-/* ===== ESTADO (VOLÁTIL: TODO SE BORRA AL RECARGAR O CERRAR) ===== */
+/* ===== ESTADO ===== */
 const $ = id => document.getElementById(id);
 const money = n => '$' + Math.round(n).toLocaleString('es-CO');
 const esc = s => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const isValidImg = s => !!s && /^(https?:|assets\/|\/|data:)/.test(s);
+const store = { get: k => { try { return sessionStorage.getItem(k); } catch(e) { return null; } }, set: (k,v) => { try { sessionStorage.setItem(k,v); } catch(e) {} } };
 
 let carrito = [], categoria = 'Todas', envio = null;
-
+let filtros = {orden:'rel', precio:0, ofertas:false, top:false};
 const subtotal = () => carrito.reduce((s,i) => s + i.p * i.cantidad, 0);
 const ahorroTotal = () => carrito.reduce((s,i) => s + (i.orig > i.p ? (i.orig - i.p) * i.cantidad : 0), 0);
 const prod = id => productos.find(p => p.id === id);
-const save = () => {};
+
+/* Domicilio real según tarifa de zona y promoción por monto */
+const costoEnvio = () => {
+ if (!envio || envio.coordinar) return 0;
+ const s = subtotal();
+ if (ENVIO_GRATIS_DESDE && s >= ENVIO_GRATIS_DESDE) return 0;
+ if (ENVIO_MITAD_DESDE && s >= ENVIO_MITAD_DESDE) return Math.round(envio.costo / 2 / 500) * 500;
+ return envio.costo;
+};
+function textoPromoEnvio(){
+ const s = subtotal();
+ if (!carrito.length || !envio || envio.coordinar) return '';
+ if (ENVIO_GRATIS_DESDE && s >= ENVIO_GRATIS_DESDE) return '🎉 ¡Domicilio gratis aplicado!';
+ if (ENVIO_GRATIS_DESDE && ENVIO_MITAD_DESDE && s >= ENVIO_MITAD_DESDE) return `🎁 Domicilio a mitad de precio. Gratis desde ${money(ENVIO_GRATIS_DESDE)} (te faltan ${money(ENVIO_GRATIS_DESDE - s)})`;
+ if (ENVIO_MITAD_DESDE) return `💡 Domicilio a mitad de precio desde ${money(ENVIO_MITAD_DESDE)} (te faltan ${money(ENVIO_MITAD_DESDE - s)})`;
+ return '';
+}
 
 /* ===== RENDER ===== */
-const FALLA = "this.remove()";
 function tarjeta(p){
  const tieneImg = isValidImg(p.img);
  const tieneDcto = p.original_price && p.original_price > p.p;
@@ -479,7 +422,7 @@ function tarjeta(p){
  const ahorro = tieneDcto ? p.original_price - p.p : 0;
  return `<article class="card${tieneDcto ? ' promo' : ''}" data-id="${p.id}">
   <div class="media">
-   ${tieneImg ? `<img class="photo" src="${esc(p.img)}" data-default="${esc(p.img)}" alt="${esc(p.n)}" loading="lazy" width="400" height="400" onerror="${FALLA}">` : ''}
+   ${tieneImg ? `<img class="photo" src="${esc(p.img)}" data-default="${esc(p.img)}" alt="${esc(p.n)}" loading="lazy" width="400" height="400" onerror="this.remove()">` : ''}
    <div class="badges">${p.popular ? '<span class="star-tag">✦ Top Astral</span>' : ''}<span class="spec">${esc(p.c)}</span></div>
    ${tieneDcto ? `<div class="off"><b>-${pct}%</b><span>Ahorras ${money(ahorro)}</span></div>` : ''}
   </div>
@@ -487,13 +430,11 @@ function tarjeta(p){
    <span class="cat-l">${esc(p.cat)}</span>
    <h3 class="title">${esc(p.n)}</h3>
    <p class="desc">${esc(p.d)}</p>
-   ${p.opc
-     ? `<select class="opt-select" aria-label="Opciones de ${esc(p.n)}"><option value="">Elige tu opción</option>${p.opc.map(o => {
-         const nom = typeof o === 'object' ? o.nombre : o;
-         const im = typeof o === 'object' && o.img ? o.img : '';
-         return `<option value="${esc(nom)}"${im ? ` data-img="${esc(im)}"` : ''}>${esc(nom)}</option>`;
-       }).join('')}</select>`
-     : '<div class="opt-one">✓ Presentación única</div>'}
+   ${p.opc ? `<select class="opt-select" aria-label="Opciones de ${esc(p.n)}"><option value="">Elige tu opción</option>${p.opc.map(o => {
+      const nom = typeof o === 'object' ? o.nombre : o;
+      const im = typeof o === 'object' && o.img ? o.img : '';
+      return `<option value="${esc(nom)}"${im ? ` data-img="${esc(im)}"` : ''}>${esc(nom)}</option>`;
+     }).join('')}</select>` : '<div class="opt-one">✓ Presentación única</div>'}
    <div class="bottom">
     <div class="price-box">${tieneDcto ? `<s class="price-old">${money(p.original_price)}</s>` : ''}<span class="price">${money(p.p)}</span></div>
     <button class="add" data-add="${p.id}">＋ Agregar</button>
@@ -504,29 +445,53 @@ function tarjeta(p){
 function renderCats(){
  $('cats').innerHTML = CATEGORIAS.map(([k,l]) => `<button class="cat${k===categoria?' on':''}" role="tab" aria-selected="${k===categoria}" data-cat="${k}">${l}</button>`).join('');
 }
+const RANGOS_PRECIO = [[0,Infinity,'Todos'],[0,25000,'Hasta $25.000'],[25001,35000,'$25.000 a $35.000'],[35001,Infinity,'Más de $35.000']];
+const ORDENES = [['rel','Relevancia'],['asc','Menor precio'],['desc','Mayor precio'],['dcto','Mayor descuento']];
+const pctDcto = p => p.original_price > p.p ? 1 - p.p / p.original_price : 0;
+const nFiltros = () => (filtros.orden !== 'rel') + (filtros.precio !== 0) + (filtros.ofertas ? 1 : 0) + (filtros.top ? 1 : 0);
+function filtrar(){
+ const q = $('q').value.toLowerCase().trim(), [mn, mx] = RANGOS_PRECIO[filtros.precio];
+ const r = productos.filter(p => (categoria==='Todas' || p.cat===categoria)
+  && (!q || (p.n+' '+p.d+' '+p.cat+' '+(p.opc||[]).map(o => o.nombre || o).join(' ')).toLowerCase().includes(q))
+  && p.p >= mn && p.p <= mx && (!filtros.ofertas || pctDcto(p) > 0) && (!filtros.top || p.popular));
+ if (filtros.orden === 'asc') r.sort((a,b) => a.p - b.p);
+ else if (filtros.orden === 'desc') r.sort((a,b) => b.p - a.p);
+ else if (filtros.orden === 'dcto') r.sort((a,b) => pctDcto(b) - pctDcto(a));
+ return r;
+}
+function renderFiltros(){
+ const ch = (g,v,l,on) => `<button class="fchip${on?' on':''}" data-fg="${g}" data-fv="${v}" aria-pressed="${on}">${l}</button>`;
+ $('f-orden').innerHTML = ORDENES.map(([v,l]) => ch('orden',v,l,filtros.orden===v)).join('');
+ $('f-precio').innerHTML = RANGOS_PRECIO.map((r,k) => ch('precio',k,r[2],filtros.precio===k)).join('');
+ $('f-mostrar').innerHTML = ch('ofertas',1,'Solo ofertas',filtros.ofertas) + ch('top',1,'Solo destacados',filtros.top);
+ const n = filtrar().length;
+ $('f-apply').textContent = `Ver ${n} ${n===1 ? 'producto' : 'productos'}`;
+}
 function renderCatalogo(){
- const q = $('q').value.toLowerCase().trim();
- const res = productos.filter(p => (categoria==='Todas' || p.cat===categoria) && (!q || (p.n+' '+p.d+' '+p.cat).toLowerCase().includes(q)));
- $('sec-top').hidden = !(categoria==='Todas' && !q);
+ const res = filtrar(), q = $('q').value.trim(), nf = nFiltros();
+ $('sec-top').hidden = !(categoria==='Todas' && !q && nf === 0);
  $('grid-top').innerHTML = productos.filter(p => p.popular).map(tarjeta).join('');
- $('grid').innerHTML = res.length ? res.map(tarjeta).join('') : '<p class="empty">No encontramos esa reliquia en el universo. Prueba con otra palabra o categoría.</p>';
+ $('grid').innerHTML = res.length ? res.map(tarjeta).join('') : `<p class="empty">No encontramos esa reliquia en el universo. Prueba con otra palabra, categoría o filtro.${nf ? '<br><button class="btn-s" data-clearf>Limpiar filtros</button>' : ''}</p>`;
  $('count').textContent = res.length + (res.length===1 ? ' producto' : ' productos');
+ $('f-badge').hidden = nf === 0; $('f-badge').textContent = nf;
+ renderFiltros();
 }
 function renderCarrito(){
  const n = carrito.reduce((s,i) => s + i.cantidad, 0), sub = subtotal(), ahorro = ahorroTotal();
- const costo = envio && !envio.coordinar ? envio.costo : 0;
+ const costo = costoEnvio();
  ['nav-count','float-count'].forEach(id => $(id).textContent = n);
  $('float-total').textContent = money(sub);
  $('float-btn').classList.toggle('show', n > 0);
  $('sum-sub').textContent = money(sub);
  $('save-row').hidden = ahorro <= 0;
  $('sum-save').textContent = '-' + money(ahorro);
- $('sum-ship').textContent = !envio ? 'Por calcular' : envio.coordinar ? 'A coordinar' : money(envio.costo);
+ $('sum-ship').textContent = !envio ? 'Por calcular' : envio.coordinar ? 'A coordinar' : costo === 0 ? '¡Gratis!' : money(costo);
  $('total').textContent = envio && envio.coordinar ? money(sub) + ' + envío' : money(sub + costo);
+ const pe = textoPromoEnvio(); $('promo-env').hidden = !pe; $('promo-env').textContent = pe;
  $('btn-wa').disabled = n === 0;
  $('btn-clear').hidden = n === 0;
  $('cart-items').innerHTML = n === 0 ? '<p style="text-align:center;color:var(--muted);padding:26px 0;font-size:13px">Tu santuario está vacío. Agrega productos del catálogo ✦</p>' :
-  carrito.map(i => `<div class="row"><img class="thumb" src="${esc(i.img)}" alt="" width="52" height="52" loading="lazy" onerror="${FALLA}">
+  carrito.map(i => `<div class="row"><img class="thumb" src="${esc(i.img)}" alt="" width="52" height="52" loading="lazy" onerror="this.remove()">
    <div class="row-i">${esc(i.n)}${i.opcion ? `<small>• ${esc(i.opcion)}</small>` : ''}<b>${money(i.p*i.cantidad)}${i.orig > i.p ? `<s>${money(i.orig*i.cantidad)}</s>` : ''}</b></div>
    <div class="qty"><button data-q="-1" data-k="${esc(i.cartId)}" aria-label="Quitar uno">−</button><span>${i.cantidad}</span><button data-q="1" data-k="${esc(i.cartId)}" aria-label="Agregar uno">+</button></div></div>`).join('');
 }
@@ -534,9 +499,8 @@ function renderCarrito(){
 /* ===== ACCIONES ===== */
 function agregar(id, opcion, imgOpcion){
  const p = prod(id), cartId = opcion ? id+'-'+opcion : ''+id;
- const imgFinal = imgOpcion || p.img;
  const it = carrito.find(i => i.cartId === cartId);
- if (it) it.cantidad++; else carrito.push({cartId, id, n:p.n, p:p.p, orig:p.original_price || 0, cantidad:1, opcion, img:imgFinal});
+ if (it) it.cantidad++; else carrito.push({cartId, id, n:p.n, p:p.p, orig:p.original_price || 0, cantidad:1, opcion, img:imgOpcion || p.img});
  renderCarrito();
  const b = $('btn-cart'); b.classList.remove('bump'); void b.offsetWidth; b.classList.add('bump');
 }
@@ -551,10 +515,10 @@ function toast(msg){
 }
 let lastFocus = null;
 function abrir(id){ lastFocus = document.activeElement; $(id).classList.add('on'); document.body.classList.add('lock'); $(id).setAttribute('aria-hidden','false'); }
-function cerrar(id){ $(id).classList.remove('on'); $(id).setAttribute('aria-hidden','true'); if (!document.querySelector('.modal.on,.alert.on')) document.body.classList.remove('lock'); if (lastFocus) lastFocus.focus?.(); }
-function alerta(t, m, ic='🪷'){ $('al-t').textContent = t; $('al-m').textContent = m; $('al-ic').textContent = ic; $('alert').classList.add('on'); $('al-ok').focus(); }
+function cerrar(id){ $(id).classList.remove('on'); $(id).setAttribute('aria-hidden','true'); if (!document.querySelector('.modal.on,.alert.on')) document.body.classList.remove('lock'); if (lastFocus && lastFocus.focus) lastFocus.focus(); }
+function alerta(t, m, ic='🪷'){ $('al-t').textContent = t; $('al-m').textContent = m; $('al-ic').textContent = ic; $('alert').classList.add('on'); document.body.classList.add('lock'); $('al-ok').focus(); }
 
-/* ===== CÁLCULO DE DOMICILIO & GEOCODIFICACIÓN INVERSA ===== */
+/* ===== DOMICILIO ===== */
 function haversine(a,b,c,d){
  const r = x => x*Math.PI/180, dLat = r(c-a), dLon = r(d-b);
  const h = Math.sin(dLat/2)**2 + Math.cos(r(a))*Math.cos(r(c))*Math.sin(dLon/2)**2;
@@ -562,332 +526,184 @@ function haversine(a,b,c,d){
 }
 function mostrarEnvio(html, cls){ const el = $('ship-info'); el.hidden = false; el.className = 'km ' + cls; el.innerHTML = html; }
 
-function normalizarDireccionCO(texto) {
-  let s = texto
-    .replace(/\b(apto|apartamento|torre|bloque|int|interior|piso|local|casa|oficina|urb|urbanizacion|conjunto|ed|edificio)\b\.?\s*[a-z0-9-]+/gi, '')
-    .replace(/\b(cra|cr|kr|k)\b\.?\s*/gi, 'Carrera ')
-    .replace(/\b(cll|cl|c)\b\.?\s*/gi, 'Calle ')
-    .replace(/\b(tv|trv|transv)\b\.?\s*/gi, 'Transversal ')
-    .replace(/\b(dg|diag)\b\.?\s*/gi, 'Diagonal ')
-    .replace(/\b(av|avda)\b\.?\s*/gi, 'Avenida ')
-    .replace(/\b(circ)\b\.?\s*/gi, 'Circular ')
-    .replace(/[#°No\.]+/gi, ' ')
-    .replace(/(\d+)\s*-\s*\d+/g, '$1')
-    .replace(/\s+/g, ' ')
-    .trim();
-
-  const tieneMunicipio = /(itagui|itagüí|medellin|medellín|envigado|sabaneta|bello|la estrella|caldas|copacabana|girardota|barbosa)/i.test(s);
-  return tieneMunicipio ? `${s}, Antioquia, Colombia` : `${s}, Itagüí, Antioquia, Colombia`;
+function normalizarDireccionCO(texto){
+ const s = texto
+  .replace(/\b(apto|apartamento|torre|bloque|int|interior|piso|local|casa|oficina|urb|urbanizacion|conjunto|ed|edificio)\b\.?\s*[a-z0-9-]+/gi, '')
+  .replace(/\b(cra|cr|kr|k)\b\.?\s*/gi, 'Carrera ')
+  .replace(/\b(cll|cl|c)\b\.?\s*/gi, 'Calle ')
+  .replace(/\b(tv|trv|transv)\b\.?\s*/gi, 'Transversal ')
+  .replace(/\b(dg|diag)\b\.?\s*/gi, 'Diagonal ')
+  .replace(/\b(av|avda)\b\.?\s*/gi, 'Avenida ')
+  .replace(/\b(circ)\b\.?\s*/gi, 'Circular ')
+  .replace(/[#°]|\bno\b\.?/gi, ' ')   /* CORREGIDO: antes borraba todas las letras N y O */
+  .replace(/(\d+)\s*-\s*\d+/g, '$1')
+  .replace(/\s+/g, ' ').trim();
+ const tieneMunicipio = /(itagui|itagüí|medellin|medellín|envigado|sabaneta|bello|la estrella|caldas|copacabana|girardota|barbosa)/i.test(s);
+ return tieneMunicipio ? `${s}, Antioquia, Colombia` : `${s}, Itagüí, Antioquia, Colombia`;
 }
-
-async function consultarNominatim(query, limitarAburra = true) {
-  const vb = limitarAburra ? `&viewbox=${VIEWBOX_ABURRA}&bounded=1` : '';
-  const url = `https://nominatim.openstreetmap.org/search?format=json&limit=5&countrycodes=co${vb}&q=${encodeURIComponent(query)}`;
-  const r = await fetch(url);
-  return await r.json();
+async function consultarNominatim(query, limitarAburra = true){
+ const vb = limitarAburra ? `&viewbox=${VIEWBOX_ABURRA}&bounded=1` : '';
+ const r = await fetch(`https://nominatim.openstreetmap.org/search?format=json&limit=5&countrycodes=co${vb}&q=${encodeURIComponent(query)}`);
+ if (!r.ok) throw new Error('nominatim');
+ return await r.json();
 }
-
 function procesarCoordenadas(lat, lon, displayName, mantenerTextoUsuario = false){
  const km = haversine(LAT_ORIGEN, LON_ORIGEN, lat, lon) * 1.25;
- if (km <= KM_MAX_AUTO) {
-  const costo = km <= KM_BASE ? TARIFA_BASE : TARIFA_BASE + Math.ceil(km - KM_BASE) * VALOR_KM_EXTRA;
-  envio = {km, costo, coordinar:false, lat, lon};
-  mostrarEnvio(`<span>Distancia aprox: <b>${km.toFixed(1)} km</b></span><span>Domicilio: <b>${money(costo)}</b></span>`, 'km-ok');
+ const base = km <= KM_MAX_AUTO ? tarifaPorKm(km) : null;
+ if (base !== null) {
+  envio = {km, costo:base, coordinar:false, lat, lon};
+  mostrarEnvio(`<span>Distancia aprox: <b>${km.toFixed(1)} km</b></span><span>Domicilio: <b>${money(base)}</b></span>`, 'km-ok');
  } else {
   envio = {km, costo:0, coordinar:true, lat, lon};
   mostrarEnvio(`<span>🛵 ${km.toFixed(1)} km: el domicilio se coordina por WhatsApp.</span>`, 'km-c');
  }
- if (displayName && !mantenerTextoUsuario) {
-  $('dir').value = displayName;
- }
+ if (displayName && !mantenerTextoUsuario) $('dir').value = displayName;
  renderCarrito();
 }
-
+function envioPorCoordinar(){
+ envio = {km:0, costo:0, coordinar:true};
+ mostrarEnvio('<span>🛵 Dirección guardada. Coordinamos tarifa exacta por WhatsApp.</span>', 'km-c');
+ renderCarrito();
+}
 async function buscarDireccion(query){
  if (!query || query.length < 3) { $('suggestions').hidden = true; return; }
  try {
-  const limpia = normalizarDireccionCO(query);
-  let data = await consultarNominatim(limpia, true);
+  let data = await consultarNominatim(normalizarDireccionCO(query), true);
   if (!data.length) data = await consultarNominatim(`${query}, ${CIUDAD_BASE}`, true);
-
   const box = $('suggestions');
   if (data.length) {
    box.innerHTML = data.map(item => `<div class="suggestion-item" data-lat="${item.lat}" data-lon="${item.lon}" data-name="${esc(item.display_name)}">${esc(item.display_name)}</div>`).join('');
    box.hidden = false;
-  } else {
-   box.hidden = true;
-  }
+  } else box.hidden = true;
  } catch(e) { $('suggestions').hidden = true; }
 }
-
+let calculando = false;
 async function calcularManual(){
  const dir = $('dir').value.trim();
- if (dir.length < 3) return;
- $('searching').hidden = false;
- $('suggestions').hidden = true;
-
+ if (dir.length < 3 || calculando) return;
+ calculando = true;
+ $('searching').hidden = false; $('suggestions').hidden = true;
  try {
-  const dirNormalizada = normalizarDireccionCO(dir);
-  let d = await consultarNominatim(dirNormalizada, true);
-
-  if (!d.length) {
-   d = await consultarNominatim(`${dir}, ${CIUDAD_BASE}`, true);
-  }
-
+  let d = await consultarNominatim(normalizarDireccionCO(dir), true);
+  if (!d.length) d = await consultarNominatim(`${dir}, ${CIUDAD_BASE}`, true);
   if (!d.length) {
    const partes = dir.split(/[,|-]/).map(p => p.trim()).filter(Boolean);
-   if (partes.length > 1) {
-    d = await consultarNominatim(`${partes[partes.length - 1]}, ${CIUDAD_BASE}`, true);
-   }
+   if (partes.length > 1) d = await consultarNominatim(`${partes[partes.length - 1]}, ${CIUDAD_BASE}`, true);
   }
-
-  if (d.length) {
-   procesarCoordenadas(+d[0].lat, +d[0].lon, d[0].display_name, true);
-  } else {
-   envio = {km:0, costo:0, coordinar:true};
-   mostrarEnvio(`<span>🛵 Dirección guardada. Coordinamos tarifa exacta por WhatsApp.</span>`, 'km-c');
-   renderCarrito();
-  }
- } catch(e) {
-  envio = {km:0, costo:0, coordinar:true};
-  mostrarEnvio(`<span>🛵 Dirección guardada. Coordinamos tarifa exacta por WhatsApp.</span>`, 'km-c');
-  renderCarrito();
- }
- $('searching').hidden = true;
+  if (d.length) procesarCoordenadas(+d[0].lat, +d[0].lon, d[0].display_name, true); else envioPorCoordinar();
+ } catch(e) { envioPorCoordinar(); }
+ $('searching').hidden = true; calculando = false;
 }
-
 async function usarGPS(){
  if (!navigator.geolocation) return alerta('GPS no disponible', 'Tu navegador no permite acceder a la ubicación. Escribe tu dirección.', '🚫');
  const b = $('btn-gps'); b.disabled = true; b.textContent = '📡 Detectando ubicación...';
- 
  const fin = () => { b.disabled = false; b.textContent = '📡 Usar mi ubicación GPS'; };
-
  navigator.geolocation.getCurrentPosition(async pos => {
-  const lat = pos.coords.latitude;
-  const lon = pos.coords.longitude;
-  
+  const lat = pos.coords.latitude, lon = pos.coords.longitude;
+  let dir = '';
   try {
-    const res = await fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lon}&zoom=18&addressdetails=1`);
-    const data = await res.json();
-    
-    let direccionLegible = "";
-    if (data && data.address) {
-      const a = data.address;
-      const via = a.road || a.pedestrian || a.suburb || a.neighbourhood || '';
-      const numero = a.house_number ? `# ${a.house_number}` : '';
-      const barrio = a.suburb || a.neighbourhood || a.residential || '';
-      const ciudad = a.city || a.town || a.municipality || 'Itagüí';
-      
-      direccionLegible = [via, numero, barrio, ciudad].filter(Boolean).join(', ');
-    }
-    
-    if (!direccionLegible && data && data.display_name) {
-      direccionLegible = data.display_name.split(',').slice(0, 3).join(',').trim();
-    }
-
-    if (!direccionLegible) {
-      direccionLegible = `Ubicación GPS (${lat.toFixed(4)}, ${lon.toFixed(4)})`;
-    }
-
-    procesarCoordenadas(lat, lon, direccionLegible, false);
-  } catch(e) {
-    procesarCoordenadas(lat, lon, `Ubicación GPS (${lat.toFixed(4)}, ${lon.toFixed(4)})`, false);
-  }
+   const res = await fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lon}&zoom=18&addressdetails=1`);
+   const data = await res.json();
+   if (data && data.address) {
+    const a = data.address;
+    const via = a.road || a.pedestrian || a.suburb || a.neighbourhood || '';
+    const numero = a.house_number ? `# ${a.house_number}` : '';
+    const barrio = a.suburb || a.neighbourhood || a.residential || '';
+    const ciudad = a.city || a.town || a.municipality || '';
+    dir = [via, numero, barrio, ciudad].filter(Boolean).join(', ');
+   }
+   if (!dir && data && data.display_name) dir = data.display_name.split(',').slice(0,3).join(',').trim();
+  } catch(e) {}
+  procesarCoordenadas(lat, lon, dir || `Ubicación GPS (${lat.toFixed(4)}, ${lon.toFixed(4)})`, false);
   fin();
- }, () => { 
-  fin(); 
-  alerta('GPS bloqueado', 'Activa el permiso de ubicación en tu celular o escribe tu dirección.', '📡'); 
-}, {timeout:10000});
+ }, () => { fin(); alerta('GPS bloqueado', 'Activa el permiso de ubicación en tu celular o escribe tu dirección.', '📡'); }, {timeout:10000});
 }
 
 function lanzarEstrellaFugaz(callback){
-  const canvas = $('comet-canvas');
-  const ctx = canvas.getContext('2d');
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
-  canvas.classList.add('active');
-
-  let particles = [];
-  let progress = 0;
-  const duration = 1100;
-  const startTime = performance.now();
-
-  const startX = canvas.width * 0.12;
-  const startY = canvas.height * 0.08;
-  const endX = canvas.width * 0.88;
-  const endY = canvas.height * 0.88;
-
-  function drawStarShape(cx, cy, spikes, outerRadius, innerRadius) {
-    let rot = Math.PI / 2 * 3;
-    let x = cx, y = cy, step = Math.PI / spikes;
-    ctx.beginPath();
-    ctx.moveTo(cx, cy - outerRadius);
-    for (let i = 0; i < spikes; i++) {
-      x = cx + Math.cos(rot) * outerRadius; y = cy + Math.sin(rot) * outerRadius;
-      ctx.lineTo(x, y); rot += step;
-      x = cx + Math.cos(rot) * innerRadius; y = cy + Math.sin(rot) * innerRadius;
-      ctx.lineTo(x, y); rot += step;
-    }
-    ctx.lineTo(cx, cy - outerRadius);
-    ctx.closePath();
+ const canvas = $('comet-canvas'), ctx = canvas.getContext('2d');
+ canvas.width = innerWidth; canvas.height = innerHeight; canvas.classList.add('active');
+ const particles = [], duration = 1100, t0 = performance.now();
+ const sx = canvas.width*.12, sy = canvas.height*.08, ex = canvas.width*.88, ey = canvas.height*.88;
+ const angle = Math.atan2(ey - sy, ex - sx);
+ function estrella(cx, cy, spikes, R, r){
+  let rot = Math.PI/2*3; const step = Math.PI/spikes;
+  ctx.beginPath(); ctx.moveTo(cx, cy - R);
+  for (let i = 0; i < spikes; i++){
+   ctx.lineTo(cx + Math.cos(rot)*R, cy + Math.sin(rot)*R); rot += step;
+   ctx.lineTo(cx + Math.cos(rot)*r, cy + Math.sin(rot)*r); rot += step;
   }
-
-  function animate(now) {
-    const elapsed = now - startTime;
-    progress = Math.min(elapsed / duration, 1);
-    const ease = progress * progress * (3 - 2 * progress);
-
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    ctx.fillStyle = `rgba(4, 2, 8, ${Math.sin(progress * Math.PI) * 0.65})`;
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-    const curX = startX + (endX - startX) * ease;
-    const curY = startY + (endY - startY) * ease;
-    const scale = 0.4 + ease * 2.2;
-
-    for (let i = 0; i < 6; i++) {
-      particles.push({
-        x: curX + (Math.random() - 0.5) * 14 * scale,
-        y: curY + (Math.random() - 0.5) * 14 * scale,
-        vx: (Math.random() - 0.8) * 2.5,
-        vy: (Math.random() - 0.8) * 2.5,
-        size: (Math.random() * 3.5 + 1) * scale,
-        alpha: 1,
-        color: Math.random() > 0.45 ? '#FCE7B2' : '#F472B6'
-      });
-    }
-
-    const tailLen = 220 * scale;
-    const angle = Math.atan2(endY - startY, endX - startX);
-    const tailX = curX - Math.cos(angle) * tailLen;
-    const tailY = curY - Math.sin(angle) * tailLen;
-
-    const grad = ctx.createLinearGradient(curX, curY, tailX, tailY);
-    grad.addColorStop(0, 'rgba(255, 255, 255, 0.95)');
-    grad.addColorStop(0.25, 'rgba(252, 231, 178, 0.75)');
-    grad.addColorStop(0.6, 'rgba(244, 114, 182, 0.35)');
-    grad.addColorStop(1, 'rgba(126, 34, 206, 0)');
-
-    ctx.beginPath();
-    ctx.moveTo(curX, curY);
-    ctx.lineTo(tailX, tailY);
-    ctx.strokeStyle = grad;
-    ctx.lineWidth = 10 * scale;
-    ctx.lineCap = 'round';
-    ctx.stroke();
-
-    for (let i = particles.length - 1; i >= 0; i--) {
-      let p = particles[i];
-      p.x += p.vx; p.y += p.vy; p.alpha -= 0.032;
-      if (p.alpha <= 0) { particles.splice(i, 1); continue; }
-      ctx.save();
-      ctx.globalAlpha = p.alpha;
-      ctx.fillStyle = p.color;
-      ctx.beginPath();
-      ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-      ctx.fill();
-      ctx.restore();
-    }
-
-    ctx.save();
-    ctx.shadowBlur = 35 * scale;
-    ctx.shadowColor = '#F472B6';
-    drawStarShape(curX, curY, 4, 22 * scale, 5 * scale);
-    ctx.fillStyle = '#FFFFFF';
-    ctx.fill();
-
-    ctx.rotate(Math.PI / 4);
-    drawStarShape(curX, curY, 4, 14 * scale, 3 * scale);
-    ctx.fillStyle = '#FCE7B2';
-    ctx.fill();
-    ctx.restore();
-
-    if (progress < 1) {
-      requestAnimationFrame(animate);
-    } else {
-      canvas.classList.remove('active');
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      if (callback) callback();
-    }
+  ctx.closePath();
+ }
+ function fin(){ canvas.classList.remove('active'); ctx.clearRect(0,0,canvas.width,canvas.height); callback && callback(); }
+ function animate(now){
+  const progress = Math.min((now - t0) / duration, 1), ease = progress*progress*(3 - 2*progress);
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+  ctx.fillStyle = `rgba(4,2,8,${Math.sin(progress*Math.PI)*.65})`; ctx.fillRect(0,0,canvas.width,canvas.height);
+  const cx = sx + (ex - sx)*ease, cy = sy + (ey - sy)*ease, scale = .4 + ease*2.2;
+  for (let i = 0; i < 6; i++) particles.push({x:cx + (Math.random()-.5)*14*scale, y:cy + (Math.random()-.5)*14*scale, vx:(Math.random()-.8)*2.5, vy:(Math.random()-.8)*2.5, size:(Math.random()*3.5+1)*scale, alpha:1, color:Math.random() > .45 ? '#FCE7B2' : '#F472B6'});
+  const tl = 220*scale, tx = cx - Math.cos(angle)*tl, ty = cy - Math.sin(angle)*tl;
+  const g = ctx.createLinearGradient(cx, cy, tx, ty);
+  g.addColorStop(0,'rgba(255,255,255,.95)'); g.addColorStop(.25,'rgba(252,231,178,.75)'); g.addColorStop(.6,'rgba(244,114,182,.35)'); g.addColorStop(1,'rgba(126,34,206,0)');
+  ctx.beginPath(); ctx.moveTo(cx, cy); ctx.lineTo(tx, ty); ctx.strokeStyle = g; ctx.lineWidth = 10*scale; ctx.lineCap = 'round'; ctx.stroke();
+  for (let i = particles.length - 1; i >= 0; i--){
+   const q = particles[i]; q.x += q.vx; q.y += q.vy; q.alpha -= .032;
+   if (q.alpha <= 0){ particles.splice(i,1); continue; }
+   ctx.save(); ctx.globalAlpha = q.alpha; ctx.fillStyle = q.color; ctx.beginPath(); ctx.arc(q.x, q.y, q.size, 0, Math.PI*2); ctx.fill(); ctx.restore();
   }
-  requestAnimationFrame(animate);
+  ctx.save(); ctx.shadowBlur = 35*scale; ctx.shadowColor = '#F472B6';
+  estrella(cx, cy, 4, 22*scale, 5*scale); ctx.fillStyle = '#FFF'; ctx.fill();
+  estrella(cx, cy, 4, 14*scale, 3*scale); ctx.fillStyle = '#FCE7B2'; ctx.fill();
+  ctx.restore();
+  if (progress < 1) requestAnimationFrame(animate); else fin();
+ }
+ if (matchMedia('(prefers-reduced-motion:reduce)').matches) return fin();
+ requestAnimationFrame(animate);
 }
 
 async function enviarWhatsApp(){
  if (!carrito.length) return;
  const dir = $('dir').value.trim();
- if (!dir) { alerta('Falta el destino', 'Escribe tu dirección o usa el GPS para enviar el pedido.', '📍'); return; }
+ if (!dir) return alerta('Falta el destino', 'Escribe tu dirección o usa el GPS para enviar el pedido.', '📍');
+ if (!envio) await calcularManual();
 
- if (!envio) {
-  await calcularManual();
- }
-
- const sub = subtotal();
- const ahorro = ahorroTotal();
- const costo = envio && !envio.coordinar ? envio.costo : 0;
- const total = sub + costo;
- const cantTotal = carrito.reduce((s, i) => s + i.cantidad, 0);
-
+ const sub = subtotal(), ahorro = ahorroTotal(), costo = costoEnvio(), total = sub + costo;
+ const cantTotal = carrito.reduce((s,i) => s + i.cantidad, 0);
  const ordenId = 'AST-' + Math.floor(1000 + Math.random() * 9000);
- const hora = new Date().toLocaleTimeString('es-CO', { hour: '2-digit', minute: '2-digit', hour12: true });
+ const hora = new Date().toLocaleTimeString('es-CO', {hour:'2-digit', minute:'2-digit', hour12:true});
+ const mapsLink = (envio && envio.lat && envio.lon) ? `https://maps.google.com/?q=${envio.lat},${envio.lon}` : `https://maps.google.com/?q=${encodeURIComponent(dir + ', ' + CIUDAD_BASE)}`;
 
- const mapsLink = (envio && envio.lat && envio.lon)
-  ? `https://maps.google.com/?q=${envio.lat},${envio.lon}`
-  : `https://maps.google.com/?q=${encodeURIComponent(dir + ', ' + CIUDAD_BASE)}`;
-
- let m = `✨🌌 *ASTRAL SHOP · ORDEN CÓSMICA* 🌌✨\n`;
- m += `━━━━━━━━━━━━━━━━━━━━━━\n`;
- m += `🎟️ *Ticket:* \`#${ordenId}\`  |  🕒 *Hora:* ${hora}\n`;
- m += `━━━━━━━━━━━━━━━━━━━━━━\n\n`;
-
+ let m = `✨🌌 *ASTRAL SHOP · ORDEN CÓSMICA* 🌌✨\n━━━━━━━━━━━━━━━━━━━━━━\n`;
+ m += `🎟️ *Ticket:* \`#${ordenId}\`  |  🕒 *Hora:* ${hora}\n━━━━━━━━━━━━━━━━━━━━━━\n\n`;
  m += `🔮 *RELIQUIAS SELECCIONADAS (${cantTotal}):*\n\n`;
  carrito.forEach((i, idx) => {
-  const itemTotal = money(i.p * i.cantidad);
   m += `*${idx + 1}. ${i.n}*\n`;
   if (i.opcion) m += `   ↳ _Variante:_ *${i.opcion}*\n`;
-  m += `   ↳ _Cant:_ *${i.cantidad}x* (${money(i.p)} c/u) ➔ *${itemTotal}*\n`;
+  m += `   ↳ _Cant:_ *${i.cantidad}x* (${money(i.p)} c/u) ➔ *${money(i.p * i.cantidad)}*\n`;
   if (i.orig > i.p) m += `   ↳ 🎁 _Promo:_ antes ~${money(i.orig)}~ (ahorras ${money((i.orig - i.p) * i.cantidad)})\n`;
   m += `\n`;
  });
-
- m += `━━━━━━━━━━━━━━━━━━━━━━\n`;
- m += `🛸 *DATOS DE ENTREGA*\n`;
- m += `📍 *Destino:* ${dir}\n`;
- m += `🗺️ *Mapa directo:* ${mapsLink}\n`;
- m += `━━━━━━━━━━━━━━━━━━━━━━\n\n`;
-
- m += `💎 *RESUMEN DE INVERSIÓN*\n`;
- m += `• *Subtotal:* ${money(sub)}\n`;
+ m += `━━━━━━━━━━━━━━━━━━━━━━\n🛸 *DATOS DE ENTREGA*\n📍 *Destino:* ${dir}\n🗺️ *Mapa directo:* ${mapsLink}\n━━━━━━━━━━━━━━━━━━━━━━\n\n`;
+ m += `💎 *RESUMEN DE INVERSIÓN*\n• *Subtotal:* ${money(sub)}\n`;
  if (ahorro > 0) m += `• *Descuentos aplicados:* -${money(ahorro)}\n`;
  if (envio && !envio.coordinar) {
-  m += `• *Domicilio (${envio.km.toFixed(1)} km):* ${money(costo)}\n`;
+  m += `• *Domicilio (${envio.km.toFixed(1)} km):* ${costo === 0 ? 'GRATIS 🎉' : money(costo)}\n`;
   m += `\n👑 *TOTAL A PAGAR: ${money(total)}* 👑\n`;
  } else {
-  m += `• *Domicilio:* _Por coordinar según zona_\n`;
-  m += `\n👑 *SUBTOTAL: ${money(sub)}* _(+ envío)_ 👑\n`;
+  m += `• *Domicilio:* _Por coordinar según zona_\n\n👑 *SUBTOTAL: ${money(sub)}* _(+ envío)_ 👑\n`;
  }
-
- m += `\n━━━━━━━━━━━━━━━━━━━━━━\n`;
- m += `🪷 _Hola Astral Shop, envío mi orden lista para despacho. Quedo atento para confirmar método de pago._ ✨`;
-
- const waUrl = `https://wa.me/${WHATSAPP_NUM}?text=${encodeURIComponent(m)}`;
+ m += `\n━━━━━━━━━━━━━━━━━━━━━━\n🪷 _Hola Astral Shop, envío mi orden lista para despacho. Quedo atento para confirmar método de pago._ ✨`;
 
  cerrar('cart');
- 
- lanzarEstrellaFugaz(() => {
-  window.location.href = waUrl;
- });
+ lanzarEstrellaFugaz(() => { window.location.href = `https://wa.me/${WHATSAPP_NUM}?text=${encodeURIComponent(m)}`; });
 }
-
 async function compartir(){
- const data = {title:'Astral Shop | Santuario & Catálogo', url:location.href};
- try { if (navigator.share) await navigator.share(data); else { await navigator.clipboard.writeText(location.href); toast('Enlace copiado'); } } catch(e) {}
+ try { if (navigator.share) await navigator.share({title:'Astral Shop | Santuario & Catálogo', url:location.href}); else { await navigator.clipboard.writeText(location.href); toast('Enlace copiado'); } } catch(e) {}
 }
 
+/* ===== EVENTOS ===== */
 document.addEventListener('click', e => {
  const t = e.target;
  if (!t.closest('.dir-wrapper')) $('suggestions').hidden = true;
-
  const add = t.closest('[data-add]');
  if (add) {
   const card = add.closest('.card'), id = +add.dataset.add, p = prod(id);
@@ -896,105 +712,97 @@ document.addEventListener('click', e => {
    const sel = card.querySelector('.opt-select');
    if (!sel || !sel.value) {
     card.classList.remove('err'); void card.offsetWidth; card.classList.add('err');
-    return alerta('Elige una opción', 'Selecciona el sabor o la cepa antes de agregar al pedido.', '✨');
+    return alerta('Elige una opción', 'Selecciona el sabor antes de agregar al pedido.', '✨');
    }
    opcion = sel.value;
-   imgOpcion = sel.options[sel.selectedIndex]?.dataset.img || null;
+   imgOpcion = (sel.options[sel.selectedIndex] || {}).dataset?.img || null;
   }
   agregar(id, opcion, imgOpcion); toast('Agregado: ' + p.n); return;
  }
  const cat = t.closest('[data-cat]'); if (cat) { categoria = cat.dataset.cat; renderCats(); renderCatalogo(); return; }
  const q = t.closest('[data-q]'); if (q) { cambiarCant(q.dataset.k, +q.dataset.q); return; }
- 
  const sug = t.closest('.suggestion-item');
- if (sug) {
-  procesarCoordenadas(+sug.dataset.lat, +sug.dataset.lon, sug.dataset.name, false);
-  $('suggestions').hidden = true;
-  return;
- }
-
+ if (sug) { procesarCoordenadas(+sug.dataset.lat, +sug.dataset.lon, sug.dataset.name, false); $('suggestions').hidden = true; return; }
  if (t.closest('[data-close]') || t.classList.contains('modal')) { cerrar('cart'); $('suggestions').hidden = true; }
 });
-
-/* Marca el menú de opciones y cambia la imagen de la tarjeta según la opción elegida */
 document.addEventListener('change', e => {
- if (e.target.classList.contains('opt-select')) {
-  const sel = e.target;
-  sel.classList.toggle('sel', !!sel.value);
-  const card = sel.closest('.card');
-  const media = card?.querySelector('.media');
-  if (!media) return;
-  const opt = sel.options[sel.selectedIndex];
-  const imgOpc = opt?.dataset.img || '';
-  let foto = media.querySelector('.photo');
-  const defecto = foto?.dataset.default || prod(+card.dataset.id)?.img || '';
-  const destino = imgOpc || defecto;
-  if (isValidImg(destino)) {
-   if (!foto) {
-    foto = document.createElement('img');
-    foto.className = 'photo';
-    foto.alt = card.querySelector('.title')?.textContent || '';
-    foto.loading = 'lazy';
-    foto.width = 400;
-    foto.height = 400;
-    foto.onerror = function(){ this.remove(); };
-    if (isValidImg(defecto)) foto.dataset.default = defecto;
-    media.prepend(foto);
-   }
-   foto.src = destino;
-  }
+ if (!e.target.classList.contains('opt-select')) return;
+ const sel = e.target;
+ sel.classList.toggle('sel', !!sel.value);
+ const card = sel.closest('.card'), media = card && card.querySelector('.media');
+ if (!media) return;
+ const imgOpc = (sel.options[sel.selectedIndex] || {}).dataset?.img || '';
+ let foto = media.querySelector('.photo');
+ const defecto = (foto && foto.dataset.default) || (prod(+card.dataset.id) || {}).img || '';
+ const destino = imgOpc || defecto;
+ if (!isValidImg(destino)) return;
+ if (!foto) {
+  foto = document.createElement('img');
+  foto.className = 'photo'; foto.alt = card.querySelector('.title')?.textContent || '';
+  foto.loading = 'lazy'; foto.width = 400; foto.height = 400;
+  foto.onerror = function(){ this.remove(); };
+  if (isValidImg(defecto)) foto.dataset.default = defecto;
+  media.prepend(foto);
  }
+ foto.src = destino;
 });
 
 $('btn-cart').onclick = $('float-btn').onclick = () => abrir('cart');
 $('btn-share').onclick = compartir;
-$('btn-clear').onclick = () => { 
-  carrito = []; 
-  $('dir').value = '';
-  envio = null;
-  $('ship-info').hidden = true;
-  renderCarrito(); 
-  toast('Pedido vaciado'); 
-};
+$('btn-clear').onclick = () => { carrito = []; $('dir').value = ''; envio = null; $('ship-info').hidden = true; renderCarrito(); toast('Pedido vaciado'); };
 $('btn-calc').onclick = calcularManual;
 $('btn-gps').onclick = usarGPS;
 $('btn-wa').onclick = enviarWhatsApp;
 $('al-ok').onclick = () => cerrar('alert');
 
 $('dir').addEventListener('keydown', e => { if (e.key === 'Enter') { $('suggestions').hidden = true; calcularManual(); } });
-$('dir').addEventListener('blur', calcularManual);
+/* Al salir del campo, calcula solo si aún no hay tarifa (evita choques al tocar una sugerencia) */
+$('dir').addEventListener('blur', () => setTimeout(() => { if (!envio && $('dir').value.trim().length >= 3 && $('cart').classList.contains('on') && $('suggestions').hidden) calcularManual(); }, 250));
 
 let searchTimer;
 $('dir').addEventListener('input', e => {
  if (envio) { envio = null; $('ship-info').hidden = true; renderCarrito(); }
  clearTimeout(searchTimer);
  const val = e.target.value.trim();
- if (val.length >= 3) {
-  searchTimer = setTimeout(() => buscarDireccion(val), 300);
- } else {
-  $('suggestions').hidden = true;
- }
+ if (val.length >= 3) searchTimer = setTimeout(() => buscarDireccion(val), 400); else $('suggestions').hidden = true;
 });
-
 let timer; $('q').addEventListener('input', () => { clearTimeout(timer); timer = setTimeout(renderCatalogo, 150); });
 document.addEventListener('keydown', e => { if (e.key === 'Escape') { if ($('alert').classList.contains('on')) cerrar('alert'); else if ($('cart').classList.contains('on')) cerrar('cart'); $('suggestions').hidden = true; } });
 
-if (sessionStorage.getItem('astral_age_ok') !== '1') {
-  $('age').classList.add('on');
-  document.body.classList.add('lock');
-}
-$('age-yes').onclick = () => {
-  sessionStorage.setItem('astral_age_ok', '1');
-  $('age').classList.remove('on');
-  document.body.classList.remove('lock');
-};
-$('age-no').onclick = () => {
-  window.location.href = 'https://www.google.com';
-};
+if (store.get('astral_age_ok') !== '1') { $('age').classList.add('on'); document.body.classList.add('lock'); }
+$('age-yes').onclick = () => { store.set('astral_age_ok','1'); $('age').classList.remove('on'); document.body.classList.remove('lock'); };
+$('age-no').onclick = () => { window.location.href = 'https://www.google.com'; };
 
-renderCats(); 
-renderCatalogo(); 
-renderCarrito();
+document.addEventListener('click', e => {
+ const t = e.target;
+ if (t.closest('#btn-filter')) { abrir('filters'); return; }
+ const fc = t.closest('[data-fg]');
+ if (fc) { const g = fc.dataset.fg, v = fc.dataset.fv; if (g==='orden') filtros.orden = v; else if (g==='precio') filtros.precio = +v; else filtros[g] = !filtros[g]; renderCatalogo(); return; }
+ if (t.closest('#f-clear') || t.closest('[data-clearf]')) { filtros = {orden:'rel', precio:0, ofertas:false, top:false}; renderCatalogo(); return; }
+ if (t.closest('#f-apply') || t.closest('[data-close-f]') || t.id === 'filters') cerrar('filters');
+});
+document.addEventListener('keydown', e => { if (e.key === 'Escape' && $('filters').classList.contains('on')) cerrar('filters'); });
+
+/* Navbar fijo que se compacta al bajar; en móvil la barra de búsqueda se oculta al bajar y reaparece al subir */
+(function(){
+ let last = scrollY, tick = false; const ctr = document.querySelector('.controls');
+ const mobile = () => matchMedia('(max-width:700px), (max-height:520px) and (orientation:landscape)').matches;
+ addEventListener('scroll', () => {
+  if (tick) return; tick = true;
+  requestAnimationFrame(() => {
+   const y = Math.max(0, scrollY);
+   document.body.classList.toggle('scrolled', y > 40);
+   if (mobile() && document.activeElement !== $('q')) {
+    if (y > last + 6 && y > 240) ctr.classList.add('tuck');
+    else if (y < last - 6 || y <= 240) ctr.classList.remove('tuck');
+   } else ctr.classList.remove('tuck');
+   last = y; tick = false;
+  });
+ }, {passive:true});
+ $('q').addEventListener('focus', () => ctr.classList.remove('tuck'));
+})();
+
+renderCats(); renderCatalogo(); renderCarrito();
 </script>
 </body>
 </html>
