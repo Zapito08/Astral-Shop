@@ -360,7 +360,7 @@ const KM_MAX_AUTO = 27;
 const ZONAS_ENVIO = [[3,3000],[6,5000],[10,7000],[15,10000],[20,14000],[27,18000]];
 const tarifaPorKm = km => (ZONAS_ENVIO.find(([max]) => km <= max) || [])[1] ?? null;
 /* Promoción de domicilio según subtotal (pon 0 para desactivar) */
-const ENVIO_GRATIS_DESDE = 90000, ENVIO_MITAD_DESDE = 60000;
+const ENVIO_GRATIS_DESDE = 150000, ENVIO_MITAD_DESDE = 100000;
 
 const CATEGORIAS = [["Todas","🪷 Todo el universo"],["Vaporizadores","💨 Vaporizadores"],["Destilados","💧 Destilados"],["Jeringas","💉 Jeringas"],["Accesorios","🔮 Accesorios"]];
 
